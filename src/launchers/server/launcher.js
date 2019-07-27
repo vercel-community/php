@@ -14,7 +14,7 @@ function normalizeEvent(event) {
     const invokeEvent = JSON.parse(event.body);
 
     const {
-      method, path, headers, encoding,
+      method, path, headers = {}, encoding,
     } = invokeEvent;
 
     let { body } = invokeEvent;
@@ -38,7 +38,7 @@ function normalizeEvent(event) {
   }
 
   const {
-    httpMethod: method, path, headers, body,
+    httpMethod: method, path, headers = {}, body,
   } = event;
 
   return {

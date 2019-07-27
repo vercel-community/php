@@ -29,8 +29,13 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
   ]
 }
 ```
-
 > 🚧Everything is HOT right now, so you should rather test the `now-php@canary` version.
+
+## 👨‍💻`now dev`
+
+For running `now dev` properly, you need to have PHP installed on your computer.
+
+Learn more how to install PHP on your computer [here](DEVELOPMENT.md).
 
 ## 👀 Examples
 

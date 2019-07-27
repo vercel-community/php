@@ -2,7 +2,6 @@ const { spawn } = require('child_process');
 const { parse: parseUrl } = require('url');
 const { join: pathJoin } = require('path');
 
-const PHP_DIR = pathJoin(process.env.LAMBDA_TASK_ROOT, 'php');
 const USER_DIR = pathJoin(process.env.LAMBDA_TASK_ROOT, 'user');
 const isDev = process.env.NOW_PHP_DEV === '1';
 
@@ -11,7 +10,7 @@ function normalizeEvent(event) {
     const invokeEvent = JSON.parse(event.body);
 
     const {
-      method, path, host, headers, encoding,
+      method, path, host, headers = {}, encoding,
     } = invokeEvent;
 
     let { body } = invokeEvent;
@@ -36,7 +35,7 @@ function normalizeEvent(event) {
   }
 
   const {
-    httpMethod: method, path, host, headers, body,
+    httpMethod: method, path, host, headers = {}, body,
   } = event;
 
   return {
@@ -169,7 +168,6 @@ function query({ filename, path, host, headers, method, body }) {
       [filename],
       {
         stdio: ['pipe', 'pipe', 'pipe'],
-        cwd: PHP_DIR,
         env
       },
     );
