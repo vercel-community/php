@@ -13,7 +13,7 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 - **Mode**: PHP development server (🚀 fast enought)
 - **PHP version**: 7.3.7
 - **Extensions**: apcu, bcmath, bz2, calendar, Core, ctype, curl, date, dom, ds, exif, fileinfo, filter, ftp, gettext, hash, iconv, json, libxml, mbstring, mysqli, mysqlnd, openssl, pcntl, pcre, PDO, pdo_mysql, pdo_pgsql, pdo_sqlite, phalcon, Phar, readline, Reflection, session, SimpleXML, soap, sockets, sodium, SPL, sqlite3, ssh2, standard, swoole, tokenizer, xml, xmlreader, xmlrpc, xmlwriter, xsl, Zend OPcache, zlib
-- **Speed**: cold ~250ms / warmp ~5ms
+- **Speed**: cold ~250ms / warm ~5ms
 - **Memory**: ~90mb
 
 > List of all installable extensions is on this page https://blog.remirepo.net/pages/PECL-extensions-RPM-status.
