@@ -39,11 +39,13 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 
 ![](docs/phpinfo.png)
 
+Take a look at [more examples](examples). 👀
+
 ## 🚧 Roadmap
 
 - next-gen PHP builder ✅
-- install deps via Composer
-- zero config (partially)
+- install deps via Composer (config.composer: true) ✅
+- zero config
 - `now dev`
 - rewrite to typescript
 
