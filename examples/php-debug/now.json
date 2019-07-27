@@ -1,0 +1,15 @@
+{
+    "version": 2,
+    "name": "now-php-debug",
+    "scope": "juicyfx",
+    "regions": ["all"],
+    "public": true,
+    "builds": [
+      { "src": "index.php", "use": "now-php@canary"}
+    ],
+    "build": {
+      "env": {
+        "NOW_PHP_DEBUG": "1"
+      }
+    }
+}

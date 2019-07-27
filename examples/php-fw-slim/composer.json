@@ -1,0 +1,9 @@
+{
+  "require": {
+      "php": "^7.3",
+      "slim/slim": "^3.1",
+      "slim/php-view": "^2.0",
+      "monolog/monolog": "^1.17",
+      "robmorgan/phinx": "^0.5.1"
+  }
+}

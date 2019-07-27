@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "name": "now-php-nette",
+    "scope": "juicyfx",
+    "regions": ["all"],
+    "public": true,
+    "builds": [
+      { "src": "*.php", "use": "now-php@canary" }
+    ]
+  }

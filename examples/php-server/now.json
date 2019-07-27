@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "name": "now-php-server",
+  "scope": "juicyfx",
+  "regions": ["all"],
+  "public": true,
+  "builds": [
+    { "src": "*.php", "use": "now-php@canary", "config": { "mode": "server", "v": "7.3" }}
+  ],
+  "build": {
+    "env": {
+      "NOW_PHP_DEBUG": "1"
+    }
+  }
+}

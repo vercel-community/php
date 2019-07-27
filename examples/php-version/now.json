@@ -1,0 +1,10 @@
+{
+    "version": 2,
+    "name": "now-php-version",
+    "scope": "juicyfx",
+    "regions": ["all"],
+    "public": true,
+    "builds": [
+      { "src": "index.php", "use": "now-php@canary"}
+    ]
+}

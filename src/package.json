@@ -1,0 +1,16 @@
+{
+  "name": "now-php",
+  "version": "0.0.1-canary.7",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juicyfx/now-php.git"
+  },
+  "devDependencies": {
+    "@now/build-utils": "^0.5.6",
+    "jest": "^24.8.0"
+  },
+  "scripts": {
+    "test": "jest --verbose"
+  }
+}
