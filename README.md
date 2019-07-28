@@ -20,16 +20,27 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 
 ## ⚙️ Usage
 
-```
+```json
 {
   "version": 2,
   "builds": [
-    { "src": "index.php", "use": "now-php@canary" },
+    { "src": "index.php", "use": "now-php@canary" }
+  ]
+}
+```
+
+> 🚧Everything is HOT right now, so you should rather test the `now-php@canary` version.
+
+Composer is detected by presence of file `composer.json`. You can force it defining `config.composer` for the build.
+
+```json
+{
+  "version": 2,
+  "builds": [
     { "src": "index.php", "use": "now-php@canary", "config": { "composer": true } }
   ]
 }
 ```
-> 🚧Everything is HOT right now, so you should rather test the `now-php@canary` version.
 
 ## 👨‍💻`now dev`
 
