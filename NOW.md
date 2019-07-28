@@ -1,6 +1,8 @@
-# Development
+# NOW
 
-## `now dev`
+## How to `now dev`?
+
+### Install PHP to your computer
 
 **OSX**
 
@@ -27,4 +29,22 @@ yum install yum-utils
 yum-config-manager --enable remi-php73
 yum update
 yum install php73-cli php73-cgi php73-json php73-curl php73-mbstring
+```
+
+### Setup minimal project
+
+Create files `index.php` and `now.json`.
+
+```php
+<?php
+phpinfo;
+```
+
+```json
+{
+    "version": 2,
+    "builds": [
+      { "src": "index.php", "use": "now-php@canary" }
+    ]
+  }
 ```

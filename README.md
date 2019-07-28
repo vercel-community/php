@@ -33,9 +33,7 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 
 ## 👨‍💻`now dev`
 
-For running `now dev` properly, you need to have PHP installed on your computer.
-
-Learn more how to install PHP on your computer [here](DEVELOPMENT.md).
+For running `now dev` properly, you need to have PHP installed on your computer, [learn more](NOW.md).
 
 ## 👀 Examples
 
