@@ -4,7 +4,6 @@ const {
   glob,
   download
 } = require('@now/build-utils');
-const launchers = require('./launchers');
 const php = require('./php');
 
 const PHP_BIN_DIR = path.join(__dirname, "php/php");
@@ -28,10 +27,6 @@ async function getPhpFiles({ meta }) {
   return files;
 }
 
-function getLauncherFiles({ meta }) {
-  return launchers.getFiles({ meta });
-}
-
 async function getIncludedFiles({ files, workPath, config, meta }) {
   // Download all files to workPath
   const downloadedFiles = await download(files, workPath, meta);
@@ -53,6 +48,22 @@ async function getIncludedFiles({ files, workPath, config, meta }) {
   }
 
   return includedFiles;
+}
+
+function getLauncherFiles({ meta }) {
+  const files = {};
+
+  if (meta && meta.isDev) {
+    files['launcher.js'] = new FileFsRef({
+      fsPath: path.join(__dirname, 'launchers/cgi.js'),
+    });
+  } else {
+    files['launcher.js'] = new FileFsRef({
+      fsPath: path.join(__dirname, 'launchers/server.js'),
+    });
+  }
+
+  return files;
 }
 
 async function getComposerFiles({ workPath, config }) {
