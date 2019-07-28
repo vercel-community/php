@@ -1,71 +1,19 @@
-const { spawn } = require('child_process');
-const { parse: parseUrl } = require('url');
-const { join: pathJoin } = require('path');
+import { spawn } from 'child_process';
+import { parse as urlParse } from 'url';
+import {
+  isDev,
+  getUserDir,
+  normalizeEvent,
+  transformFromAwsRequest,
+  transformToAwsResponse
+} from './helpers';
 
-const USER_DIR = pathJoin(process.env.LAMBDA_TASK_ROOT, 'user');
-const isDev = process.env.NOW_PHP_DEV === '1';
+function createCGIReq({ filename, path, host, method, headers }: CgiInput): CgiRequest {
+  const { search } = urlParse(path);
 
-function normalizeEvent(event) {
-  if (event.Action === 'Invoke') {
-    const invokeEvent = JSON.parse(event.body);
-
-    const {
-      method, path, host, headers = {}, encoding,
-    } = invokeEvent;
-
-    let { body } = invokeEvent;
-
-    if (body) {
-      if (encoding === 'base64') {
-        body = Buffer.from(body, encoding);
-      } else if (encoding === undefined) {
-        body = Buffer.from(body);
-      } else {
-        throw new Error(`Unsupported encoding: ${encoding}`);
-      }
-    }
-
-    return {
-      method,
-      path,
-      host,
-      headers,
-      body,
-    };
-  }
-
-  const {
-    httpMethod: method, path, host, headers = {}, body,
-  } = event;
-
-  return {
-    method,
-    path,
-    host,
-    headers,
-    body,
-  };
-}
-
-async function transformFromAwsRequest({
-  method, path, host, headers, body,
-}) {
-  const { pathname } = parseUrl(path);
-
-  const filename = pathJoin(
-    USER_DIR,
-    process.env.NOW_ENTRYPOINT || pathname,
-  );
-
-  return { filename, path, host, method, headers, body };
-}
-
-function createCGIReq({ filename, path, host, method, headers }) {
-  const { search } = parseUrl(path);
-
-  const env = {
-    SERVER_ROOT: USER_DIR,
-    DOCUMENT_ROOT: USER_DIR,
+  const env: Env = {
+    SERVER_ROOT: getUserDir(),
+    DOCUMENT_ROOT: getUserDir(),
     SERVER_NAME: host,
     SERVER_PORT: 443,
     HTTPS: "On",
@@ -106,7 +54,7 @@ function createCGIReq({ filename, path, host, method, headers }) {
   }
 }
 
-function parseCGIResponse(response) {
+function parseCGIResponse(response: string) {
   const headersPos = response.indexOf("\r\n\r\n");
   if (headersPos === -1) {
     return {
@@ -133,29 +81,24 @@ function parseCGIResponse(response) {
   }
 }
 
-function parseCGIHeaders(headers) {
+function parseCGIHeaders(headers: string): CgiHeaders {
   if (!headers) return {}
 
-  const result = {}
+  const result: CgiHeaders = {}
 
-  for (header of headers.split("\n")) {
+  for (let header of headers.split("\n")) {
     const index = header.indexOf(':');
     const key = header.slice(0, index).trim().toLowerCase();
     const value = header.slice(index + 1).trim();
 
-    if (typeof (result[key]) === 'undefined') {
-      result[key] = value
-    } else if (Array.isArray(result[key])) {
-      result[key].push(value)
-    } else {
-      result[key] = [result[key], value]
-    }
+    // Be careful about header duplication
+    result[key] = value;
   }
 
   return result
 }
 
-function query({ filename, path, host, headers, method, body }) {
+function query({ filename, path, host, headers, method, body }: PhpInput): Promise<PhpOutput> {
   console.log(`🐘 Spawning: PHP CGI ${filename}`);
 
   const { env } = createCGIReq({ filename, path, host, headers, method })
@@ -206,27 +149,16 @@ function query({ filename, path, host, headers, method, body }) {
     });
 
     // Writes the body into the PHP stdin
-    {
-      php.stdin.setEncoding('utf-8');
-      php.stdin.write(body || '');
-      php.stdin.end();
-    }
+    php.stdin.write(body || '');
+    php.stdin.end();
   })
 }
 
-function transformToAwsResponse({ statusCode, headers, body }) {
-  return {
-    statusCode,
-    headers,
-    body
-  };
-}
-
-async function launcher(event) {
+async function launcher(event: Event): Promise<AwsResponse> {
   if (!isDev) {
     return transformToAwsResponse({
       statusCode: 500,
-      headers: [],
+      headers: {},
       body: 'PHP CGI is allowed only for now dev'
     })
   };

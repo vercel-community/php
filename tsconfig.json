@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "lib": [
+      "esnext"
+    ],
+    "target": "esnext",
+    "module": "commonjs",
+    "outDir": "dist",
+    "sourceMap": false,
+    "declaration": false,
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "dist",
+    "docs",
+    "examples",
+    "node_modules",
+    "tests"
+  ]
+}

@@ -1,34 +1,19 @@
-const path = require('path');
-const { spawn } = require('child_process');
-const {
+import path from 'path';
+import { spawn } from 'child_process';
+import {
   glob,
   download,
-  FileFsRef
-} = require('@now/build-utils');
-const php = require('./php');
+  FileFsRef,
+  FileBlob,
+  BuildOptions
+} from '@now/build-utils';
 
-const PHP_BIN_DIR = path.join(__dirname, "php/php");
-const PHP_MODULES_DIR = path.join(__dirname, "php/php/modules");
-const PHP_LIB_DIR = path.join(__dirname, "php/lib");
+const PHP_BIN_DIR = path.join(__dirname, "..", "lib", "php");
+const PHP_MODULES_DIR = path.join(PHP_BIN_DIR, "modules");
+const PHP_LIB_DIR = path.join(__dirname, "..", "lib", "lib");
 const COMPOSER_BIN = path.join(PHP_BIN_DIR, "composer");
 
-async function getPhpFiles({ meta }) {
-  const files = await php.getPhpFiles();
-
-  if (meta && meta.isDev) {
-    delete files['php/php'];
-    delete files['php/php-fpm'];
-    delete files['php/php-fpm.ini'];
-  } else {
-    delete files['php/php-cgi'];
-    delete files['php/php-fpm'];
-    delete files['php/php-fpm.ini'];
-  }
-
-  return files;
-}
-
-async function getIncludedFiles({ files, workPath, config, meta }) {
+export async function getIncludedFiles({ files, entrypoint, workPath, config, meta }: BuildOptions): Promise<Files> {
   // Download all files to workPath
   const downloadedFiles = await download(files, workPath, meta);
 
@@ -51,8 +36,49 @@ async function getIncludedFiles({ files, workPath, config, meta }) {
   return includedFiles;
 }
 
-function getLauncherFiles({ meta }) {
-  const files = {};
+export async function getPhpFiles({ meta }: MetaOptions): Promise<Files> {
+  const files = await getPhpLibFiles();
+
+  if (meta && meta.isDev) {
+    delete files['php/php'];
+    delete files['php/php-fpm'];
+    delete files['php/php-fpm.ini'];
+  } else {
+    delete files['php/php-cgi'];
+    delete files['php/php-fpm'];
+    delete files['php/php-fpm.ini'];
+  }
+
+  return files;
+}
+
+export async function getPhpLibFiles(): Promise<Files> {
+  // Lookup for PHP bins, modules and shared objects
+
+  const files: Files = {
+    ...await glob('php/**', { cwd: path.join(__dirname, '..', 'lib') }),
+    ...await glob('lib/**', { cwd: path.join(__dirname, '..', 'lib') }),
+  };
+
+  // Replace paths in php.ini file
+  const phpini = await FileBlob.fromStream({
+    stream: files['php/php.ini'].toStream(),
+  });
+
+  phpini.data = phpini.data
+    .toString()
+    .replace(/\/opt\/now\/modules/g, '/var/task/php/modules');
+  files['php/php.ini'] = phpini;
+
+  return files;
+}
+
+export function getLauncherFiles({ meta }: MetaOptions): Files {
+  const files: Files = {
+    'helpers.js': new FileFsRef({
+      fsPath: path.join(__dirname, 'launchers/helpers.js'),
+    })
+  }
 
   if (meta && meta.isDev) {
     files['launcher.js'] = new FileFsRef({
@@ -67,7 +93,7 @@ function getLauncherFiles({ meta }) {
   return files;
 }
 
-async function getComposerFiles({ workPath }) {
+export async function getComposerFiles(workPath: string): Promise<Files> {
   console.log('🐘 Installing Composer deps.');
 
   // Install composer dependencies
@@ -78,7 +104,7 @@ async function getComposerFiles({ workPath }) {
   return await glob('vendor/**', workPath);
 }
 
-async function runComposerInstall(cwd) {
+async function runComposerInstall(cwd: string) {
   // @todo think about allow to pass custom commands here
   await runPhp(cwd,
     [
@@ -93,7 +119,7 @@ async function runComposerInstall(cwd) {
   );
 }
 
-async function runPhp(cwd, args) {
+async function runPhp(cwd: string, args: any[]) {
   try {
     await spawnAsync(
       'php',
@@ -116,7 +142,7 @@ async function runPhp(cwd, args) {
   }
 }
 
-function spawnAsync(command, args, cwd, opts = {}) {
+function spawnAsync(command: string, args: any[], cwd: string, opts = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, {
       stdio: 'inherit',
@@ -134,17 +160,3 @@ function spawnAsync(command, args, cwd, opts = {}) {
     });
   })
 }
-
-module.exports = {
-  getPhpFiles,
-  getLauncherFiles,
-  getIncludedFiles,
-  getComposerFiles,
-  // Special functions!
-  runComposerInstall,
-  runPhp,
-};
-
-// (async () => {
-//   await runComposerInstall(process.env.NOW_PHP);
-// })();

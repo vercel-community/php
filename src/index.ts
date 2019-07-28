@@ -1,33 +1,38 @@
-const path = require('path');
-const {
+import path from 'path';
+import {
   createLambda,
   rename,
   shouldServe,
-} = require('@now/build-utils');
-const {
+  BuildOptions,
+  FileBlob
+} from '@now/build-utils';
+import {
   getPhpFiles,
   getLauncherFiles,
   getIncludedFiles,
   getComposerFiles
-} = require('./utils');
+} from './utils';
 
 // ###########################
 // EXPORTS
 // ###########################
 
-exports.analyze = ({ files, entrypoint }) => files[entrypoint].digest;
+export async function build({
+  files,
+  entrypoint,
+  workPath,
+  config = {},
+  meta = {},
+}: BuildOptions) {
 
-exports.shouldServe = shouldServe;
-
-exports.build = async ({
-  files, entrypoint, workPath, config = {}, meta = {},
-}) => {
-  const bridgeFiles = {
+  // Merge PHP files (bins + shared object)
+  // and launcher files (server for lambda, cgi for now dev)
+  const bridgeFiles: Files = {
     ...await getPhpFiles({ meta }),
-    ...await getLauncherFiles({ meta }),
+    ...getLauncherFiles({ meta }),
   };
 
-  let includedFiles = await getIncludedFiles({ files, workPath, config, meta });
+  let includedFiles = await getIncludedFiles({ files, entrypoint, workPath, config, meta });
 
   // Try to install composer deps only on lambda,
   // not in the local now dev mode.
@@ -35,7 +40,7 @@ exports.build = async ({
     // Composer is called only if composer.json is provided,
     // or config.composer is TRUE
     if (includedFiles['composer.json'] || config.compose === true) {
-      includedFiles = { ...includedFiles, ...await getComposerFiles({ workPath, config }) };
+      includedFiles = { ...includedFiles, ...await getComposerFiles(workPath) };
     }
   }
 
@@ -48,7 +53,7 @@ exports.build = async ({
     console.log('🐘 Meta:', meta);
     console.log('🐘 User files:', Object.keys(userFiles));
     console.log('🐘 Bridge files:', Object.keys(bridgeFiles));
-    console.log('🐘 PHP: php.ini', bridgeFiles['php/php.ini'].data.toString());
+    console.log('🐘 PHP: php.ini', (bridgeFiles['php/php.ini'] as FileBlob).data.toString());
   }
 
   const lambda = await createLambda({
@@ -63,3 +68,5 @@ exports.build = async ({
 
   return { [entrypoint]: lambda };
 };
+
+export { shouldServe };
