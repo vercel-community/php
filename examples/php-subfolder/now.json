@@ -5,19 +5,9 @@
   "regions": ["all"],
   "public": true,
   "builds": [
-    {
-      "src": "public/*.php",
-      "use": "now-php@canary",
-      "config": {
-        "mode": "server",
-        "maxLambdaSize": "10mb"
-      }
-    }
+    { "src": "public/*.php", "use": "now-php@canary" }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/public/index.php"
-    }
+    { "src": "/(.*)", "dest": "/public/index.php" }
   ]
 }

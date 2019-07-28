@@ -5,18 +5,9 @@
   "regions": ["all"],
   "public": true,
   "builds": [
-    {
-      "src": "*.php",
-      "use": "now-php@canary",
-      "config": {
-        "composer": true
-      }
-    }
+    { "src": "*.php", "use": "now-php@canary" }
   ],
   "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.php"
-    }
+    { "src": "/(.*)",  "dest": "/index.php" }
   ]
 }

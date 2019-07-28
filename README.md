@@ -42,14 +42,16 @@ For running `now dev` properly, you need to have PHP installed on your computer,
 
 ![](docs/phpinfo.png)
 
-Take a look at [more examples](examples). 👀
+Browse [more examples](examples). 👀
 
 ## 🚧 Roadmap
 
 - next-gen PHP builder ✅
-- install deps via Composer (config.composer: true) ✅
-- zero config
-- `now dev`
+- Composer
+  - config.composer: true ✅
+  - composer.json detection ✅
+- zero config ✅
+- `now dev` ✅
 - rewrite to typescript
 
 **Help wanted**

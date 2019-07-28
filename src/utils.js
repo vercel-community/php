@@ -2,7 +2,8 @@ const path = require('path');
 const { spawn } = require('child_process');
 const {
   glob,
-  download
+  download,
+  FileFsRef
 } = require('@now/build-utils');
 const php = require('./php');
 
@@ -66,12 +67,7 @@ function getLauncherFiles({ meta }) {
   return files;
 }
 
-async function getComposerFiles({ workPath, config }) {
-  if (!config || config.composer !== true) {
-    console.log('🐘 Skip Composer (config.composer not provided)');
-    return [];
-  }
-
+async function getComposerFiles({ workPath }) {
   console.log('🐘 Installing Composer deps.');
 
   // Install composer dependencies

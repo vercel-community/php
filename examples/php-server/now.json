@@ -5,7 +5,7 @@
   "regions": ["all"],
   "public": true,
   "builds": [
-    { "src": "*.php", "use": "now-php@canary", "config": { "mode": "server", "v": "7.3" }}
+    { "src": "*.php", "use": "now-php@canary" }
   ],
   "build": {
     "env": {

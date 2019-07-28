@@ -32,8 +32,11 @@ exports.build = async ({
   // Try to install composer deps only on lambda,
   // not in the local now dev mode.
   if (!meta.isDev) {
-    // @todo call composer only if composer.json exists
-    includedFiles = { ...includedFiles, ...await getComposerFiles({ workPath, config }) };
+    // Composer is called only if composer.json is provided,
+    // or config.composer is TRUE
+    if (includedFiles['composer.json'] || config.compose === true) {
+      includedFiles = { ...includedFiles, ...await getComposerFiles({ workPath, config }) };
+    }
   }
 
   const userFiles = rename(includedFiles, name => path.join('user', name));
