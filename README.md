@@ -44,7 +44,7 @@ Composer is detected by presence of file `composer.json`. You can force it defin
 
 ## 👨‍💻`now dev`
 
-For running `now dev` properly, you need to have PHP installed on your computer, [learn more](NOW.md).
+For running `now dev` properly, you need to have PHP installed on your computer, [learn more](errors/now-dev-no-local-php.md).
 
 ## 👀 Examples
 
