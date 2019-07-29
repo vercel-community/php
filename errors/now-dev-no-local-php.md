@@ -36,4 +36,4 @@ yum install php73-cli php73-cgi php73-json php73-curl php73-mbstring
 ```
 
 ##### Check that php is in the path
-If you do have installed this 
+If you do have installed PHP but still get this error, check that PHP executable is added to the PATH environment variable.
