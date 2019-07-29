@@ -10,7 +10,8 @@ import {
   getPhpFiles,
   getLauncherFiles,
   getIncludedFiles,
-  getComposerFiles
+  getComposerFiles,
+  ensureLocalPhp
 } from './utils';
 
 // ###########################
@@ -25,13 +26,7 @@ export async function build({
   meta = {},
 }: BuildOptions) {
 
-  // Merge PHP files (bins + shared object)
-  // and launcher files (server for lambda, cgi for now dev)
-  const bridgeFiles: Files = {
-    ...await getPhpFiles({ meta }),
-    ...getLauncherFiles({ meta }),
-  };
-
+  // Collect included files
   let includedFiles = await getIncludedFiles({ files, entrypoint, workPath, config, meta });
 
   // Try to install composer deps only on lambda,
@@ -42,9 +37,25 @@ export async function build({
     if (includedFiles['composer.json'] || config.compose === true) {
       includedFiles = { ...includedFiles, ...await getComposerFiles(workPath) };
     }
+  } else {
+    if (!(await ensureLocalPhp())) {
+      console.log(`
+        It looks like you don't have installed PHP on your machine. \n
+        Learn more about how to run now dev on your machine. \n
+        https://github.com/juicyfx/now-php/blob/master/NOW.md
+      `)
+    }
   }
 
+  // Move all user files to LAMBDA_ROOT/user folder.
   const userFiles = rename(includedFiles, name => path.join('user', name));
+
+  // Merge PHP files (bins + shared object)
+  // and launcher files (server for lambda, cgi for now dev)
+  const bridgeFiles: Files = {
+    ...await getPhpFiles({ meta }),
+    ...getLauncherFiles({ meta }),
+  };
 
   if (process.env.NOW_PHP_DEBUG === '1') {
     console.log('🐘 Entrypoint:', entrypoint);

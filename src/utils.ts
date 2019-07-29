@@ -123,10 +123,7 @@ async function runPhp(cwd: string, args: any[]) {
   try {
     await spawnAsync(
       'php',
-      [
-        `-dextension_dir=${PHP_MODULES_DIR}`,
-        ...args
-      ],
+      [`-dextension_dir=${PHP_MODULES_DIR}`, ...args],
       cwd,
       {
         env: {
@@ -142,10 +139,19 @@ async function runPhp(cwd: string, args: any[]) {
   }
 }
 
-function spawnAsync(command: string, args: any[], cwd: string, opts = {}) {
+export async function ensureLocalPhp(): Promise<boolean> {
+  try {
+    await spawnAsync('which', ['php']);
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+function spawnAsync(command: string, args: any[], cwd?: string, opts = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, {
-      stdio: 'inherit',
+      stdio: "inherit",
       cwd,
       ...opts
     });
