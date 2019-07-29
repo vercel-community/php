@@ -141,7 +141,7 @@ async function runPhp(cwd: string, args: any[]) {
 
 export async function ensureLocalPhp(): Promise<boolean> {
   try {
-    await spawnAsync('which', ['php']);
+    await spawnAsync('which', ['php'], undefined, { stdio: 'pipe' });
     return true;
   } catch (e) {
     return false;
@@ -151,7 +151,7 @@ export async function ensureLocalPhp(): Promise<boolean> {
 function spawnAsync(command: string, args: any[], cwd?: string, opts = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, {
-      stdio: "inherit",
+      stdio: "ignore",
       cwd,
       ...opts
     });
