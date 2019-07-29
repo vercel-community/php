@@ -1,5 +1,5 @@
-const utils = require('./../dist/utils');
-const builder = require('./../dist/index');
+const utils = require('./../../dist/utils');
+const builder = require('./../../dist/index');
 
 test('PHP is not installed', async () => {
     global.console = {

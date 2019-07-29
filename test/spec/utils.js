@@ -1,5 +1,5 @@
 
-const utils = require('./../dist/utils');
+const utils = require('./../../dist/utils');
 
 test('lookup php files', async () => {
     const files = await utils.getPhpLibFiles();

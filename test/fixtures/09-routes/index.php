@@ -1,0 +1,2 @@
+<?php
+print('cow:RANDOMNESS_PLACEHOLDER:' . $_SERVER['REQUEST_URI']);

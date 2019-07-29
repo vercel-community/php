@@ -1,4 +1,4 @@
-const builder = require('./../dist/index');
+const builder = require('./../../dist/index');
 
 test('creates simple lambda', async done => {
     await builder.build({

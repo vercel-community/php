@@ -1,0 +1,5 @@
+{
+  "version": 2,
+  "builds": [{ "src": "env/index.php", "use": "now-php@canary" }],
+  "probes": [{ "path": "/env", "mustContain": "RANDOMNESS_PLACEHOLDER:env" }]
+}

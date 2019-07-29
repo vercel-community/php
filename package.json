@@ -1,6 +1,6 @@
 {
   "name": "now-php",
-  "version": "0.0.1-canary.12",
+  "version": "0.0.1-canary.14",
   "license": "MIT",
   "main": "./dist/index.js",
   "repository": {
@@ -19,8 +19,9 @@
     "lib"
   ],
   "jest": {
+    "testEnvironment": "node",
     "testMatch": [
-      "**/tests/**/*.[jt]s?(x)"
+      "**/spec/**/*.[jt]s?(x)"
     ],
     "rootDir": "."
   },
@@ -28,7 +29,11 @@
     "@now/build-utils": "^0.9.4",
     "@types/glob": "^7.1.1",
     "@types/node": "^10.0.0",
+    "async-retry": "^1.2.3",
+    "buffer-replace": "^1.0.0",
+    "fs-extra": "^8.1.0",
     "jest": "^24.8.0",
+    "node-fetch": "^2.6.0",
     "typescript": "^3.5.3"
   }
 }

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "builds": [
+    { "src": "index.php", "use": "now-php@canary" },
+    { "src": "subdirectory/index.php", "use": "now-php@canary" }
+  ],
+  "probes": [
+    { "path": "/", "mustContain": "cow:RANDOMNESS_PLACEHOLDER" },
+    { "path": "/subdirectory/", "mustContain": "yoda:RANDOMNESS_PLACEHOLDER" }
+  ]
+}
