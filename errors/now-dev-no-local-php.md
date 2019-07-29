@@ -1,8 +1,12 @@
-# NOW
+# It looks like you don't have PHP on your machine.
 
-## How to `now dev`?
+#### Why This Error Occurred
+You ran `now dev` on a machine where PHP is not installed. 
+For the time being, this builder requires a local PHP installation to run the builder locally. 
 
-### Install PHP to your computer
+#### Possible Ways to Fix It
+
+##### Install PHP to your computer
 
 **OSX**
 
@@ -31,20 +35,5 @@ yum update
 yum install php73-cli php73-cgi php73-json php73-curl php73-mbstring
 ```
 
-### Setup minimal project
-
-Create files `index.php` and `now.json`.
-
-```php
-<?php
-phpinfo;
-```
-
-```json
-{
-    "version": 2,
-    "builds": [
-      { "src": "index.php", "use": "now-php@canary" }
-    ]
-  }
-```
+##### Check that php is in the path
+If you do have installed this 
