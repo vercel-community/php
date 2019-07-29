@@ -40,8 +40,8 @@ export async function build({
   } else {
     if (!(await ensureLocalPhp())) {
       console.log(`
-        It looks like you don't have installed PHP on your machine. \n
-        Learn more about how to run now dev on your machine. \n
+        It looks like you don't have PHP on your machine.
+        Learn more about how to run now dev on your machine.
         https://github.com/juicyfx/now-php/blob/master/NOW.md
       `)
     }
