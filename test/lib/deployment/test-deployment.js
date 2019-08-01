@@ -29,7 +29,17 @@ async function testDeployment(
   buildDelegate
 ) {
   console.log('testDeployment', fixturePath);
-  const globResult = await glob(`${fixturePath}/**`, { nodir: true });
+
+  // Load nowignore from fixture dir
+  let nowIgnoreGlob = '';
+  const nowIgnoreFile = `${fixturePath}/.nowignore`;
+  if (fs.exists(nowIgnoreFile)) {
+    console.log('nowignore file found', nowIgnoreFile);
+    const ignores = fs.readFileSync(nowIgnoreFile).toString().split('\n').filter((el) => el.length > 0);
+    nowIgnoreGlob = '!(' + ignores.join('|') + ')';
+  }
+
+  const globResult = await glob(`${fixturePath}/**${nowIgnoreGlob}`, { nodir: true });
   const bodies = globResult.reduce((b, f) => {
     const r = path.relative(fixturePath, f);
     b[r] = fs.readFileSync(f);
