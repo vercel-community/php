@@ -1,0 +1,13 @@
+{
+    "name": "now-php-test/10-build-env",
+    "type": "project",
+    "require": {
+        "psr/log": "^1.1"
+    },
+    "authors": [
+        {
+            "name": "Ties V",
+            "email": "1744962+ties-v@users.noreply.github.com"
+        }
+    ]
+}
