@@ -126,11 +126,11 @@ async function runPhp(cwd: string, args: any[]) {
       [`-dextension_dir=${PHP_MODULES_DIR}`, ...args],
       cwd,
       {
-        env: {
+        env: { ...process.env, ...{
           COMPOSER_HOME: '/tmp',
           PATH: `${PHP_BIN_DIR}:${process.env.PATH}`,
           LD_LIBRARY_PATH: `${PHP_LIB_DIR}:/usr/lib64:/lib64:${process.env.LD_LIBRARY_PATH}`
-        }
+        }}
       }
     );
   } catch (e) {
