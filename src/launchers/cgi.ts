@@ -54,7 +54,7 @@ function createCGIReq({ filename, path, host, method, headers }: CgiInput): CgiR
   }
 }
 
-function parseCGIResponse(response: string) {
+function parseCGIResponse(response: Buffer) {
   const headersPos = response.indexOf("\r\n\r\n");
   if (headersPos === -1) {
     return {
@@ -65,8 +65,8 @@ function parseCGIResponse(response: string) {
   }
 
   let statusCode = 200;
-  const rawHeaders = response.substr(0, headersPos);
-  const rawBody = response.substr(headersPos);
+  const rawHeaders = response.slice(0, headersPos).toString();
+  const rawBody = response.slice(headersPos + 4);
 
   const headers = parseCGIHeaders(rawHeaders);
 
@@ -104,7 +104,7 @@ function query({ filename, path, host, headers, method, body }: PhpInput): Promi
   const { env } = createCGIReq({ filename, path, host, headers, method })
 
   return new Promise((resolve) => {
-    var response = '';
+    const chunks: Uint8Array[] = [];
 
     const php = spawn(
       'php-cgi',
@@ -117,7 +117,7 @@ function query({ filename, path, host, headers, method, body }: PhpInput): Promi
 
     // Output
     php.stdout.on('data', function (data) {
-      response += data.toString()
+      chunks.push(data);
     });
 
     // Logging
@@ -131,7 +131,7 @@ function query({ filename, path, host, headers, method, body }: PhpInput): Promi
         console.log(`🐘 PHP process closed code ${code} and signal ${signal}`);
       }
 
-      const { headers, body, statusCode } = parseCGIResponse(response);
+      const { headers, body, statusCode } = parseCGIResponse(Buffer.concat(chunks));
 
       resolve({
         body,
@@ -142,7 +142,7 @@ function query({ filename, path, host, headers, method, body }: PhpInput): Promi
 
     php.on('error', function (err) {
       resolve({
-        body: `PHP process errored ${err}`,
+        body: Buffer.from(`PHP process errored ${err}`),
         headers: {},
         statusCode: 500
       });
@@ -159,7 +159,7 @@ async function launcher(event: Event): Promise<AwsResponse> {
     return transformToAwsResponse({
       statusCode: 500,
       headers: {},
-      body: 'PHP CGI is allowed only for now dev'
+      body: Buffer.from('PHP CGI is allowed only for now dev')
     })
   };
 
@@ -172,9 +172,18 @@ async function launcher(event: Event): Promise<AwsResponse> {
 exports.createCGIReq = createCGIReq;
 exports.launcher = launcher;
 
-// (async function() {
-//   console.log(await launcher({
-//     httpMethod: 'GET',
-//     path: '/index.php'
-//   }));
+// (async function () {
+//   const response = await launcher({
+//       Action: "test",
+//       httpMethod: "GET",
+//       body: "",
+//       path: "/",
+//       host: "https://zeit.co",
+//       headers: {
+//           'HOST': 'zeit.co'
+//       },
+//       encoding: null,
+//   });
+
+//   console.log(response);
 // })();

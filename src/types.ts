@@ -61,7 +61,7 @@ interface PhpInput {
 interface PhpOutput {
     statusCode: number,
     headers: Headers,
-    body: string,
+    body: Buffer,
 }
 
 interface CgiHeaders {

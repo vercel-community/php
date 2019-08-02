@@ -61,25 +61,24 @@ async function query({ filename, uri, headers, method, body }: PhpInput): Promis
     };
 
     const req = http.request(options, (res) => {
-      let data: string = '';
+      const chunks: Uint8Array[] = [];
 
-      res.on('data', (d) => {
-        data += d;
+      res.on('data', (data) => {
+        chunks.push(data);
       });
       res.on('end', () => {
         resolve({
           statusCode: res.statusCode || 200,
           headers: res.headers,
-          body: data
+          body: Buffer.concat(chunks)
         });
-
       });
     });
 
     req.on('error', (error) => {
       console.error('🐘 HTTP errored', error);
       resolve({
-        body: 'HTTP error',
+        body: Buffer.from(`HTTP error: ${error}`),
         headers: {},
         statusCode: 500
       });
@@ -128,9 +127,18 @@ async function launcher(event: Event): Promise<AwsResponse> {
 
 exports.launcher = launcher;
 
-// (async function() {
-//   console.log(await launcher({
-//     httpMethod: 'GET',
-//     path: '/index.php'
-//   }));
+// (async function () {
+//   const response = await launcher({
+//       Action: "test",
+//       httpMethod: "GET",
+//       body: "",
+//       path: "/",
+//       host: "https://zeit.co",
+//       headers: {
+//           'HOST': 'zeit.co'
+//       },
+//       encoding: null,
+//   });
+
+//   console.log(response);
 // })();
