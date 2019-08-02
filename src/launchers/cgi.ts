@@ -169,6 +169,7 @@ async function launcher(event: Event): Promise<AwsResponse> {
   return transformToAwsResponse(output);
 }
 
+exports.createCGIReq = createCGIReq;
 exports.launcher = launcher;
 
 // (async function() {
