@@ -9,7 +9,7 @@ import {
 } from './helpers';
 
 function createCGIReq({ filename, path, host, method, headers }: CgiInput): CgiRequest {
-  const { search } = urlParse(path);
+  const { query } = urlParse(path);
 
   const env: Env = {
     SERVER_ROOT: getUserDir(),
@@ -19,11 +19,11 @@ function createCGIReq({ filename, path, host, method, headers }: CgiInput): CgiR
     HTTPS: "On",
     REDIRECT_STATUS: 200,
     SCRIPT_NAME: filename,
-    REQUEST_URI: host + path,
+    REQUEST_URI: path,
     SCRIPT_FILENAME: filename,
     PATH_TRANSLATED: filename,
     REQUEST_METHOD: method,
-    QUERY_STRING: search || '',
+    QUERY_STRING: query || '',
     GATEWAY_INTERFACE: "CGI/1.1",
     SERVER_PROTOCOL: "HTTP/1.1",
     PATH: process.env.PATH,
