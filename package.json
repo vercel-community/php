@@ -3,6 +3,7 @@
   "version": "0.0.1-canary.15",
   "license": "MIT",
   "main": "./dist/index.js",
+  "homepage": "https://github.com/juicyfx/now-php",
   "repository": {
     "type": "git",
     "url": "https://github.com/juicyfx/now-php.git"
