@@ -1,4 +1,4 @@
-<h1 align=center>JuicyFx ZEIT Now PHP</h1>
+<h1 align=center>ZEIT Now PHP</h1>
 
 <p align=center>
 Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
@@ -12,6 +12,10 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 	<a href="https://www.npmjs.com/package/now-php"><img alt="npm" src="https://img.shields.io/npm/dt/now-php?style=flat-square"></a>
 	<a href="https://www.npmjs.com/package/now-php"><img alt="npm (tag)" src="https://img.shields.io/npm/v/now-php/latest?style=flat-square"></a>
 	<a href="https://www.npmjs.com/package/now-php"><img alt="npm (tag)" src="https://img.shields.io/npm/v/now-php/canary?style=flat-square"></a>
+</p>
+
+<p align=center>
+	🙋 <a href="#-roadmap">HELP WANTED</a> 🙋‍♂️
 </p>
 
 ## 🤗 Features
@@ -80,7 +84,7 @@ Browse [more examples](examples). 👀
 
 ## 👨🏻‍💻CHANGELOG
 
-[Browser the changes...](./CHANGELOG.md)
+[Browse the changes...](./CHANGELOG.md)
 
 ## 📝 License
 
