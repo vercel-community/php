@@ -1,6 +1,10 @@
 ## [Unreleased]
 
-## [0.0.1-canary.18] - 2019-08-02
+## [0.0.1-canary.18][@latest] - 2019-08-02
+
+- Bump latests
+
+## [0.0.1-canary.18][@canary] - 2019-08-02
 
 - Working on change response from string to Buffer
 - Updated homepage

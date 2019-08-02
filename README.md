@@ -8,6 +8,12 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 🕹 <a href="https://f3l1x.io">f3l1x.io</a> | 💻 <a href="https://github.com/f3l1x">f3l1x</a> | 🐦 <a href="https://twitter.com/xf3l1x">@xf3l1x</a>
 </p>
 
+<p align=center>
+	<a href="https://www.npmjs.com/package/now-php"><img alt="npm" src="https://img.shields.io/npm/dt/now-php?style=flat-square"></a>
+	<a href="https://www.npmjs.com/package/now-php"><img alt="npm (tag)" src="https://img.shields.io/npm/v/now-php/latest?style=flat-square"></a>
+	<a href="https://www.npmjs.com/package/now-php"><img alt="npm (tag)" src="https://img.shields.io/npm/v/now-php/canary?style=flat-square"></a>
+</p>
+
 ## 🤗 Features
 
 - **Architecture**: PHP development server (🚀 fast enought)
