@@ -27,9 +27,9 @@
     "rootDir": "."
   },
   "devDependencies": {
-    "@now/build-utils": "^0.9.4",
+    "@now/build-utils": "^0.9.8",
     "@types/glob": "^7.1.1",
-    "@types/node": "^10.0.0",
+    "@types/node": "^10.14.14",
     "async-retry": "^1.2.3",
     "buffer-replace": "^1.0.0",
     "fs-extra": "^8.1.0",
