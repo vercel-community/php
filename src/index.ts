@@ -4,7 +4,8 @@ import {
   rename,
   shouldServe,
   BuildOptions,
-  FileBlob
+  FileBlob,
+  debug
 } from '@now/build-utils';
 import {
   getPhpFiles,
@@ -39,7 +40,7 @@ export async function build({
     }
   } else {
     if (!(await ensureLocalPhp())) {
-      console.log(`
+      debug(`
         It looks like you don't have PHP on your machine.
         Learn more about how to run now dev on your machine.
         https://err.sh/juicyfx/now-php/now-dev-no-local-php
@@ -58,13 +59,13 @@ export async function build({
   };
 
   if (process.env.NOW_PHP_DEBUG === '1') {
-    console.log('🐘 Entrypoint:', entrypoint);
-    console.log('🐘 Config:', config);
-    console.log('🐘 Work path:', workPath);
-    console.log('🐘 Meta:', meta);
-    console.log('🐘 User files:', Object.keys(userFiles));
-    console.log('🐘 Bridge files:', Object.keys(bridgeFiles));
-    console.log('🐘 PHP: php.ini', (bridgeFiles['php/php.ini'] as FileBlob).data.toString());
+    debug('🐘 Entrypoint:', entrypoint);
+    debug('🐘 Config:', config);
+    debug('🐘 Work path:', workPath);
+    debug('🐘 Meta:', meta);
+    debug('🐘 User files:', Object.keys(userFiles));
+    debug('🐘 Bridge files:', Object.keys(bridgeFiles));
+    debug('🐘 PHP: php.ini', (bridgeFiles['php/php.ini'] as FileBlob).data.toString());
   }
 
   const lambda = await createLambda({

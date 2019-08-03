@@ -2,6 +2,7 @@ import http from 'http';
 import { spawn, ChildProcess } from 'child_process';
 import { dirname as pathDirname } from 'path';
 import net from 'net';
+import { debug } from '@now/build-utils';
 
 import {
   normalizeEvent,
@@ -14,7 +15,7 @@ let server: ChildProcess;
 
 async function startServer(filename: string): Promise<ChildProcess> {
   const docRoot = pathDirname(filename);
-  console.log(`🐘 Spawning: PHP Server at ${docRoot}`);
+  debug(`🐘 Spawning: PHP Server at ${docRoot}`);
 
   server = spawn(
     'php',
@@ -30,7 +31,7 @@ async function startServer(filename: string): Promise<ChildProcess> {
   );
 
   server.on('close', function (code, signal) {
-    console.log(`🐘 PHP process closed code ${code} and signal ${signal}`);
+    debug(`🐘 PHP process closed code ${code} and signal ${signal}`);
   });
 
   server.on('error', function (err) {
@@ -140,5 +141,5 @@ exports.launcher = launcher;
 //       encoding: null,
 //   });
 
-//   console.log(response);
+//   debug(response);
 // })();

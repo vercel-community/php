@@ -1,5 +1,6 @@
 import { spawn } from 'child_process';
 import { parse as urlParse } from 'url';
+import { debug } from '@now/build-utils';
 import {
   isDev,
   getUserDir,
@@ -99,7 +100,7 @@ function parseCGIHeaders(headers: string): CgiHeaders {
 }
 
 function query({ filename, path, host, headers, method, body }: PhpInput): Promise<PhpOutput> {
-  console.log(`🐘 Spawning: PHP CGI ${filename}`);
+  debug(`🐘 Spawning: PHP CGI ${filename}`);
 
   const { env } = createCGIReq({ filename, path, host, headers, method })
 
@@ -128,7 +129,7 @@ function query({ filename, path, host, headers, method, body }: PhpInput): Promi
     // PHP script execution end
     php.on('close', function (code, signal) {
       if (code !== 0) {
-        console.log(`🐘 PHP process closed code ${code} and signal ${signal}`);
+        debug(`🐘 PHP process closed code ${code} and signal ${signal}`);
       }
 
       const { headers, body, statusCode } = parseCGIResponse(Buffer.concat(chunks));
@@ -185,5 +186,5 @@ exports.launcher = launcher;
 //       encoding: null,
 //   });
 
-//   console.log(response);
+//   debug(response);
 // })();

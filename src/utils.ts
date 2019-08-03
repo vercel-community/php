@@ -5,7 +5,8 @@ import {
   download,
   FileFsRef,
   FileBlob,
-  BuildOptions
+  BuildOptions,
+  debug
 } from '@now/build-utils';
 
 const PHP_BIN_DIR = path.join(__dirname, "..", "lib", "php");
@@ -94,12 +95,12 @@ export function getLauncherFiles({ meta }: MetaOptions): Files {
 }
 
 export async function getComposerFiles(workPath: string): Promise<Files> {
-  console.log('🐘 Installing Composer deps.');
+  debug('🐘 Installing Composer deps.');
 
   // Install composer dependencies
   await runComposerInstall(workPath);
 
-  console.log('🐘 Installing Composer deps OK.');
+  debug('🐘 Installing Composer deps OK.');
 
   return await glob('vendor/**', workPath);
 }
