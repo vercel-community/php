@@ -1,4 +1,3 @@
-/* global beforeAll, expect, it, jest */
 const fs = require('fs');
 const path = require('path');
 
@@ -24,14 +23,12 @@ const fixturesPath = path.resolve(__dirname, '..', 'fixtures');
 if (process.env.FIXTURE) {
   testFixture(process.env.FIXTURE);
 } else {
-  // eslint-disable-next-line no-restricted-syntax
   for (const fixture of fs.readdirSync(fixturesPath)) {
     testFixture(fixture);
   }
 }
 
 function testFixture(fixture) {
-  // eslint-disable-next-line no-loop-func
   it(`should build ${fixture}`, async () => {
     await expect(
       testDeployment(
