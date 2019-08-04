@@ -20,6 +20,7 @@ interface AwsResponse {
     statusCode: number,
     headers: Headers,
     body: string,
+    encoding?: string
 }
 
 interface Event {
