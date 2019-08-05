@@ -63,5 +63,5 @@ export async function transformFromAwsRequest({
 }
 
 export function transformToAwsResponse({ statusCode, headers, body }: PhpOutput): AwsResponse {
-    return { statusCode, headers, body: body.toString('binary') };
+    return { statusCode, headers, body: body.toString('base64'), encoding: 'base64' };
 }
