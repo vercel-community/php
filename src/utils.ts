@@ -114,23 +114,31 @@ async function runComposerInstall(cwd: string) {
       '--no-dev',
       '--no-interaction',
       '--no-scripts',
-      '--ignore-platform-reqs'
+      '--ignore-platform-reqs',
+      '--no-progress'
     ],
+    { stdio: 'inherit' }
   );
 }
 
-async function runPhp(cwd: string, args: any[]) {
+async function runPhp(cwd: string, args: any[], opts = {}) {
   try {
     await spawnAsync(
       'php',
       [`-dextension_dir=${PHP_MODULES_DIR}`, ...args],
       cwd,
       {
-        env: { ...process.env, ...{
-          COMPOSER_HOME: '/tmp',
-          PATH: `${PHP_BIN_DIR}:${process.env.PATH}`,
-          LD_LIBRARY_PATH: `${PHP_LIB_DIR}:/usr/lib64:/lib64:${process.env.LD_LIBRARY_PATH}`
-        }}
+        ...opts,
+        ...{
+        env: {
+          ...process.env,
+          ...{
+            COMPOSER_HOME: '/tmp',
+            PATH: `${PHP_BIN_DIR}:${process.env.PATH}`,
+            LD_LIBRARY_PATH: `${PHP_LIB_DIR}:/usr/lib64:/lib64:${process.env.LD_LIBRARY_PATH}`
+            }
+          }
+        }
       }
     );
   } catch (e) {
