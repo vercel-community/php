@@ -1,0 +1,11 @@
+{
+  "name": "@now-php/caddy",
+  "version": "0.0.1-canary.0",
+  "license": "MIT",
+  "dependencies": {
+    "now-php": "@canary"
+  },
+  "devDependencies": {
+    "@now/build-utils": "^0.9.4"
+  }
+}

@@ -13,10 +13,6 @@
 
 - Working on change response from string to Buffer
 
-## [0.0.1-canary.16] - 2019-08-02
-
-- Working on change response from string to Buffer
-
 ## [0.0.1-canary.15] - 2019-08-02
 
 - CGI: REQUEST_URI contains only path, not host + path
@@ -36,14 +32,6 @@
 
 ## [0.0.1-canary.11] - 2019-07-28
 
-- Working `now-dev`
-
-## [0.0.1-canary.10] - 2019-07-28
-
-- Still working on `now-dev`
-
-## [0.0.1-canary.9] - 2019-07-28
-
 - Working on `now-dev`
 
 ## [0.0.1-canary.8] - 2019-07-27
@@ -51,30 +39,6 @@
 - First working `now-php` builder
 
 ## [0.0.1-canary.7] - 2019-07-27
-
-- Working on `now` with `now-php`
-
-## [0.0.1-canary.6] - 2019-07-27
-
-- Working on `now` with `now-php`
-
-## [0.0.1-canary.5] - 2019-07-27
-
-- Working on `now` with `now-php`
-
-## [0.0.1-canary.4] - 2019-07-27
-
-- Working on `now` with `now-php`
-
-## [0.0.1-canary.3] - 2019-07-27
-
-- Working on `now` with `now-php`
-
-## [0.0.1-canary.2] - 2019-07-27
-
-- Working on `now` with `now-php`
-
-## [0.0.1-canary.1] - 2019-07-27
 
 - Working on `now` with `now-php`
 

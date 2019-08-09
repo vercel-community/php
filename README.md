@@ -15,8 +15,19 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 </p>
 
 <p align=center>
-	🙋 <a href="#-roadmap">HELP WANTED</a> 🙋‍♂️
+	🙋 <a href="#-roadmap">ROADMAP</a> | <a href="#-changelog">CHANGELOG</a>
 </p>
+
+## 🐣 Versions
+
+|-----|-----|-----------|------|
+| Pkg | Tag | Stability | Info |
+|-----|-----|-----------|------|
+| now-php | latest | production | Rock-solid stable. |
+| now-php | canary | testing | For early-adopters. |
+| now-php | experimental | development | Testing and high danger. |
+
+> Need to know how things are changing? Here is [changelog](./CHANGELOG.md).
 
 ## 🤗 Features
 
@@ -27,8 +38,6 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 - **Memory**: ~90mb
 
 > List of all installable extensions is on this page https://blog.remirepo.net/pages/PECL-extensions-RPM-status.
-
-> Need to know how things are changing? Here is [changelog](./CHANGELOG.md).
 
 ## ⚙️ Usage
 
@@ -41,18 +50,31 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 }
 ```
 
-> 🚧Everything is HOT right now, so you should rather test the `now-php@canary` version.
+> 🚧Everything is HOT right now, so you should rather test the `now-php@canary` version. But be careful!
 
-Composer is detected by presence of file `composer.json`. You can force it defining `config.composer` for the build.
+### Configuration
 
-```json
+```
 {
   "version": 2,
   "builds": [
-    { "src": "index.php", "use": "now-php@canary", "config": { "composer": true } }
+    {
+      "src": "index.php",
+      "use": "now-php",
+      "config": {
+        "composer": true
+      }
+    }
   ]
 }
 ```
+
+- `composer` [optional]
+  - Force composer install
+  - Type: boolean
+  - Default: false
+  - Values: true/false
+  - Info: Composer is detected by presence of file `composer.json`. You can force it defining `config.composer` for the build.
 
 ## 👨‍💻`now dev`
 
@@ -84,7 +106,7 @@ Browse [more examples](examples). 👀
 
 ## 👨🏻‍💻CHANGELOG
 
-[Browse the changes...](./CHANGELOG.md)
+Show me [CHANGELOG](./CHANGELOG.md)
 
 ## 📝 License
 
