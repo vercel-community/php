@@ -1,13 +1,4 @@
 {
-  "name": "now-php",
-  "version": "0.0.1-canary.19",
-  "license": "MIT",
-  "main": "./dist/index.js",
-  "homepage": "https://github.com/juicyfx/now-php",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/juicyfx/now-php.git"
-  },
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc",
@@ -15,10 +6,6 @@
     "test-watch": "jest --verbose --watch",
     "prepublishOnly": "tsc"
   },
-  "files": [
-    "dist",
-    "lib"
-  ],
   "jest": {
     "testEnvironment": "node",
     "testMatch": [
