@@ -1,15 +1,19 @@
 {
   "scripts": {
-    "watch": "tsc --watch",
-    "build": "tsc",
-    "test": "tsc && jest --verbose",
-    "test-watch": "jest --verbose --watch",
-    "prepublishOnly": "tsc"
+    "test": "jest --verbose",
+    "test-watch": "jest --verbose --watch"
   },
   "jest": {
     "testEnvironment": "node",
     "testMatch": [
-      "**/spec/**/*.[jt]s?(x)"
+      "**/spec/**/*.js"
+    ],
+    "testPathIgnorePatterns": [
+      "/docs",
+      "/errors",
+      "/examples",
+      "/node_modules",
+      "/packages"
     ],
     "rootDir": "."
   },
