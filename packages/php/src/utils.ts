@@ -53,6 +53,10 @@ export async function getPhpFiles({ meta }: MetaOptions): Promise<Files> {
   return files;
 }
 
+export async function getPhpLibFiles(): Promise<Files> {
+  return await getLibFiles();
+}
+
 export function getLauncherFiles({ meta }: MetaOptions): Files {
   const files: Files = {
     'helpers.js': new FileFsRef({
