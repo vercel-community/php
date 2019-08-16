@@ -133,7 +133,7 @@ async function runPhp(cwd: string, args: any[], opts = {}) {
 
 export async function ensureLocalPhp(): Promise<boolean> {
   try {
-    await spawnAsync('which', ['php'], undefined, { stdio: 'pipe' });
+    await spawnAsync('which', ['php', 'php-cgi'], undefined, { stdio: 'pipe' });
     return true;
   } catch (e) {
     return false;
