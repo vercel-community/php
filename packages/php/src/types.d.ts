@@ -76,3 +76,7 @@ interface CgiRequest {
 interface Env {
     [k: string]: any,
 }
+
+interface PhpIni {
+    [k: string]: any,
+}
