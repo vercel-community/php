@@ -15,17 +15,16 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 </p>
 
 <p align=center>
-	🙋 <a href="#-roadmap">ROADMAP</a> | <a href="#-changelog">CHANGELOG</a>
+	🙋 <a href="#-roadmap">ROADMAP</a> | <a href="#changelog">CHANGELOG</a>
 </p>
 
 ## 🐣 Versions
 
-|-----|-----|-----------|------|
-| Pkg | Tag | Stability | Info |
-|-----|-----|-----------|------|
-| now-php | latest | production | Rock-solid stable. |
-| now-php | canary | testing | For early-adopters. |
-| now-php | experimental | development | Testing and high danger. |
+|    | Pkg     | Tag          | Stability   | Info                     |
+|----|---------|--------------|-------------|--------------------------|
+| ✅ | now-php | latest       | production  | Rock-solid stable.       |
+| 🔥 | now-php | canary       | testing     | For early-adopters.      |
+| ⚠️ | now-php | experimental | development | Testing and high danger. |
 
 > Need to know how things are changing? Here is [changelog](./CHANGELOG.md).
 
@@ -45,12 +44,10 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 {
   "version": 2,
   "builds": [
-    { "src": "index.php", "use": "now-php@canary" }
+    { "src": "index.php", "use": "now-php" }
   ]
 }
 ```
-
-> 🚧Everything is HOT right now, so you should rather test the `now-php@canary` version. But be careful!
 
 ### Configuration
 
