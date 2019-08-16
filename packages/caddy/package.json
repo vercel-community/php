@@ -1,11 +1,40 @@
 {
   "name": "@now-php/caddy",
-  "version": "0.0.1-canary.0",
+  "description": "Caddy is part of now-php",
+  "version": "0.0.1-canary.4",
   "license": "MIT",
+  "main": "./dist/index.js",
+  "homepage": "https://github.com/juicyfx/now-php",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juicyfx/now-php.git"
+  },
+  "scripts": {
+    "watch": "tsc --watch",
+    "build": "tsc",
+    "test": "tsc && jest --verbose",
+    "test-watch": "jest --verbose --watch",
+    "prepublishOnly": "tsc"
+  },
+  "files": [
+    "dist",
+    "native"
+  ],
+  "jest": {
+    "testEnvironment": "node",
+    "testMatch": [
+      "**/spec/**/*.[jt]s?(x)"
+    ],
+    "rootDir": "."
+  },
   "dependencies": {
-    "now-php": "@canary"
+    "now-php": "0.0.1-canary.30"
   },
   "devDependencies": {
-    "@now/build-utils": "^0.9.4"
+    "@now/build-utils": "^0.9.4",
+    "@types/glob": "^7.1.1",
+    "@types/node": "^10.0.0",
+    "jest": "^24.8.0",
+    "typescript": "^3.5.3"
   }
 }

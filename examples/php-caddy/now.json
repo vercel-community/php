@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "name": "now-php-caddy",
+  "scope": "juicyfx",
+  "regions": ["all"],
+  "public": true,
+  "builds": [
+    { "src": "*.php", "use": "@now-php/caddy@experimental" }
+  ],
+  "build": {
+    "env": {
+      "NOW_PHP_DEBUG": "1"
+    }
+  }
+}
