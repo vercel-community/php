@@ -1,7 +1,7 @@
 {
   "name": "@now-php/caddy",
   "description": "Caddy is part of now-php",
-  "version": "0.0.1-canary.4",
+  "version": "0.0.1-canary.5",
   "license": "MIT",
   "main": "./dist/index.js",
   "homepage": "https://github.com/juicyfx/now-php",
