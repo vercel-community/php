@@ -4,6 +4,7 @@ import {
   glob,
   download,
   FileFsRef,
+  FileBlob,
   BuildOptions
 } from '@now/build-utils';
 import { getLibFiles } from "@now-php/lib-73";
@@ -55,6 +56,19 @@ export async function getPhpFiles({ meta }: MetaOptions): Promise<Files> {
 
 export async function getPhpLibFiles(): Promise<Files> {
   return await getLibFiles();
+}
+
+export function modifyPhpIni(phpini: FileBlob, directives: PhpIni): FileBlob {
+  const output: any[] = [];
+  for (const property in directives) {
+    output.push(`${property} = ${directives[property]}`);
+  }
+
+  phpini.data = phpini.data
+    .toString()
+    .concat(output.join("\n"));
+
+  return phpini;
 }
 
 export function getLauncherFiles({ meta }: MetaOptions): Files {

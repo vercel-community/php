@@ -1,0 +1,26 @@
+{
+    "version": 2,
+    "name": "now-php-ini",
+    "scope": "juicyfx",
+    "regions": [
+        "all"
+    ],
+    "public": true,
+    "builds": [
+        {
+            "src": "*.php",
+            "use": "now-php@experimental",
+            "config": {
+                "php.ini": {
+                    "memory_limit": "128M",
+                    "post_max_size": "32M"
+                }
+            }
+        }
+    ],
+    "build": {
+        "env": {
+            "NOW_PHP_DEBUG": "1"
+        }
+    }
+}

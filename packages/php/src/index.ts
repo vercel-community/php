@@ -11,7 +11,8 @@ import {
   getLauncherFiles,
   getIncludedFiles,
   getComposerFiles,
-  ensureLocalPhp
+  ensureLocalPhp,
+  modifyPhpIni
 } from './utils';
 
 // ###########################
@@ -50,12 +51,19 @@ export async function build({
   // Move all user files to LAMBDA_ROOT/user folder.
   const userFiles = rename(includedFiles, name => path.join('user', name));
 
-  // Merge PHP files (bins + shared object)
-  // and launcher files (server for lambda, cgi for now dev)
-  const bridgeFiles: Files = {
-    ...await getPhpFiles({ meta }),
-    ...getLauncherFiles({ meta }),
-  };
+  // Bridge files contains PHP bins and libs
+  let bridgeFiles: Files = {};
+
+  // Append PHP files (bins + shared object)
+  bridgeFiles = { ...bridgeFiles, ...await getPhpFiles({ meta }) };
+
+  // Append launcher files (server for lambda, cgi for now dev)
+  bridgeFiles = { ...bridgeFiles, ...getLauncherFiles({ meta }) };
+
+  // Append custom directives into php.ini
+  if (config['php.ini']) {
+    bridgeFiles['php/php.ini'] = modifyPhpIni((bridgeFiles['php/php.ini'] as FileBlob), (config['php.ini'] as PhpIni));
+  }
 
   if (process.env.NOW_PHP_DEBUG === '1') {
     console.log('🐘 Entrypoint:', entrypoint);
@@ -68,7 +76,10 @@ export async function build({
   }
 
   const lambda = await createLambda({
-    files: { ...userFiles, ...bridgeFiles },
+    files: {
+      ...userFiles,
+      ...bridgeFiles
+    },
     handler: 'launcher.launcher',
     runtime: 'nodejs8.10',
     environment: {
