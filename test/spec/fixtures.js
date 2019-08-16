@@ -1,4 +1,3 @@
-/* global beforeAll, expect, it, jest */
 const fs = require('fs');
 const path = require('path');
 
@@ -12,7 +11,7 @@ const buildUtilsUrl = '@canary';
 let builderUrl;
 
 beforeAll(async () => {
-  const builderPath = path.resolve(__dirname, '..', '..');
+  const builderPath = path.resolve(__dirname, '../../packages/php');
   console.log('builderPath', builderPath);
   builderUrl = await packAndDeploy(builderPath);
   console.log('builderUrl', builderUrl);
@@ -24,20 +23,18 @@ const fixturesPath = path.resolve(__dirname, '..', 'fixtures');
 if (process.env.FIXTURE) {
   testFixture(process.env.FIXTURE);
 } else {
-  // eslint-disable-next-line no-restricted-syntax
   for (const fixture of fs.readdirSync(fixturesPath)) {
     testFixture(fixture);
   }
 }
 
 function testFixture(fixture) {
-  // eslint-disable-next-line no-loop-func
   it(`should build ${fixture}`, async () => {
-    await expect(
-      testDeployment(
-        { builderUrl, buildUtilsUrl },
-        path.join(fixturesPath, fixture),
-      ),
-    ).resolves.toBeDefined();
+    const res = await testDeployment(
+      { builderUrl, buildUtilsUrl },
+      path.join(fixturesPath, fixture),
+    );
+
+    expect(res).toBeDefined();
   });
 }

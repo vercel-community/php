@@ -33,7 +33,7 @@ async function testDeployment(
   // Load nowignore from fixture dir
   let nowIgnoreGlob = '';
   const nowIgnoreFile = `${fixturePath}/.nowignore`;
-  if (fs.exists(nowIgnoreFile)) {
+  if (fs.existsSync(nowIgnoreFile)) {
     console.log('nowignore file found', nowIgnoreFile);
     const ignores = fs.readFileSync(nowIgnoreFile).toString().split('\n').filter((el) => el.length > 0);
     nowIgnoreGlob = '!(' + ignores.join('|') + ')';
