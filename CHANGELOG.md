@@ -1,10 +1,14 @@
 ## [Unreleased]
 
-## [caddy] [0.0.1-canary.5][@experimental] - 2019-08-016
+## [php] [0.0.2-canary.1][@canary] - 2019-08-16
+
+- compile PHP 7.3.8
+
+## [caddy] [0.0.1-canary.5][@experimental] - 2019-08-16
 
 - first working copy
 
-## [php] [0.0.1-canary.30][@experimental] - 2019-08-016
+## [php] [0.0.1-canary.30][@experimental] - 2019-08-16
 
 - new exported method `getPhpLibFiles`
 - repair tests
