@@ -27,7 +27,9 @@
     "rootDir": "."
   },
   "dependencies": {
-    "@now/build-utils": "^0.9.4",
+    "@now/build-utils": "^0.9.4"
+  },
+  "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/node": "^10.0.0",
     "jest": "^24.8.0",

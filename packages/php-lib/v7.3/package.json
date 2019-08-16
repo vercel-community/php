@@ -1,6 +1,6 @@
 {
   "name": "@now-php/lib-73",
-  "version": "0.0.2-canary.1",
+  "version": "0.0.2-canary.2",
   "license": "MIT",
   "main": "./dist/index.js",
   "homepage": "https://github.com/juicyfx/now-php",
@@ -27,7 +27,9 @@
     "rootDir": "."
   },
   "dependencies": {
-    "@now/build-utils": "^0.9.4",
+    "@now/build-utils": "^0.9.4"
+  },
+  "devDependencies": {
     "@types/glob": "^7.1.1",
     "@types/node": "^10.0.0",
     "jest": "^24.8.0",
