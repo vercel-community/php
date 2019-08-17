@@ -5,6 +5,6 @@
     "regions": ["all"],
     "public": true,
     "builds": [
-      { "src": "*.php", "use": "now-php@canary" }
+      { "src": "*.php", "use": "now-php@experimental" }
     ]
   }
