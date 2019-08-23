@@ -1,7 +1,7 @@
 import http from 'http';
 import { spawn, ChildProcess, SpawnOptions } from 'child_process';
-import { dirname as pathDirname } from 'path';
 import net from 'net';
+import path from 'path';
 import {
   getPhpDir,
   normalizeEvent,
@@ -13,13 +13,8 @@ import {
 
 let server: ChildProcess;
 
-async function startServer(filename: string): Promise<ChildProcess> {
-  // take only dirname
-  // /var/task/user/foo/bar.php
-  // /var/task/user/foo
-  const docRoot = pathDirname(filename);
-
-  console.log(`🐘 Spawning: PHP Built-In Server at ${docRoot}`);
+async function startServer(): Promise<ChildProcess> {
+  console.log(`🐘 Spawning: PHP Built-In Server`);
 
   // php spawn options
   const options: SpawnOptions = {
@@ -37,9 +32,13 @@ async function startServer(filename: string): Promise<ChildProcess> {
 
   server = spawn(
     'php',
-    ['-c', 'php.ini', '-S', '127.0.0.1:8000', '-t', docRoot],
+    ['-c', 'php.ini', '-S', '127.0.0.1:8000', '-t', '/'],
     options,
   );
+
+  server.stderr.on('data', data => {
+    console.error(`🐘STDERR: ${data.toString()}`);
+  });
 
   server.on('close', function (code, signal) {
     console.log(`🐘 PHP Built-In Server process closed code ${code} and signal ${signal}`);
@@ -60,17 +59,20 @@ async function startServer(filename: string): Promise<ChildProcess> {
 
 async function query({ filename, uri, headers, method, body }: PhpInput): Promise<PhpOutput> {
   if (!server) {
-    await startServer(filename);
+    await startServer();
   }
 
   return new Promise(resolve => {
     const options = {
       hostname: '127.0.0.1',
       port: 8000,
-      path: `${uri}`,
+      path: `${filename}`,
       method,
       headers,
     };
+
+    console.log(`🐘 Accessing ${uri}`);
+    console.log(`🐘 Querying ${filename}`);
 
     const req = http.request(options, (res) => {
       const chunks: Uint8Array[] = [];

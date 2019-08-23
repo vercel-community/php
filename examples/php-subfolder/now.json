@@ -5,9 +5,10 @@
   "regions": ["all"],
   "public": true,
   "builds": [
-    { "src": "public/*.php", "use": "now-php@canary" }
+    { "src": "public/*.php", "use": "now-php@experimental" }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/public/index.php" }
+    { "src": "/api/(.*)", "dest": "/public/$1" },
+    { "src": "/(.*)", "dest": "/public/$1" }
   ]
 }

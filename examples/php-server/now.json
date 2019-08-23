@@ -7,6 +7,9 @@
   "builds": [
     { "src": "*.php", "use": "now-php@experimental" }
   ],
+  "env": {
+    "NOW_PHP_FOO": "bar"
+  },
   "build": {
     "env": {
       "NOW_PHP_DEBUG": "1"

@@ -1,4 +1,3 @@
-import { parse as urlParse } from 'url';
 import { join as pathJoin } from 'path';
 
 export const getUserDir = (): string => pathJoin(process.env.LAMBDA_TASK_ROOT || '/', 'user');
@@ -50,16 +49,18 @@ export function normalizeEvent(event: Event): AwsRequest {
 export async function transformFromAwsRequest({
   method, path, host, headers, body,
 }: AwsRequest): Promise<PhpInput> {
-  const { pathname, search } = urlParse(path);
+  if (!process.env.NOW_ENTRYPOINT) {
+    console.error('Missing ENV NOW_ENTRYPOINT');
+  }
 
   const filename = pathJoin(
     getUserDir(),
-    process.env.NOW_ENTRYPOINT || pathname || '',
+    process.env.NOW_ENTRYPOINT || 'index.php',
   );
 
-  const uri = pathname + (search || '');
+  const uri = host + path;
 
-  return { filename, path, uri, host, method, headers, body };
+  return { filename, uri, path, host, method, headers, body };
 }
 
 export function transformToAwsResponse({ statusCode, headers, body }: PhpOutput): AwsResponse {
