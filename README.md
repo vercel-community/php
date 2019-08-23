@@ -9,13 +9,13 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 </p>
 
 <p align=center>
-	<a href="https://www.npmjs.com/package/now-php"><img alt="npm" src="https://img.shields.io/npm/dt/now-php?style=flat-square"></a>
-	<a href="https://www.npmjs.com/package/now-php"><img alt="npm (tag)" src="https://img.shields.io/npm/v/now-php/latest?style=flat-square"></a>
-	<a href="https://www.npmjs.com/package/now-php"><img alt="npm (tag)" src="https://img.shields.io/npm/v/now-php/canary?style=flat-square"></a>
+    <a href="https://www.npmjs.com/package/now-php"><img alt="npm" src="https://img.shields.io/npm/dt/now-php?style=flat-square"></a>
+    <a href="https://www.npmjs.com/package/now-php"><img alt="npm (tag)" src="https://img.shields.io/npm/v/now-php/latest?style=flat-square"></a>
+    <a href="https://www.npmjs.com/package/now-php"><img alt="npm (tag)" src="https://img.shields.io/npm/v/now-php/canary?style=flat-square"></a>
 </p>
 
 <p align=center>
-	🙋 <a href="#-roadmap">ROADMAP</a> | <a href="#changelog">CHANGELOG</a>
+    🙋 <a href="#-roadmap">ROADMAP</a> | <a href="#changelog">CHANGELOG</a>
 </p>
 
 ## 🐣 Versions
@@ -59,7 +59,11 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
       "src": "index.php",
       "use": "now-php",
       "config": {
-        "composer": true
+        "composer": true,
+        "php.ini": {
+            "memory_limit": "128M",
+            "post_max_size": "32M"
+        }
       }
     }
   ]
@@ -72,6 +76,11 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
   - Default: false
   - Values: true/false
   - Info: Composer is detected by presence of file `composer.json`. You can force it defining `config.composer` for the build.
+- `php.ini` [optional]
+  - Overrides php.ini
+  - Type: {object}
+  - Default: {}
+  - Values: all supported [php.ini directives](https://www.php.net/manual/en/ini.list.php)
 
 ## 👨‍💻`now dev`
 
