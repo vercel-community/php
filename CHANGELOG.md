@@ -1,21 +1,31 @@
 ## [Unreleased]
 
+## [php] [0.0.2][@latest] - 2019-08-23
+
+- Bump now-php@latest
+
+## [php] [0.0.1-canary.39][@experimental] - 2019-08-23
+
+- Allow overriding php.ini
+- Bugfix resolving PHP bin
+- Bugfix deploying php files in subfolders
+
 ## [php] [0.0.2-canary.1][@canary] - 2019-08-16
 
-- compile PHP 7.3.8
+- Compile PHP 7.3.8
 
 ## [caddy] [0.0.1-canary.5][@experimental] - 2019-08-16
 
-- first working copy
+- First working copy
 
 ## [php] [0.0.1-canary.30][@experimental] - 2019-08-16
 
-- new exported method `getPhpLibFiles`
-- repair tests
+- New exported method `getPhpLibFiles`
+- Repair tests
 
 ## [php] [0.0.1-canary.18][@latest] - 2019-08-02
 
-- Bump now-php@latests
+- Bump now-php@latest
 
 ## [php] [0.0.1-canary.18][@canary] - 2019-08-02
 
