@@ -5,7 +5,24 @@
   "regions": ["all"],
   "public": true,
   "builds": [
-    { "src": "*.php", "use": "now-php@experimental" }
+    { "src": "*.php", "use": "now-php@experimental" },
+    { "src": "api/*.php", "use": "now-php@experimental" },
+    { "src": "ext/*.php", "use": "now-php@experimental" },
+    {
+      "src": "ini/*.php",
+      "use": "now-php@experimental",
+      "config": {
+          "php.ini": {
+              "memory_limit": "128M",
+              "post_max_size": "32M"
+          }
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "/api/$1" },
+    { "src": "/ini/(.*)", "dest": "/ini/$1" },
+    { "src": "/ext/(.*)", "dest": "/ext/$1" }
   ],
   "env": {
     "NOW_PHP_FOO": "bar"
