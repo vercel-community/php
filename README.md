@@ -88,8 +88,10 @@ For running `now dev` properly, you need to have PHP installed on your computer,
 
 ## 👀 Examples
 
-- phpinfo - https://now-php-version.juicyfx1.now.sh
-- extensions - https://now-php-ext.juicyfx1.now.sh
+- phpinfo - https://now-php-server.juicyfx1.now.sh
+- extensions - https://now-php-server.juicyfx1.now.sh/ext/
+- ini - https://now-php-server.juicyfx1.now.sh/ini/
+- test - https://now-php-server.juicyfx1.now.sh/test.php
 
 ![](docs/phpinfo.png)
 
