@@ -1,3 +1,3 @@
 <?php
 
-echo "+ěščřžýáíéů§";
+var_dump($_GET);

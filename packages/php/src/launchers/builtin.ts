@@ -1,7 +1,7 @@
 import http from 'http';
 import { spawn, ChildProcess, SpawnOptions } from 'child_process';
 import net from 'net';
-import path from 'path';
+import url from 'url';
 import {
   getPhpDir,
   normalizeEvent,
@@ -62,17 +62,23 @@ async function query({ filename, uri, headers, method, body }: PhpInput): Promis
     await startServer();
   }
 
+  // Parse request URL and join with PHP lambda file.
+  // E.q domain.tld/?foo=bar
+  // Path is /var/task/user/index.php/?foo=bar
+  const {search} = url.parse(uri);
+  const path = filename + (search || '');
+
   return new Promise(resolve => {
     const options = {
       hostname: '127.0.0.1',
       port: 8000,
-      path: `${filename}`,
+      path,
       method,
       headers,
     };
 
     console.log(`🐘 Accessing ${uri}`);
-    console.log(`🐘 Querying ${filename}`);
+    console.log(`🐘 Querying ${path}`);
 
     const req = http.request(options, (res) => {
       const chunks: Uint8Array[] = [];

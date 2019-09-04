@@ -1,6 +1,10 @@
 ## [Unreleased]
 
-## [php] [0.0.2][@latest] - 2019-08-23
+## [php] [0.0.3][@latest] - 2019-09-04
+
+- Bugfix passing query parameters and accessing $_GET
+
+## [php] [0.0.2] - 2019-08-23
 
 - Bump now-php@latest
 
@@ -10,7 +14,7 @@
 - Bugfix resolving PHP bin
 - Bugfix deploying php files in subfolders
 
-## [php] [0.0.2-canary.1][@canary] - 2019-08-16
+## [php-lib] [0.0.2-canary.2][@canary] - 2019-08-16
 
 - Compile PHP 7.3.8
 
