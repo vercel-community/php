@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "name": "now-lumen-core",
+  "scope": "openepicdata",
+  "regions": [
+    "all"
+  ],
+  "public": true,
+  "builds": [
+    {
+      "src": "public/index.php",
+      "use": "now-php@latest",
+      "config": {
+        "mode": "cgi",
+        "composer": true
+      }
+    }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "public/index.php" } 
+  ]
+}
