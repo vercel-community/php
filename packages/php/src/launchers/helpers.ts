@@ -53,14 +53,14 @@ export async function transformFromAwsRequest({
     console.error('Missing ENV NOW_ENTRYPOINT');
   }
 
-  const filename = pathJoin(
+  const entrypoint = pathJoin(
     getUserDir(),
     process.env.NOW_ENTRYPOINT || 'index.php',
   );
 
   const uri = host + path;
 
-  return { filename, uri, path, host, method, headers, body };
+  return { entrypoint, uri, path, host, method, headers, body };
 }
 
 export function transformToAwsResponse({ statusCode, headers, body }: PhpOutput): AwsResponse {

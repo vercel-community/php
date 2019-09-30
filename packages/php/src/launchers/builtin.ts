@@ -12,8 +12,12 @@ import {
 
 let server: ChildProcess;
 
-async function startServer(): Promise<ChildProcess> {
-  console.log(`🐘 Spawning: PHP Built-In Server at ${getUserDir()}`);
+async function startServer(entrypoint: string): Promise<ChildProcess> {
+  // Resolve document root and router
+  const router = entrypoint;
+  const docroot = getUserDir();
+
+  console.log(`🐘 Spawning: PHP Built-In Server at ${docroot} (document root) and ${router} (router)`);
 
   // php spawn options
   const options: SpawnOptions = {
@@ -29,9 +33,17 @@ async function startServer(): Promise<ChildProcess> {
     options.cwd = getUserDir();
   }
 
+  // We need to start PHP built-in server with following setup:
+  // php -c php.ini -S ip:port -t /var/task/user /var/task/user/foo/bar.php
+  //
+  // Path to document root lambda task folder with user prefix, because we move all
+  // user files to this folder.
+  //
+  // Path to router is absolute path, because CWD is different.
+  //
   server = spawn(
     'php',
-    ['-c', 'php.ini', '-S', '127.0.0.1:8000', '-t', getUserDir()],
+    ['-c', 'php.ini', '-S', '127.0.0.1:8000', '-t', docroot, router],
     options,
   );
 
@@ -56,9 +68,9 @@ async function startServer(): Promise<ChildProcess> {
   return server;
 }
 
-async function query({ uri, path, headers, method, body }: PhpInput): Promise<PhpOutput> {
+async function query({ entrypoint, uri, path, headers, method, body }: PhpInput): Promise<PhpOutput> {
   if (!server) {
-    await startServer();
+    await startServer(entrypoint);
   }
 
   return new Promise(resolve => {

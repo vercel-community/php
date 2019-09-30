@@ -3,7 +3,7 @@ const cgi = require('./../../../dist/launchers/cgi');
 
 test('create CGI request', () => {
   const request = {
-    filename: "index.php",
+    entrypoint: "index.php",
     path: "/index.php",
     host: "https://zeit.co",
     method: "GET",
@@ -17,10 +17,10 @@ test('create CGI request', () => {
   expect(env).toHaveProperty("SERVER_PORT", 443);
   expect(env).toHaveProperty("HTTPS", 'On');
   expect(env).toHaveProperty("REDIRECT_STATUS", 200);
-  expect(env).toHaveProperty("SCRIPT_NAME", request.filename);
+  expect(env).toHaveProperty("SCRIPT_NAME", request.entrypoint);
   expect(env).toHaveProperty("REQUEST_URI", request.path);
-  expect(env).toHaveProperty("SCRIPT_FILENAME", request.filename);
-  expect(env).toHaveProperty("PATH_TRANSLATED", request.filename);
+  expect(env).toHaveProperty("SCRIPT_FILENAME", request.entrypoint);
+  expect(env).toHaveProperty("PATH_TRANSLATED", request.entrypoint);
   expect(env).toHaveProperty("REQUEST_METHOD", request.method);
   expect(env).toHaveProperty("QUERY_STRING", '');
   expect(env).toHaveProperty("GATEWAY_INTERFACE", 'CGI/1.1');

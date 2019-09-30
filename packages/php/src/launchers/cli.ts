@@ -8,8 +8,8 @@ import {
   getUserDir
 } from './helpers';
 
-function query({ filename, body }: PhpInput): Promise<PhpOutput> {
-  console.log(`🐘 Spawning: PHP CLI ${filename}`);
+function query({ entrypoint, body }: PhpInput): Promise<PhpOutput> {
+  console.log(`🐘 Spawning: PHP CLI ${entrypoint}`);
 
   // php spawn options
   const options: SpawnOptions = {
@@ -30,7 +30,7 @@ function query({ filename, body }: PhpInput): Promise<PhpOutput> {
 
     const php = spawn(
       'php',
-      ['-c', 'php.ini', filename],
+      ['-c', 'php.ini', entrypoint],
       options,
     );
 

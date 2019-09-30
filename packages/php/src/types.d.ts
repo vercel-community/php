@@ -42,7 +42,7 @@ interface InvokedEvent {
 }
 
 interface CgiInput {
-  filename: string,
+  entrypoint: string,
   path: string,
   host: string,
   method: string,
@@ -50,7 +50,7 @@ interface CgiInput {
 }
 
 interface PhpInput {
-  filename: string,
+  entrypoint: string,
   path: string,
   uri: string,
   host: string,

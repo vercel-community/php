@@ -9,7 +9,7 @@ import {
   isDev
 } from './helpers';
 
-function createCGIReq({ filename, path, host, method, headers }: CgiInput): CgiRequest {
+function createCGIReq({ entrypoint, path, host, method, headers }: CgiInput): CgiRequest {
   const { query } = urlParse(path);
 
   const env: Env = {
@@ -19,10 +19,10 @@ function createCGIReq({ filename, path, host, method, headers }: CgiInput): CgiR
     SERVER_PORT: 443,
     HTTPS: "On",
     REDIRECT_STATUS: 200,
-    SCRIPT_NAME: filename,
+    SCRIPT_NAME: entrypoint,
     REQUEST_URI: path,
-    SCRIPT_FILENAME: filename,
-    PATH_TRANSLATED: filename,
+    SCRIPT_FILENAME: entrypoint,
+    PATH_TRANSLATED: entrypoint,
     REQUEST_METHOD: method,
     QUERY_STRING: query || '',
     GATEWAY_INTERFACE: "CGI/1.1",
@@ -99,11 +99,11 @@ function parseCGIHeaders(headers: string): CgiHeaders {
   return result
 }
 
-function query({ filename, path, host, headers, method, body }: PhpInput): Promise<PhpOutput> {
-  console.log(`🐘 Spawning: PHP CGI ${filename}`);
+function query({ entrypoint, path, host, headers, method, body }: PhpInput): Promise<PhpOutput> {
+  console.log(`🐘 Spawning: PHP CGI ${entrypoint}`);
 
   // Transform lambda request to CGI variables
-  const { env } = createCGIReq({ filename, path, host, headers, method })
+  const { env } = createCGIReq({ entrypoint, path, host, headers, method })
 
   // php-cgi spawn options
   const options: SpawnOptions = {
@@ -124,7 +124,7 @@ function query({ filename, path, host, headers, method, body }: PhpInput): Promi
 
     const php = spawn(
       'php-cgi',
-      [filename],
+      [entrypoint],
       options,
     );
 
