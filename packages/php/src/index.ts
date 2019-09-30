@@ -4,7 +4,9 @@ import {
   rename,
   shouldServe,
   BuildOptions,
-  FileBlob
+  FileBlob,
+  PrepareCacheOptions,
+  glob
 } from '@now/build-utils';
 import {
   getPhpFiles,
@@ -90,5 +92,17 @@ export async function build({
 
   return { [entrypoint]: lambda };
 };
+
+export async function prepareCache({ workPath }: PrepareCacheOptions): Promise<Files> {
+  return {
+    // Composer
+    ...(await glob('vendor/**', workPath)),
+    ...(await glob('composer.lock', workPath)),
+    // NPM
+    ...(await glob('node_modules/**', workPath)),
+    ...(await glob('package-lock.json', workPath)),
+    ...(await glob('yarn.lock', workPath)),
+  };
+}
 
 export { shouldServe };
