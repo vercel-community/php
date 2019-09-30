@@ -19,13 +19,13 @@
 - Bugfix resolving PHP bin
 - Bugfix deploying php files in subfolders
 
-### [php-lib] [0.0.2-canary.2] - 2019-08-16
+### [0.0.2-canary.2] - 2019-08-16
 
 - Compile PHP 7.3.8
 
-### [caddy] [0.0.1-canary.5] - 2019-08-16
+### [0.0.1-canary.5] - 2019-08-16
 
-- First working copy
+- First working copy of caddy server
 
 ### [0.0.1-canary.30] - 2019-08-16
 
