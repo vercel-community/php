@@ -1,7 +1,6 @@
 import http from 'http';
 import { spawn, ChildProcess, SpawnOptions } from 'child_process';
 import net from 'net';
-import url from 'url';
 import {
   getPhpDir,
   normalizeEvent,
@@ -14,7 +13,7 @@ import {
 let server: ChildProcess;
 
 async function startServer(): Promise<ChildProcess> {
-  console.log(`🐘 Spawning: PHP Built-In Server`);
+  console.log(`🐘 Spawning: PHP Built-In Server at ${getUserDir()}`);
 
   // php spawn options
   const options: SpawnOptions = {
@@ -32,7 +31,7 @@ async function startServer(): Promise<ChildProcess> {
 
   server = spawn(
     'php',
-    ['-c', 'php.ini', '-S', '127.0.0.1:8000', '-t', '/'],
+    ['-c', 'php.ini', '-S', '127.0.0.1:8000', '-t', getUserDir()],
     options,
   );
 
@@ -57,16 +56,10 @@ async function startServer(): Promise<ChildProcess> {
   return server;
 }
 
-async function query({ filename, uri, headers, method, body }: PhpInput): Promise<PhpOutput> {
+async function query({ uri, path, headers, method, body }: PhpInput): Promise<PhpOutput> {
   if (!server) {
     await startServer();
   }
-
-  // Parse request URL and join with PHP lambda file.
-  // E.q domain.tld/?foo=bar
-  // Path is /var/task/user/index.php/?foo=bar
-  const {search} = url.parse(uri);
-  const path = filename + (search || '');
 
   return new Promise(resolve => {
     const options = {
