@@ -1,7 +1,7 @@
 {
   "name": "now-php",
   "description": "PHP Now 2.0 builder for ZEIT Now platform",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": "MIT",
   "main": "./dist/index.js",
   "homepage": "https://github.com/juicyfx/now-php",
@@ -9,6 +9,14 @@
     "type": "git",
     "url": "https://github.com/juicyfx/now-php.git"
   },
+  "keywords": [
+    "zeit",
+    "now",
+    "php",
+    "builder",
+    "serverless",
+    "deployment"
+  ],
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc",
