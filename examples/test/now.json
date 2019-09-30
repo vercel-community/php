@@ -5,6 +5,9 @@
   "regions": ["all"],
   "public": true,
   "builds": [
-    { "src": "*.php", "use": "now-php" }
+    { "src": "foo/*.php", "use": "now-php@experimental" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/foo/bar.php" }
   ]
 }

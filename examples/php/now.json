@@ -5,12 +5,12 @@
   "regions": ["all"],
   "public": true,
   "builds": [
-    { "src": "*.php", "use": "now-php@experimental" },
-    { "src": "api/*.php", "use": "now-php@experimental" },
-    { "src": "ext/*.php", "use": "now-php@experimental" },
+    { "src": "*.php", "use": "now-php" },
+    { "src": "api/*.php", "use": "now-php" },
+    { "src": "ext/*.php", "use": "now-php" },
     {
       "src": "ini/*.php",
-      "use": "now-php@experimental",
+      "use": "now-php",
       "config": {
           "php.ini": {
               "memory_limit": "128M",
@@ -25,7 +25,7 @@
     { "src": "/ext/(.*)", "dest": "/ext/$1" }
   ],
   "env": {
-    "NOW_PHP_FOO": "bar2"
+    "NOW_PHP_FOO": "bar3"
   },
   "build": {
     "env": {
