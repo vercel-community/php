@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+### [0.0.5] - 2019-09-30
+
+- Added Lumen example
+- Bugfix deploying PHP files in folders under different names then index.php
+
 ### [0.0.4] - 2019-09-30
 
 - Implement intermediate caching (vendor, composer.lock, yarn.locak, package-lock.json, node_modules)
