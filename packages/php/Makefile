@@ -1,3 +1,5 @@
+.PHONY: test
+
 publish:
 	rm -rf ./dist
 	npm publish --access public --tag latest
