@@ -12,4 +12,3 @@ var_dump($_SERVER);
 var_dump($_ENV);
 var_dump($_FILES);
 var_dump(opcache_get_status());
-

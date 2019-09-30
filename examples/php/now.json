@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "now-php-server",
+  "name": "now-php",
   "scope": "juicyfx",
   "regions": ["all"],
   "public": true,
@@ -25,7 +25,7 @@
     { "src": "/ext/(.*)", "dest": "/ext/$1" }
   ],
   "env": {
-    "NOW_PHP_FOO": "bar"
+    "NOW_PHP_FOO": "bar2"
   },
   "build": {
     "env": {
