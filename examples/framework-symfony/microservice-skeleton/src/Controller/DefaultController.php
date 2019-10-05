@@ -10,7 +10,7 @@ class DefaultController extends AbstractController
     public function index(): JsonResponse
     {
         return new JsonResponse([
-            'name' => 'Example of minimal skeleton of Symfony application',
+            'name' => 'Example of microservice skeleton of Symfony application',
             'type' => 'Api',
         ]);
     }
