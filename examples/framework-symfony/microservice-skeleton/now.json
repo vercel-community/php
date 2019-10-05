@@ -1,5 +1,5 @@
 {
-  "name": "now-php-fw-symfony-minimal-skeleton",
+  "name": "now-php-fw-symfony-microservice-skeleton",
   "scope": "juicyfx",
   "version": 2,
   "regions": ["all"],
