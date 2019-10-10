@@ -37,7 +37,7 @@ export async function build({
   if (!meta.isDev) {
     // Composer is called only if composer.json is provided,
     // or config.composer is TRUE
-    if (includedFiles['composer.json'] || config.compose === true) {
+    if (includedFiles['composer.json'] || config.composer === true) {
       includedFiles = { ...includedFiles, ...await getComposerFiles(workPath) };
     }
   } else {
