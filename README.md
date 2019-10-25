@@ -11,13 +11,18 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 <p align=center>
     <a href="https://www.npmjs.com/package/now-php"><img alt="npm" src="https://img.shields.io/npm/dt/now-php?style=flat-square"></a>
     <a href="https://www.npmjs.com/package/now-php"><img alt="npm (latest)" src="https://img.shields.io/npm/v/now-php/latest?style=flat-square"></a>
-    <a href="https://www.npmjs.com/package/now-php"><img alt="npm (canary)" src="https://img.shields.io/npm/v/now-php/canary?style=flat-square"></a>
-    <a href="https://www.npmjs.com/package/now-php"><img alt="npm (experimental)" src="https://img.shields.io/npm/v/now-php/experimental?style=flat-square"></a>
 </p>
 
+<p align=center><strong>🏋️‍♀️ It works with these frameworks and tools.</strong></p>
+
 <p align=center>
-    🙋 <a href="#-roadmap">ROADMAP</a> | <a href="#changelog">CHANGELOG</a>
+	<a href="https://github.com/nette"><img src="https://github.com/nette.png" width="128"></a>
+	<a href="https://github.com/symfony"><img src="https://github.com/symfony.png" width="128"></a>
+	<a href="https://github.com/illuminate"><img src="https://github.com/illuminate.png" width="128"></a>
+	<a href="https://github.com/slimphp"><img src="https://github.com/slimphp.png" width="128"></a>
 </p>
+
+-----
 
 ## 🐣 Versions
 
@@ -36,6 +41,7 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 - **Extensions**: apcu, bcmath, bz2, calendar, Core, ctype, curl, date, dom, ds, exif, fileinfo, filter, ftp, gettext, hash, iconv, json, libxml, mbstring, mysqli, mysqlnd, openssl, pcntl, pcre, PDO, pdo_mysql, pdo_pgsql, pdo_sqlite, phalcon, Phar, readline, Reflection, session, SimpleXML, soap, sockets, sodium, SPL, sqlite3, ssh2, standard, swoole, tokenizer, xml, xmlreader, xmlrpc, xmlwriter, xsl, Zend OPcache, zlib
 - **Speed**: cold ~250ms / warm ~5ms
 - **Memory**: ~90mb
+- **Frameworks**: Nette, Lumen, Slim, Symfony
 
 > List of all installable extensions is on this page https://blog.remirepo.net/pages/PECL-extensions-RPM-status.
 
@@ -43,7 +49,6 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 
 ```json
 {
-  "version": 2,
   "builds": [
     { "src": "index.php", "use": "now-php" }
   ]
@@ -87,7 +92,7 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 
 For running `now dev` properly, you need to have PHP installed on your computer, [learn more](errors/now-dev-no-local-php.md).
 
-## 👀 Examples
+## 👀 Demo
 
 - phpinfo - https://now-php-server.juicyfx1.now.sh
 - extensions - https://now-php-server.juicyfx1.now.sh/ext/
@@ -95,6 +100,15 @@ For running `now dev` properly, you need to have PHP installed on your computer,
 - test - https://now-php-server.juicyfx1.now.sh/test.php
 
 ![](docs/phpinfo.png)
+
+## 🎯Examples
+
+- [Composer - install dependencies](/examples/composer/)
+- [Framework - Lumen](/examples/framework-lumen/)
+- [Framework - Nette](/examples/framework-nette/)
+- [Framework - Slim](/examples/framework-slim/)
+- [Framework - Symfony - Microservice](/examples/framework-symfony-microservice/)
+- [PHP - common stuff](/examples/php/)
 
 Browse [more examples](examples). 👀
 
