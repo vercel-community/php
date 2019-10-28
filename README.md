@@ -20,6 +20,7 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 	<a href="https://github.com/symfony"><img src="https://github.com/symfony.png" width="128"></a>
 	<a href="https://github.com/illuminate"><img src="https://github.com/illuminate.png" width="128"></a>
 	<a href="https://github.com/slimphp"><img src="https://github.com/slimphp.png" width="128"></a>
+	<a href="https://github.com/phalcon"><img src="https://github.com/phalcon.png" width="128"></a>
 </p>
 
 -----
@@ -108,6 +109,7 @@ For running `now dev` properly, you need to have PHP installed on your computer,
 - [Framework - Nette](/examples/framework-nette/)
 - [Framework - Slim](/examples/framework-slim/)
 - [Framework - Symfony - Microservice](/examples/framework-symfony-microservice/)
+- [Framework - Phalcon](/examples/framework-phalcon/)
 - [PHP - common stuff](/examples/php/)
 
 Browse [more examples](examples). 👀
