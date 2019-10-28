@@ -25,7 +25,7 @@ build74:
 	$(MAKE) __build DIST_PHP=74
 
 __build:
-	docker build -t ${DOCKER_IMAGE} -f ./build/Dockerfile.php${DIST_PHP} ./build
+	docker build -t ${DOCKER_IMAGE} -f ./Dockerfile.php${DIST_PHP} .
 
 # #################################################
 # Separate PHP bins + shared libs from Docker image
@@ -314,7 +314,7 @@ test-libs:
 		--rm \
 		-v $(CURDIR)/v7.3/php:/opt/now \
 		-v $(CURDIR)/v7.3/lib:/var/task/lib \
-		-v $(CURDIR)/build:/srv \
+		-v $(CURDIR):/srv \
 		-w /srv \
 		--entrypoint /bin/bash \
 		lambci/lambda:build-nodejs8.10

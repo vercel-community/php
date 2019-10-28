@@ -1,21 +1,7 @@
 {
+  "name": "now-php-monorepo",
   "scripts": {
-    "test": "jest --verbose",
-    "test-watch": "jest --verbose --watch"
-  },
-  "jest": {
-    "testEnvironment": "node",
-    "testMatch": [
-      "**/spec/**/*.js"
-    ],
-    "testPathIgnorePatterns": [
-      "/docs",
-      "/errors",
-      "/examples",
-      "/node_modules",
-      "/packages"
-    ],
-    "rootDir": "."
+    "test-unit": "jest --config unit.jest.config.js"
   },
   "devDependencies": {
     "@now/build-utils": "^0.9.4",
@@ -25,6 +11,7 @@
     "buffer-replace": "^1.0.0",
     "fs-extra": "^8.1.0",
     "jest": "^24.8.0",
+    "lerna": "^3.18.3",
     "node-fetch": "^2.6.0",
     "typescript": "^3.5.3"
   }
