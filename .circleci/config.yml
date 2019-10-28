@@ -6,7 +6,6 @@ jobs:
       - image: circleci/node:13
     steps:
       - checkout
-      - run: sudo composer self-update
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
       - run: npm install
