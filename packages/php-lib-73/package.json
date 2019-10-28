@@ -11,21 +11,12 @@
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc",
-    "test": "tsc && jest --verbose",
-    "test-watch": "jest --verbose --watch",
     "prepublishOnly": "tsc"
   },
   "files": [
     "dist",
     "native"
   ],
-  "jest": {
-    "testEnvironment": "node",
-    "testMatch": [
-      "**/spec/**/*.[jt]s?(x)"
-    ],
-    "rootDir": "."
-  },
   "dependencies": {
     "@now/build-utils": "^0.9.4"
   },
