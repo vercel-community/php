@@ -12,21 +12,12 @@
   "scripts": {
     "watch": "tsc --watch",
     "build": "tsc",
-    "test": "tsc && jest --verbose",
-    "test-watch": "jest --verbose --watch",
     "prepublishOnly": "tsc"
   },
   "files": [
     "dist",
     "native"
   ],
-  "jest": {
-    "testEnvironment": "node",
-    "testMatch": [
-      "**/spec/**/*.[jt]s?(x)"
-    ],
-    "rootDir": "."
-  },
   "dependencies": {
     "now-php": "0.0.1-canary.30"
   },

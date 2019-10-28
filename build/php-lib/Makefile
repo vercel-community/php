@@ -1,6 +1,5 @@
 DIST_PHP=73
-DIST_PHP_V=$(subst 7,7.,${DIST_PHP})
-DIST_PATH=./v${DIST_PHP_V}
+DIST_PATH=./../../packages/php-lib-${DIST_PHP}
 DIST_PHP_PATH=${DIST_PATH}/native/php
 DIST_PHP_MODULES_PATH=${DIST_PHP_PATH}/modules
 DIST_LIB_PATH=${DIST_PATH}/native/lib
