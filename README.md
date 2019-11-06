@@ -16,11 +16,11 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 <p align=center><strong>🏋️‍♀️ It works with these frameworks and tools.</strong></p>
 
 <p align=center>
-	<a href="https://github.com/nette"><img src="https://github.com/nette.png" width="128"></a>
-	<a href="https://github.com/symfony"><img src="https://github.com/symfony.png" width="128"></a>
-	<a href="https://github.com/illuminate"><img src="https://github.com/illuminate.png" width="128"></a>
-	<a href="https://github.com/slimphp"><img src="https://github.com/slimphp.png" width="128"></a>
-	<a href="https://github.com/phalcon"><img src="https://github.com/phalcon.png" width="128"></a>
+    <a href="https://github.com/nette"><img src="https://github.com/nette.png" width="128"></a>
+    <a href="https://github.com/symfony"><img src="https://github.com/symfony.png" width="128"></a>
+    <a href="https://github.com/illuminate"><img src="https://github.com/illuminate.png" width="128"></a>
+    <a href="https://github.com/slimphp"><img src="https://github.com/slimphp.png" width="128"></a>
+    <a href="https://github.com/phalcon"><img src="https://github.com/phalcon.png" width="128"></a>
 </p>
 
 -----
@@ -42,52 +42,28 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 - **Extensions**: apcu, bcmath, bz2, calendar, Core, ctype, curl, date, dom, ds, exif, fileinfo, filter, ftp, gettext, hash, iconv, json, libxml, mbstring, mysqli, mysqlnd, openssl, pcntl, pcre, PDO, pdo_mysql, pdo_pgsql, pdo_sqlite, phalcon, Phar, readline, Reflection, session, SimpleXML, soap, sockets, sodium, SPL, sqlite3, ssh2, standard, swoole, tokenizer, xml, xmlreader, xmlrpc, xmlwriter, xsl, Zend OPcache, zlib
 - **Speed**: cold ~250ms / warm ~5ms
 - **Memory**: ~90mb
-- **Frameworks**: Nette, Lumen, Slim, Symfony
+- **Frameworks**: Nette, Symfony, Lumen, Slim, Phalcon
 
 > List of all installable extensions is on this page https://blog.remirepo.net/pages/PECL-extensions-RPM-status.
 
 ## ⚙️ Usage
 
+Take a look at [ZEIT's](https://zeit.co) blogpost about [`Serverless Functions`](https://zeit.co/blog/configuring-serverless-functions).
+
+You should define `functions` property in `now.json` and list PHP files directly or using wildcard (*).
+
 ```json
 {
-  "builds": [
-    { "src": "index.php", "use": "now-php" }
-  ]
-}
-```
-
-### Configuration
-
-```
-{
-  "version": 2,
-  "builds": [
-    {
-      "src": "index.php",
-      "use": "now-php",
-      "config": {
-        "composer": true,
-        "php.ini": {
-            "memory_limit": "128M",
-            "post_max_size": "32M"
-        }
-      }
+  "functions": {
+    "index.php": {
+       "runtime": "now-php@0.0.5"
+    },
+    "api/*.php": {
+       "runtime": "now-php@0.0.5"
     }
-  ]
+  }
 }
 ```
-
-- `composer` [optional]
-  - Force composer install
-  - Type: boolean
-  - Default: false
-  - Values: true/false
-  - Info: Composer is detected by presence of file `composer.json`. You can force it defining `config.composer` for the build.
-- `php.ini` [optional]
-  - Overrides php.ini
-  - Type: {object}
-  - Default: {}
-  - Values: all supported [php.ini directives](https://www.php.net/manual/en/ini.list.php)
 
 ## 👨‍💻`now dev`
 
@@ -111,6 +87,7 @@ For running `now dev` properly, you need to have PHP installed on your computer,
 - [Framework - Symfony - Microservice](/examples/framework-symfony-microservice/)
 - [Framework - Phalcon](/examples/framework-phalcon/)
 - [PHP - common stuff](/examples/php/)
+- [Serverless Functions](/examples/functions/)
 
 Browse [more examples](examples). 👀
 

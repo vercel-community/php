@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "name": "now-php-functions",
+  "scope": "juicyfx",
+  "regions": ["all"],
+  "public": true,
+  "functions": {
+    "api/*.php": {
+      "runtime": "now-php@0.0.5"
+    }
+  }
+}

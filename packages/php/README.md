@@ -1,7 +1,5 @@
 # now-php
 
-## Usage
-
 1. Create `index.php`.
 
 	```php
@@ -13,11 +11,17 @@
 
 	```json
 	{
-	"version": 2,
-	"builds": [
-		{ "src": "index.php", "use": "now-php" }
-	]
+		"functions": {
+			"index.php": {
+				"runtime": "now-php@0.0.6"
+			},
+			"api/*.php": {
+				"runtime": "now-php@0.0.6"
+			}
+		}
 	}
 	```
 
 3. Call `now` and see magic.
+
+4. Discover more in documentation at [Github repository](https://github.com/juicyfx/now-php).
