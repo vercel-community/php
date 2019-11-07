@@ -9,18 +9,18 @@ Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
 </p>
 
 <p align=center>
-    <a href="https://www.npmjs.com/package/now-php"><img alt="npm" src="https://img.shields.io/npm/dt/now-php?style=flat-square"></a>
-    <a href="https://www.npmjs.com/package/now-php"><img alt="npm (latest)" src="https://img.shields.io/npm/v/now-php/latest?style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/now-php"><img alt="npm" src="https://img.shields.io/npm/dt/now-php?style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/now-php"><img alt="npm (latest)" src="https://img.shields.io/npm/v/now-php/latest?style=flat-square"></a>
 </p>
 
 <p align=center><strong>🏋️‍♀️ It works with these frameworks and tools.</strong></p>
 
 <p align=center>
-    <a href="https://github.com/nette"><img src="https://github.com/nette.png" width="128"></a>
-    <a href="https://github.com/symfony"><img src="https://github.com/symfony.png" width="128"></a>
-    <a href="https://github.com/illuminate"><img src="https://github.com/illuminate.png" width="128"></a>
-    <a href="https://github.com/slimphp"><img src="https://github.com/slimphp.png" width="128"></a>
-    <a href="https://github.com/phalcon"><img src="https://github.com/phalcon.png" width="128"></a>
+  <a href="https://github.com/nette"><img src="https://github.com/nette.png" width="128"></a>
+  <a href="https://github.com/symfony"><img src="https://github.com/symfony.png" width="128"></a>
+  <a href="https://github.com/illuminate"><img src="https://github.com/illuminate.png" width="128"></a>
+  <a href="https://github.com/slimphp"><img src="https://github.com/slimphp.png" width="128"></a>
+  <a href="https://github.com/phalcon"><img src="https://github.com/phalcon.png" width="128"></a>
 </p>
 
 -----
@@ -55,13 +55,25 @@ You should define `functions` property in `now.json` and list PHP files directly
 ```json
 {
   "functions": {
-    "index.php": {
-       "runtime": "now-php@0.0.5"
-    },
     "api/*.php": {
-       "runtime": "now-php@0.0.5"
+      "runtime": "now-php@0.0.6"
     }
   }
+}
+```
+
+If you need to show index page define `routes` properly.
+
+```json
+{
+  "functions": {
+    "api/index.php": {
+      "runtime": "now-php@0.0.6"
+    }
+  },
+  "routes": [
+    { "src": "/(.*)",  "dest": "/api/index.php" }
+  ]
 }
 ```
 
