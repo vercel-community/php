@@ -8,15 +8,11 @@ end_of_line = lf
 insert_final_newline = true
 trim_trailing_whitespace = true
 
-[*.{md,html}]
+[*.{html}]
 indent_style = tab
 indent_size = tab
 tab_width = 4
 
-[*.{js,ts}]
-indent_style = space
-indent_size = 2
-
-[{composer.json,package.json,.travis.yml}]
+[*.{js,ts,json,yml,yaml,md}]
 indent_style = space
 indent_size = 2
