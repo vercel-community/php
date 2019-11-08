@@ -1,6 +1,6 @@
 # now-php
 
-1. Create `index.php`.
+1. Create `api/index.php`.
 
 	```php
 	<?php
@@ -12,11 +12,8 @@
 	```json
 	{
 		"functions": {
-			"index.php": {
-				"runtime": "now-php@0.0.6"
-			},
-			"api/*.php": {
-				"runtime": "now-php@0.0.6"
+			"api/index.php": {
+				"runtime": "now-php@0.0.7"
 			}
 		}
 	}
