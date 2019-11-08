@@ -21,6 +21,8 @@ import {
 // EXPORTS
 // ###########################
 
+export const version = 3;
+
 export async function build({
   files,
   entrypoint,
@@ -90,7 +92,7 @@ export async function build({
     },
   });
 
-  return { [entrypoint]: lambda };
+  return { output: lambda };
 };
 
 export async function prepareCache({ workPath }: PrepareCacheOptions): Promise<Files> {
