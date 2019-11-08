@@ -1,8 +1,8 @@
 # It looks like you don't have PHP on your machine.
 
 #### Why This Error Occurred
-You ran `now dev` on a machine where PHP is not installed. 
-For the time being, this builder requires a local PHP installation to run the builder locally. 
+You ran `now dev` on a machine where PHP is not installed.
+For the time being, this runtime requires a local PHP installation to run the runtime locally.
 
 #### Possible Ways to Fix It
 

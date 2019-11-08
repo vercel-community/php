@@ -1,7 +1,7 @@
 <h1 align=center>ZEIT Now PHP</h1>
 
 <p align=center>
-Enjoyable & powerful 🐘 PHP builder for ZEIT Now.
+Enjoyable & powerful 🐘 PHP Runtime for ZEIT Now.
 </p>
 
 <p align=center>
@@ -56,7 +56,7 @@ You should define `functions` property in `now.json` and list PHP files directly
 {
   "functions": {
     "api/*.php": {
-      "runtime": "now-php@0.0.6"
+      "runtime": "now-php@0.0.7"
     }
   }
 }
@@ -68,7 +68,7 @@ If you need to show index page define `routes` properly.
 {
   "functions": {
     "api/index.php": {
-      "runtime": "now-php@0.0.6"
+      "runtime": "now-php@0.0.7"
     }
   },
   "routes": [
@@ -105,7 +105,7 @@ Browse [more examples](examples). 👀
 
 ## 🚧 Roadmap
 
-- next-gen PHP builder ✅
+- next-gen PHP runtime ✅
 - Composer
   - config.composer: true ✅
   - composer.json detection ✅
