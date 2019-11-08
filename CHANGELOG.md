@@ -1,5 +1,14 @@
 ## [Unreleased]
 
+### [0.0.7] - 2019-11-08
+
+- Rename builder to runtime
+- Runtime v3
+
+### [0.0.6] - 2019-11-07
+
+- Change builds to functions
+
 ### [0.0.5] - 2019-09-30
 
 - Added Lumen example
