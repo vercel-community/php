@@ -5,6 +5,36 @@
 - Rename builder to runtime
 - Runtime v3
 
+**Migration**
+
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.php",
+      "use": "now-php"
+    }
+  ]
+}
+```
+
+➡️
+
+```json
+{
+  "functions": {
+    "api/*.php": {
+      "runtime": "now-php@0.0.7"
+    }
+  },
+  // Optionally provide routes
+  "routes": [
+    { "src": "/(.*)",  "dest": "/api/index.php" }
+  ]
+}
+```
+
 ### [0.0.6] - 2019-11-07
 
 - Change builds to functions
