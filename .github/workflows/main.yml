@@ -1,0 +1,26 @@
+name: Node CI
+
+on: [push]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Hello world action step
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+
+      - name: Install NPM deps
+        run: |
+          npm install
+          make install
+
+      - name: Build packages
+        run: make build
+
+      - name: Run unit tests
+        run: make test-unit
