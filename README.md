@@ -48,7 +48,7 @@ Enjoyable & powerful 🐘 PHP Runtime for ZEIT Now.
 
 ## ⚙️ Usage
 
-Take a look at [ZEIT's](https://zeit.co) blogpost about [`Serverless Functions`](https://zeit.co/blog/configuring-serverless-functions).
+Take a look at [ZEIT's](https://zeit.co) blogpost about [`Serverless Functions`](https://zeit.co/blog/customizing-serverless-functions).
 
 You should define `functions` property in `now.json` and list PHP files directly or using wildcard (*).
 
@@ -74,6 +74,20 @@ If you need to show index page define `routes` properly.
   "routes": [
     { "src": "/(.*)",  "dest": "/api/index.php" }
   ]
+}
+```
+
+Additional function properties are `memory`, `maxDuration`.
+
+```json
+{
+  "functions": {
+    "api/*.php": {
+      "runtime": "now-php@0.0.7",
+      "memory": 3008,
+      "maxDuration": 500
+    }
+  }
 }
 ```
 
@@ -103,6 +117,12 @@ For running `now dev` properly, you need to have PHP installed on your computer,
 
 Browse [more examples](examples). 👀
 
+## 📜 Resources
+
+- [2019/10/19 - ZEIT - Deploy Serverless Microservices Right Now](https://slides.com/f3l1x/2019-10-19-zeit-deploy-serverless-microservices-right-now-vol2)
+- [2019/07/07 - Bleeding Edge PHP on ZEIT Now](https://dev.to/nx1/bleeding-edge-php-on-zeit-now-565g)
+- [2019/06/05 - ZEIT - Deploy Serverless Microservices Right Now](https://slides.com/f3l1x/2019-06-05-zeit-deploy-serverless-microservices-right-now) ([VIDEO](https://www.youtube.com/watch?v=IwhEGNDx3aE))
+
 ## 🚧 Roadmap
 
 - next-gen PHP runtime ✅
@@ -112,11 +132,16 @@ Browse [more examples](examples). 👀
 - zero config ✅
 - `now dev` ✅
 - rewrite to typescript ✅
+- setup CI ✅
+- configure php.ini 🚧
+  - using `builds.config` ✅
+  - using `build.env` 🚧
 
 **Help wanted**
 
 - create many examples (majority frameworks and other use-cases)
 - cover by tests
+- adopt PHP 7.4
 
 ## 👨🏻‍💻CHANGELOG
 
