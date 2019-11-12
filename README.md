@@ -119,10 +119,12 @@ Browse [more examples](examples). 👀
 
 ## 📜 Resources
 
+- [2019/10/23 - Code Examples](https://github.com/trainit/2019-10-hubbr-zeit)
 - [2019/10/19 - ZEIT - Deploy Serverless Microservices Right Now](https://slides.com/f3l1x/2019-10-19-zeit-deploy-serverless-microservices-right-now-vol2)
+- [2019/08/23 - Code Examples](https://github.com/trainit/2019-08-serverless-zeit-now)
 - [2019/07/07 - Bleeding Edge PHP on ZEIT Now](https://dev.to/nx1/bleeding-edge-php-on-zeit-now-565g)
+- [2019/06/06 - Code Examples](https://github.com/trainit/2019-06-zeit-now)
 - [2019/06/05 - ZEIT - Deploy Serverless Microservices Right Now](https://slides.com/f3l1x/2019-06-05-zeit-deploy-serverless-microservices-right-now) ([VIDEO](https://www.youtube.com/watch?v=IwhEGNDx3aE))
-
 ## 🚧 Roadmap
 
 - next-gen PHP runtime ✅
