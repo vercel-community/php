@@ -267,26 +267,29 @@ __distribution_v2:
 # #################################################
 
 publish72:
-	cd ./v7.2 && npm publish --access public --tag latest
+	cd ../../packages/php-lib-72/ && \
+	npm publish --access public --tag latest
 
 publish72-canary:
-	cd ./v7.2 && \
+	cd ../../packages/php-lib-72/ && \
 	npm version prerelease && \
 	npm publish --access public --tag canary
 
 publish73:
-	cd ./v7.3 && npm publish --access public --tag latest
+	cd ../../packages/php-lib-73/ && \
+	npm publish --access public --tag latest
 
 publish73-canary:
-	cd ./v7.3 && \
+	cd ../../packages/php-lib-73/ && \
 	npm version prerelease && \
 	npm publish --access public --tag canary
 
 publish74:
-	cd ./v7.4 && npm publish --access public --tag latest
+	cd ../../packages/php-lib-74/ && \
+	npm publish --access public --tag latest
 
 publish74-canary:
-	cd ./v7.4 && \
+	cd ../../packages/php-lib-74/ && \
 	npm version prerelease && \
 	npm publish --access public --tag canary
 
