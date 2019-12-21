@@ -4,10 +4,14 @@
   "scope": "juicyfx",
   "regions": ["all"],
   "public": true,
-  "builds": [
-    { "src": "foo/*.php", "use": "now-php@experimental" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/foo/bar.php" }
-  ]
+  "functions": {
+    "api/index.php": {
+      "runtime": "now-php@0.0.8-experimental.1"
+    }
+  },
+  "build": {
+    "env": {
+      "NOW_PHP_DEBUG": "1"
+    }
+  }
 }
