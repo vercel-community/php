@@ -3,7 +3,7 @@ const index = require('./../../dist/index');
 test('lookup php files', async () => {
     const files = await index.getLibFiles();
 
-    expect(Object.keys(files).length).toEqual(99);
+    expect(Object.keys(files).length).toEqual(94);
     expect(typeof files).toEqual('object');
 });
 
