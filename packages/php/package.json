@@ -1,7 +1,7 @@
 {
   "name": "now-php",
   "description": "PHP Now 2.0 builder for ZEIT Now platform",
-  "version": "0.0.7",
+  "version": "0.0.8-experimental.1",
   "license": "MIT",
   "main": "./dist/index.js",
   "homepage": "https://github.com/juicyfx/now-php",
@@ -27,7 +27,7 @@
     "lib"
   ],
   "dependencies": {
-    "@now-php/lib-73": "canary"
+    "@now-php/lib-74": "canary"
   },
   "devDependencies": {
     "@now/build-utils": "^0.9.4",
