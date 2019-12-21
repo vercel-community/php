@@ -195,7 +195,7 @@ __distribution_v2:
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/sockets.so > ${DIST_PHP_MODULES_PATH}/sockets.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/sodium.so > ${DIST_PHP_MODULES_PATH}/sodium.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/sqlite3.so > ${DIST_PHP_MODULES_PATH}/sqlite3.so
-	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/ssh2.so > ${DIST_PHP_MODULES_PATH}/ssh2.so
+	#docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/ssh2.so > ${DIST_PHP_MODULES_PATH}/ssh2.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/swoole.so > ${DIST_PHP_MODULES_PATH}/swoole.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/tokenizer.so > ${DIST_PHP_MODULES_PATH}/tokenizer.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/xml.so > ${DIST_PHP_MODULES_PATH}/xml.so
@@ -203,21 +203,16 @@ __distribution_v2:
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/xmlrpc.so > ${DIST_PHP_MODULES_PATH}/xmlrpc.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/xmlwriter.so > ${DIST_PHP_MODULES_PATH}/xmlwriter.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/xsl.so > ${DIST_PHP_MODULES_PATH}/xsl.so
+	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/phalcon.so > ${DIST_PHP_PATH}/modules/phalcon.so;
 
 	# Copy static libraries. Needed by the extensions above.
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libX11.so.6 > ${DIST_LIB_PATH}/libX11.so.6
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libXau.so.6 > ${DIST_LIB_PATH}/libXau.so.6
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libXpm.so.4 > ${DIST_LIB_PATH}/libXpm.so.4
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libargon2.so.0 > ${DIST_LIB_PATH}/libargon2.so.0
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libaudit.so.1 > ${DIST_LIB_PATH}/libaudit.so.1
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libbz2.so.1 > ${DIST_LIB_PATH}/libbz2.so.1
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libc-client.so.2007 > ${DIST_LIB_PATH}/libc-client.so.2007
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libcap-ng.so.0 > ${DIST_LIB_PATH}/libcap-ng.so.0
+	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libc-client.so.2007 > ${DIST_LIB_PATH}/libc-client.so.2007
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libcrypt.so.1 > ${DIST_LIB_PATH}/libcrypt.so.1
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libcurl.so.4 > ${DIST_LIB_PATH}/libcurl.so.4
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libdw.so.1 > ${DIST_LIB_PATH}/libdw.so.1
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libedit.so.0 > ${DIST_LIB_PATH}/libedit.so.0
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libelf.so.1 > ${DIST_LIB_PATH}/libelf.so.1
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libexpat.so.1 > ${DIST_LIB_PATH}/libexpat.so.1
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libexslt.so.0 > ${DIST_LIB_PATH}/libexslt.so.0
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libfontconfig.so.1 > ${DIST_LIB_PATH}/libfontconfig.so.1
@@ -235,7 +230,6 @@ __distribution_v2:
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/liblber-2.4.so.2 > ${DIST_LIB_PATH}/liblber-2.4.so.2
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libldap-2.4.so.2 > ${DIST_LIB_PATH}/libldap-2.4.so.2
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libldap_r-2.4.so.2 > ${DIST_LIB_PATH}/libldap_r-2.4.so.2
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/liblz4.so.1 > ${DIST_LIB_PATH}/liblz4.so.1
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/liblzma.so.5 > ${DIST_LIB_PATH}/liblzma.so.5
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libncurses.so.5 > ${DIST_LIB_PATH}/libncurses.so.5
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libnghttp2.so.14 > ${DIST_LIB_PATH}/libnghttp2.so.14
@@ -250,13 +244,15 @@ __distribution_v2:
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libsqlite3.so.0 > ${DIST_LIB_PATH}/libsqlite3.so.0
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libssh2.so.1 > ${DIST_LIB_PATH}/libssh2.so.1
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libssl3.so > ${DIST_LIB_PATH}/libssl3.so
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libsystemd.so.0 > ${DIST_LIB_PATH}/libsystemd.so.0
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libtiff.so.5 > ${DIST_LIB_PATH}/libtiff.so.5
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libtinfo.so.5 > ${DIST_LIB_PATH}/libtinfo.so.5
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libunistring.so.0 > ${DIST_LIB_PATH}/libunistring.so.0
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libwebp.so.7 > ${DIST_LIB_PATH}/libwebp.so.7
+	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libX11.so.6 > ${DIST_LIB_PATH}/libX11.so.6
+	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libXau.so.6 > ${DIST_LIB_PATH}/libXau.so.6
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libxcb.so.1 > ${DIST_LIB_PATH}/libxcb.so.1
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libxml2.so.2 > ${DIST_LIB_PATH}/libxml2.so.2
+	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libXpm.so.4 > ${DIST_LIB_PATH}/libXpm.so.4
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libxslt.so.1 > ${DIST_LIB_PATH}/libxslt.so.1
 
 	# Remove temporary PHP container
@@ -305,19 +301,19 @@ test-runtime:
 	docker run \
 		-it \
 		--rm \
-		-v $(CURDIR)/v7.3/php:/opt/now/ \
-		-v $(CURDIR)/v7.3/lib:/var/task/lib \
+		-v $(CURDIR)/../../packages/php-lib-74/native/php:/opt/now/ \
+		-v $(CURDIR)/../../packages/php-lib-74/native/lib:/var/task/lib/ \
 		-w /opt/now \
 		--entrypoint /bin/bash \
-		lambci/lambda:nodejs8.10
+		lambci/lambda:nodejs12.x
 
 test-libs:
 	docker run \
 		-it \
 		--rm \
-		-v $(CURDIR)/v7.3/php:/opt/now \
-		-v $(CURDIR)/v7.3/lib:/var/task/lib \
+		-v $(CURDIR)/../../packages/php-lib-74/native/php:/opt/now/ \
+		-v $(CURDIR)/../../packages/php-lib-74/native/lib:/var/task/lib/ \
 		-v $(CURDIR):/srv \
 		-w /srv \
 		--entrypoint /bin/bash \
-		lambci/lambda:build-nodejs8.10
+		lambci/lambda:nodejs12.x

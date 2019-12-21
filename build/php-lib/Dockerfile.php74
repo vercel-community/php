@@ -1,4 +1,4 @@
-FROM amazonlinux:2.0.20190508
+FROM amazonlinux:2.0.20191016.0-with-sources
 
 ENV PHP=php74
 
@@ -29,9 +29,9 @@ RUN yum install -y \
         ${PHP}-php-mysqlnd \
         ${PHP}-php-opcache \
         ${PHP}-php-pdo \
-        # ${PHP}-php-phalcon \
+        ${PHP}-php-phalcon \
         ${PHP}-php-pgsql \
-        ${PHP}-php-ssh2 \
+        # ${PHP}-php-ssh2 \
         ${PHP}-php-soap \
         ${PHP}-php-sodium \
         ${PHP}-php-swoole \
@@ -70,14 +70,14 @@ RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/p
 RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/pdo_pgsql.so
 RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/pdo_sqlite.so
 RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/pgsql.so
-#RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/phalcon.so
+RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/phalcon.so
 RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/phar.so
 RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/simplexml.so
 RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/soap.so
 RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/sockets.so
 RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/sodium.so
 RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/sqlite3.so
-RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/ssh2.so
+# RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/ssh2.so
 RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/swoole.so
 RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/tokenizer.so
 RUN patchelf --set-rpath '$ORIGIN' /opt/remi/${PHP}/root/usr/lib64/php/modules/xml.so
