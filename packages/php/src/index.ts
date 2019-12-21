@@ -85,7 +85,7 @@ export async function build({
       ...bridgeFiles
     },
     handler: 'launcher.launcher',
-    runtime: 'nodejs8.10',
+    runtime: 'nodejs12.x',
     environment: {
       NOW_ENTRYPOINT: entrypoint,
       NOW_PHP_DEV: meta.isDev ? '1' : '0'

@@ -7,9 +7,9 @@ import {
   FileBlob,
   BuildOptions
 } from '@now/build-utils';
-import { getLibFiles } from "@now-php/lib-73";
+import { getLibFiles } from "@now-php/lib-74";
 
-const PHP_PKG = path.dirname(require.resolve('@now-php/lib-73/package.json'));
+const PHP_PKG = path.dirname(require.resolve('@now-php/lib-74/package.json'));
 const PHP_BIN_DIR = path.join(PHP_PKG, "native/php");
 const PHP_MODULES_DIR = path.join(PHP_BIN_DIR, "modules");
 const PHP_LIB_DIR = path.join(PHP_PKG, "native/lib");
