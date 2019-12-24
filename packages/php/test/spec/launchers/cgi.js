@@ -9,6 +9,7 @@ test('create CGI request', () => {
     method: "GET",
     headers: {}
   };
+  process.env.CUSTOM_VALUE = "custom-value";
   const { env } = cgi.createCGIReq(request);
 
   expect(env).toHaveProperty("SERVER_ROOT", "/user");
@@ -28,4 +29,5 @@ test('create CGI request', () => {
   expect(env).toHaveProperty("SERVER_SOFTWARE", 'ZEIT Now PHP');
   expect(env).toHaveProperty("PATH", process.env.PATH);
   expect(env).toHaveProperty("LD_LIBRARY_PATH", process.env.LD_LIBRARY_PATH);
+  expect(env).toHaveProperty("CUSTOM_VALUE", process.env.CUSTOM_VALUE);
 });

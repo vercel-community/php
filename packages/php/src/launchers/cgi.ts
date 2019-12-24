@@ -13,6 +13,7 @@ function createCGIReq({ entrypoint, path, host, method, headers }: CgiInput): Cg
   const { query } = urlParse(path);
 
   const env: Env = {
+    ...process.env,
     SERVER_ROOT: getUserDir(),
     DOCUMENT_ROOT: getUserDir(),
     SERVER_NAME: host,
