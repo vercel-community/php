@@ -1,5 +1,15 @@
 ## [Unreleased]
 
+### [0.0.8] - 2020-01-07
+
+- Runtime v3
+- Upgrade to PHP 7.4.x
+- Node 8.x reached EOL on AWS
+- Used Amazon Linux 2
+- CGI launcher inherits process.env [#38]
+- Drop Circle CI
+- Rebuild all PHP libs
+
 ### [0.0.7] - 2019-11-08
 
 - Rename builder to runtime
