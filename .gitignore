@@ -1,2 +1,3 @@
 # Node
 /node_modules
+/packages/**/package-lock.json
