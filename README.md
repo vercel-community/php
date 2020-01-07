@@ -31,14 +31,14 @@ Enjoyable & powerful 🐘 PHP Runtime for ZEIT Now.
 |----|---------|--------------|-------------|--------------------------|
 | ✅ | now-php | latest       | production  | Rock-solid stable.       |
 | 🔥 | now-php | canary       | testing     | For early-adopters.      |
-| ⚠️ | now-php | experimental | development | Testing and high danger. |
+| ⚠️  | now-php | experimental | development | Testing and high danger. |
 
 > Need to know how things are changing? Here is [changelog](./CHANGELOG.md).
 
 ## 🤗 Features
 
 - **Architecture**: PHP development server (🚀 fast enough)
-- **PHP version**: 7.3.12
+- **PHP version**: 7.4.2RC1
 - **Extensions**: apcu, bcmath, bz2, calendar, Core, ctype, curl, date, dom, ds, exif, fileinfo, filter, ftp, gettext, hash, iconv, json, libxml, mbstring, mysqli, mysqlnd, openssl, pcntl, pcre, PDO, pdo_mysql, pdo_pgsql, pdo_sqlite, phalcon, Phar, readline, Reflection, session, SimpleXML, soap, sockets, sodium, SPL, sqlite3, ssh2, standard, swoole, tokenizer, xml, xmlreader, xmlrpc, xmlwriter, xsl, Zend OPcache, zlib
 - **Speed**: cold ~250ms / warm ~5ms
 - **Memory**: ~90mb
@@ -56,7 +56,7 @@ You should define `functions` property in `now.json` and list PHP files directly
 {
   "functions": {
     "api/*.php": {
-      "runtime": "now-php@0.0.7"
+      "runtime": "now-php@0.0.8"
     }
   }
 }
@@ -68,7 +68,7 @@ If you need to show index page define `routes` properly.
 {
   "functions": {
     "api/index.php": {
-      "runtime": "now-php@0.0.7"
+      "runtime": "now-php@0.0.8"
     }
   },
   "routes": [
@@ -83,7 +83,7 @@ Additional function properties are `memory`, `maxDuration`.
 {
   "functions": {
     "api/*.php": {
-      "runtime": "now-php@0.0.7",
+      "runtime": "now-php@0.0.8",
       "memory": 3008,
       "maxDuration": 500
     }
@@ -125,6 +125,7 @@ Browse [more examples](examples). 👀
 - [2019/07/07 - Bleeding Edge PHP on ZEIT Now](https://dev.to/nx1/bleeding-edge-php-on-zeit-now-565g)
 - [2019/06/06 - Code Examples](https://github.com/trainit/2019-06-zeit-now)
 - [2019/06/05 - ZEIT - Deploy Serverless Microservices Right Now](https://slides.com/f3l1x/2019-06-05-zeit-deploy-serverless-microservices-right-now) ([VIDEO](https://www.youtube.com/watch?v=IwhEGNDx3aE))
+
 ## 🚧 Roadmap
 
 - next-gen PHP runtime ✅
@@ -138,12 +139,14 @@ Browse [more examples](examples). 👀
 - configure php.ini 🚧
   - using `builds.config` ✅
   - using `build.env` 🚧
+- PHP versions
+  - 7.4 ✅ (used)
+  - 7.3 ✅
+  - 7.2 ✅
 
 **Help wanted**
 
 - create many examples (majority frameworks and other use-cases)
-- cover by tests
-- adopt PHP 7.4
 
 ## 👨🏻‍💻CHANGELOG
 
