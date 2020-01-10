@@ -50,6 +50,11 @@ Enjoyable & powerful 🐘 PHP Runtime for ZEIT Now.
 
 Take a look at [ZEIT's](https://zeit.co) blogpost about [`Serverless Functions`](https://zeit.co/blog/customizing-serverless-functions).
 
+⚠️ ❗️ We're having [some troubles with installing Composer dependencies](https://github.com/juicyfx/now-php/issues/42). Working on that.
+
+
+Take a look at [ZEIT's](https://zeit.co) blogpost about [`Serverless Functions`](https://zeit.co/blog/customizing-serverless-functions).
+
 You should define `functions` property in `now.json` and list PHP files directly or using wildcard (*).
 
 ```json
