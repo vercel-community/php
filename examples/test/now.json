@@ -1,8 +1,4 @@
 {
-  "name": "now-php-test",
-  "scope": "juicyfx",
-  "regions": ["all"],
-  "public": true,
   "functions": {
     "api/index.php": {
       "runtime": "now-php@0.0.8"

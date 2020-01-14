@@ -1,9 +1,5 @@
 {
   "version": 2,
-  "name": "now-php-fw-lumen",
-  "scope": "juicyfx",
-  "regions": ["all"],
-  "public": true,
   "builds": [
     {
       "src": "public/index.php",
