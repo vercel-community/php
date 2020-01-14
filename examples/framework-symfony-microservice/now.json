@@ -1,9 +1,5 @@
 {
-  "name": "now-php-fw-symfony-microservice-skeleton",
-  "scope": "juicyfx",
   "version": 2,
-  "regions": ["all"],
-  "public": true,
   "env": {
     "APP_ENV": "prod",
     "APP_SECRET": "6f71aad5435fe6e70b4481ffw8b1c3d2c2b6bec"

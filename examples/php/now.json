@@ -1,9 +1,5 @@
 {
   "version": 2,
-  "name": "now-php",
-  "scope": "juicyfx",
-  "regions": ["all"],
-  "public": true,
   "builds": [
     { "src": "*.php", "use": "now-php" },
     { "src": "api/*.php", "use": "now-php" },

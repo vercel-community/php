@@ -1,9 +1,5 @@
 {
   "version": 2,
-  "name": "now-php-composer",
-  "scope": "juicyfx",
-  "regions": ["all"],
-  "public": true,
   "functions": {
     "api/index.php": {
       "runtime": "now-php@0.0.6"
