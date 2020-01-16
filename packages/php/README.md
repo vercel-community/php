@@ -13,7 +13,7 @@
 	{
 		"functions": {
 			"api/index.php": {
-				"runtime": "now-php@0.0.8"
+				"runtime": "now-php@0.0.9"
 			}
 		}
 	}

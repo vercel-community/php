@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+### [0.0.9] - 2020-01-16
+
+- Use PHP 7.3 for installing Composer dependencies
+- Separate [examples](https://github.com/juicyfx/now-examples) to solo repository
+
 ### [0.0.8] - 2020-01-07
 
 - Runtime v3
