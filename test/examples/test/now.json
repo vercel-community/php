@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "name": "now-test",
+  "scope": "juicyfx",
+  "functions": {
+    "api/*.php": {
+      "runtime": "now-php@0.0.9"
+    }
+  },
+  "routes": [
+    { "src": "/(.*)", "dest": "/api/$1" }
+  ],
+  "build": {
+    "env": {
+      "NOW_PHP_DEBUG": "1"
+    }
+  }
+}
