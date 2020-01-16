@@ -91,6 +91,10 @@ Additional function properties are `memory`, `maxDuration`.
 }
 ```
 
+**Click & Go**
+
+[![Deploy with ZEIT Now](https://zeit.co/button)](https://zeit.co/new/project?template=https://github.com/juicyfx/now-examples/tree/master/php)
+
 ## 👨‍💻`now dev`
 
 For running `now dev` properly, you need to have PHP installed on your computer, [learn more](errors/now-dev-no-local-php.md).
