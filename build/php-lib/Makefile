@@ -254,6 +254,7 @@ __distribution_v2:
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libxml2.so.2 > ${DIST_LIB_PATH}/libxml2.so.2
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libXpm.so.4 > ${DIST_LIB_PATH}/libXpm.so.4
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libxslt.so.1 > ${DIST_LIB_PATH}/libxslt.so.1
+	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libtinfo.so.6 > ${DIST_LIB_PATH}/libtinfo.so.6
 
 	# Remove temporary PHP container
 	docker rm --force ${DOCKER_CONTAINER} || true

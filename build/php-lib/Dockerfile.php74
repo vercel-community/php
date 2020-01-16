@@ -5,13 +5,13 @@ ENV PHP=php74
 RUN yum install -y \
         https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm \
         https://rpms.remirepo.net/enterprise/remi-release-7.rpm \
+        yum-utils \
         epel-release \
-        yum-utils && \
-    yum-config-manager --enable epel remi-test && \
-    yum update -y && \
-    yum upgrade -y
+        curl
 
-RUN yum install -y patchelf
+RUN yum-config-manager --enable remi-test
+RUN yum update -y && yum upgrade -y
+RUN yum -y install patchelf
 
 RUN yum install -y \
         ${PHP}-php-apcu \
