@@ -1,7 +1,7 @@
 {
   "name": "@now-php/caddy",
   "description": "Caddy is part of now-php",
-  "version": "0.0.1-canary.5",
+  "version": "0.0.2-canary.1",
   "license": "MIT",
   "main": "./dist/index.js",
   "homepage": "https://github.com/juicyfx/now-php",
@@ -19,7 +19,7 @@
     "native"
   ],
   "dependencies": {
-    "now-php": "0.0.1-canary.30"
+    "now-php": "0.0.9"
   },
   "devDependencies": {
     "@now/build-utils": "^0.9.4",
