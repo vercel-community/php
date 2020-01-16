@@ -13,8 +13,6 @@ Enjoyable & powerful 🐘 PHP Runtime for ZEIT Now.
   <a href="https://www.npmjs.com/package/now-php"><img alt="npm (latest)" src="https://img.shields.io/npm/v/now-php/latest?style=flat-square"></a>
 </p>
 
-<p align=center><strong>🏋️‍♀️ It works with these frameworks and tools.</strong></p>
-
 <p align=center>
   <a href="https://github.com/nette"><img src="https://github.com/nette.png" width="128"></a>
   <a href="https://github.com/symfony"><img src="https://github.com/symfony.png" width="128"></a>
@@ -22,6 +20,8 @@ Enjoyable & powerful 🐘 PHP Runtime for ZEIT Now.
   <a href="https://github.com/slimphp"><img src="https://github.com/slimphp.png" width="128"></a>
   <a href="https://github.com/phalcon"><img src="https://github.com/phalcon.png" width="128"></a>
 </p>
+
+<p align=center><strong>🏋️‍♀️ It works with these frameworks and tools. Discover more at <a href="https://github.com/juicyfx/now-examples">examples</strong>.</p>
 
 -----
 
@@ -50,18 +50,13 @@ Enjoyable & powerful 🐘 PHP Runtime for ZEIT Now.
 
 Take a look at [ZEIT's](https://zeit.co) blogpost about [`Serverless Functions`](https://zeit.co/blog/customizing-serverless-functions).
 
-⚠️ ❗️ We're having [some troubles with installing Composer dependencies](https://github.com/juicyfx/now-php/issues/42). Working on that.
-
-
-Take a look at [ZEIT's](https://zeit.co) blogpost about [`Serverless Functions`](https://zeit.co/blog/customizing-serverless-functions).
-
 You should define `functions` property in `now.json` and list PHP files directly or using wildcard (*).
 
 ```json
 {
   "functions": {
     "api/*.php": {
-      "runtime": "now-php@0.0.8"
+      "runtime": "now-php@0.0.9"
     }
   }
 }
@@ -73,7 +68,7 @@ If you need to show index page define `routes` properly.
 {
   "functions": {
     "api/index.php": {
-      "runtime": "now-php@0.0.8"
+      "runtime": "now-php@0.0.9"
     }
   },
   "routes": [
@@ -88,7 +83,7 @@ Additional function properties are `memory`, `maxDuration`.
 {
   "functions": {
     "api/*.php": {
-      "runtime": "now-php@0.0.8",
+      "runtime": "now-php@0.0.9",
       "memory": 3008,
       "maxDuration": 500
     }
@@ -111,16 +106,15 @@ For running `now dev` properly, you need to have PHP installed on your computer,
 
 ## 🎯Examples
 
-- [Composer - install dependencies](/examples/composer/)
-- [Framework - Lumen](/examples/framework-lumen/)
-- [Framework - Nette](/examples/framework-nette/)
-- [Framework - Slim](/examples/framework-slim/)
-- [Framework - Symfony - Microservice](/examples/framework-symfony-microservice/)
-- [Framework - Phalcon](/examples/framework-phalcon/)
-- [PHP - common stuff](/examples/php/)
-- [Serverless Functions](/examples/functions/)
+- [PHP - fast & simple](https://github.com/juicyfx/now-examples/tree/master/php/)
+- [Composer - install dependencies](https://github.com/juicyfx/now-examples/tree/master/php-composer/)
+- [Framework - Lumen](https://github.com/juicyfx/now-examples/tree/master/php-framework-lumen/)
+- [Framework - Nette](https://github.com/juicyfx/now-examples/tree/master/php-framework-nette/)
+- [Framework - Slim](https://github.com/juicyfx/now-examples/tree/master/php-framework-slim/)
+- [Framework - Symfony - Microservice](https://github.com/juicyfx/now-examples/tree/master/php-framework-symfony-microservice/)
+- [Framework - Phalcon](https://github.com/juicyfx/now-examples/tree/master/php-framework-phalcon/)
 
-Browse [more examples](examples). 👀
+Browse [more examples](https://github.com/juicyfx/now-examples). 👀
 
 ## 📜 Resources
 
