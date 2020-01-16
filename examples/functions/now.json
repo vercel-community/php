@@ -1,8 +1,0 @@
-{
-  "version": 2,
-  "functions": {
-    "api/*.php": {
-      "runtime": "now-php@0.0.5"
-    }
-  }
-}
