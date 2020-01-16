@@ -4,6 +4,10 @@
 
 - Use PHP 7.3 for installing Composer dependencies
 - Separate [examples](https://github.com/juicyfx/now-examples) to solo repository
+- Extensions
+  - Disabled ssh2
+  - Added psr
+  - Rebuild phalcon, swoole
 
 ### [0.0.8] - 2020-01-07
 
