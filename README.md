@@ -101,10 +101,11 @@ For running `now dev` properly, you need to have PHP installed on your computer,
 
 ## 👀 Demo
 
-- phpinfo - https://now-php-server.juicyfx1.now.sh
-- extensions - https://now-php-server.juicyfx1.now.sh/ext/
-- ini - https://now-php-server.juicyfx1.now.sh/ini/
-- test - https://now-php-server.juicyfx1.now.sh/test.php
+- phpinfo - https://php.jfx.cz/
+- extensions - https://php.jfx.cz/ext/
+- ini - https://php.jfx.cz/ini/
+- JSON API - https://php.jfx.cz/api/users.php
+- test - https://php.jfx.cz/test.php
 
 ![](docs/phpinfo.png)
 
