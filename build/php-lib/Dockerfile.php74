@@ -9,7 +9,7 @@ RUN yum install -y \
         epel-release \
         curl
 
-RUN yum-config-manager --enable remi-test
+RUN yum-config-manager --enable remi-${PHP}
 RUN yum update -y && yum upgrade -y
 RUN yum -y install patchelf
 
@@ -35,6 +35,7 @@ RUN yum install -y \
         #${PHP}-php-ssh2 \
         ${PHP}-php-soap \
         ${PHP}-php-sodium \
+        #${PHP}-php-sqlsrv \
         ${PHP}-php-swoole \
         ${PHP}-php-tokenizer \
         ${PHP}-php-xml \
