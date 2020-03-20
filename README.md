@@ -99,6 +99,10 @@ Additional function properties are `memory`, `maxDuration`.
 
 For running `now dev` properly, you need to have PHP installed on your computer, [learn more](errors/now-dev-no-local-php.md).
 
+## 👾 Official
+
+[php.now.sh](https://php.now.sh/)
+
 ## 👀 Demo
 
 - phpinfo - https://php.jfx.cz/
