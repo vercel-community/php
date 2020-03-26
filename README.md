@@ -1,7 +1,7 @@
 <h1 align=center>ZEIT Now PHP</h1>
 
 <p align=center>
-Enjoyable & powerful 🐘 PHP Runtime for ZEIT Now.
+Enjoyable & powerful 🐘 PHP Runtime (<a href="https://php.now.sh">php.now.sh</a>) for ZEIT Now.
 </p>
 
 <p align=center>
@@ -99,12 +99,9 @@ Additional function properties are `memory`, `maxDuration`.
 
 For running `now dev` properly, you need to have PHP installed on your computer, [learn more](errors/now-dev-no-local-php.md).
 
-## 👾 Official
-
-[php.now.sh](https://php.now.sh/)
-
 ## 👀 Demo
 
+- official - https://php.now.sh/
 - phpinfo - https://php.jfx.cz/
 - extensions - https://php.jfx.cz/ext/
 - ini - https://php.jfx.cz/ini/
