@@ -1,26 +1,26 @@
-name: Node CI
+name: Main workflow
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
-  tests:
+  run:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Hello world action step
+      - name: Setup Node
         uses: actions/setup-node@v1
         with:
-          node-version: '12.x'
+          node-version: '13.x'
 
-      - name: Install NPM deps
+      - name: Dependencies
         run: |
           npm install
           make install
 
-      - name: Build packages
+      - name: Build
         run: make build
 
-      - name: Run unit tests
+      - name: Tests
         run: make test-unit
