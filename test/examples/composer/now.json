@@ -1,0 +1,10 @@
+{
+  "functions": {
+    "api/index.php": {
+      "runtime": "now-php@0.0.11-canary.1"
+    }
+  },
+  "routes": [
+    { "src": "/(.*)",  "dest": "/api/index.php" }
+  ]
+}

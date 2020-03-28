@@ -4,7 +4,7 @@
   "scope": "juicyfx",
   "functions": {
     "api/**/*.php": {
-      "runtime": "now-php@0.0.9"
+      "runtime": "now-php@0.0.11-canary.1"
     }
   },
   "routes": [
