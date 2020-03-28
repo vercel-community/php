@@ -56,7 +56,7 @@ You should define `functions` property in `now.json` and list PHP files directly
 {
   "functions": {
     "api/*.php": {
-      "runtime": "now-php@0.0.9"
+      "runtime": "now-php@0.0.10"
     }
   }
 }
@@ -68,7 +68,7 @@ If you need to show index page define `routes` properly.
 {
   "functions": {
     "api/index.php": {
-      "runtime": "now-php@0.0.9"
+      "runtime": "now-php@0.0.10"
     }
   },
   "routes": [
@@ -83,7 +83,7 @@ Additional function properties are `memory`, `maxDuration`.
 {
   "functions": {
     "api/*.php": {
-      "runtime": "now-php@0.0.9",
+      "runtime": "now-php@0.0.10",
       "memory": 3008,
       "maxDuration": 500
     }

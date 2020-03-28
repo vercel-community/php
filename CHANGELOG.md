@@ -1,5 +1,10 @@
 ## [Unreleased]
 
+### [0.0.9] - 2020-03-28
+
+- Use PHP 7.4 for installing Composer dependencies
+- Upgrade PHP 7.4 and recompile PHP extensions
+
 ### [0.0.9] - 2020-01-16
 
 - Use PHP 7.3 for installing Composer dependencies
