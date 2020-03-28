@@ -1,4 +1,4 @@
-DIST_PHP=73
+DIST_PHP=74
 DIST_PATH=./../../packages/php-lib-${DIST_PHP}
 DIST_PHP_PATH=${DIST_PATH}/native/php
 DIST_PHP_MODULES_PATH=${DIST_PHP_PATH}/modules
@@ -114,7 +114,6 @@ __distribution_v1:
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/xmlrpc.so > ${DIST_PHP_MODULES_PATH}/xmlrpc.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/xmlwriter.so > ${DIST_PHP_MODULES_PATH}/xmlwriter.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/xsl.so > ${DIST_PHP_MODULES_PATH}/xsl.so
-	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/phalcon.so > ${DIST_PHP_PATH}/modules/phalcon.so;
 
 	# Copy static libraries. Needed by the extensions above.
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libXpm.so.4 > ${DIST_LIB_PATH}/libXpm.so.4
@@ -165,6 +164,7 @@ __distribution_v2:
 	# Copy all compiled extensions
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/apcu.so > ${DIST_PHP_MODULES_PATH}/apcu.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/bcmath.so > ${DIST_PHP_MODULES_PATH}/bcmath.so
+	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/brotli.so > ${DIST_PHP_MODULES_PATH}/brotli.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/bz2.so > ${DIST_PHP_MODULES_PATH}/bz2.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/calendar.so > ${DIST_PHP_MODULES_PATH}/calendar.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/ctype.so > ${DIST_PHP_MODULES_PATH}/ctype.so
@@ -174,12 +174,13 @@ __distribution_v2:
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/exif.so > ${DIST_PHP_MODULES_PATH}/exif.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/fileinfo.so > ${DIST_PHP_MODULES_PATH}/fileinfo.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/ftp.so > ${DIST_PHP_MODULES_PATH}/ftp.so
-	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/gd.so > ${DIST_PHP_MODULES_PATH}/gd.so
+	#docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/gd.so > ${DIST_PHP_MODULES_PATH}/gd.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/gettext.so > ${DIST_PHP_MODULES_PATH}/gettext.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/iconv.so > ${DIST_PHP_MODULES_PATH}/iconv.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/imap.so > ${DIST_PHP_MODULES_PATH}/imap.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/intl.so > ${DIST_PHP_MODULES_PATH}/intl.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/json.so > ${DIST_PHP_MODULES_PATH}/json.so
+	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/lua.so > ${DIST_PHP_MODULES_PATH}/lua.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/mbstring.so > ${DIST_PHP_MODULES_PATH}/mbstring.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/mysqli.so > ${DIST_PHP_MODULES_PATH}/mysqli.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/mysqlnd.so > ${DIST_PHP_MODULES_PATH}/mysqlnd.so
@@ -188,9 +189,12 @@ __distribution_v2:
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/pdo_mysql.so > ${DIST_PHP_MODULES_PATH}/pdo_mysql.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/pdo_pgsql.so > ${DIST_PHP_MODULES_PATH}/pdo_pgsql.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/pdo_sqlite.so > ${DIST_PHP_MODULES_PATH}/pdo_sqlite.so
-	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/pgsql.so > ${DIST_PHP_MODULES_PATH}/pgsql.so
+	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/phalcon.so > ${DIST_PHP_PATH}/modules/phalcon.so;
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/phar.so > ${DIST_PHP_MODULES_PATH}/phar.so
+	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/pgsql.so > ${DIST_PHP_MODULES_PATH}/pgsql.so
+	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/protobuf.so > ${DIST_PHP_MODULES_PATH}/protobuf.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/psr.so > ${DIST_PHP_MODULES_PATH}/psr.so
+	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/runkit7.so > ${DIST_PHP_MODULES_PATH}/runkit7.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/simplexml.so > ${DIST_PHP_MODULES_PATH}/simplexml.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/soap.so > ${DIST_PHP_MODULES_PATH}/soap.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/sockets.so > ${DIST_PHP_MODULES_PATH}/sockets.so
@@ -198,13 +202,14 @@ __distribution_v2:
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/sqlite3.so > ${DIST_PHP_MODULES_PATH}/sqlite3.so
 	#docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/ssh2.so > ${DIST_PHP_MODULES_PATH}/ssh2.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/swoole.so > ${DIST_PHP_MODULES_PATH}/swoole.so
+	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/timecop.so > ${DIST_PHP_MODULES_PATH}/timecop.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/tokenizer.so > ${DIST_PHP_MODULES_PATH}/tokenizer.so
+	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/uuid.so > ${DIST_PHP_MODULES_PATH}/uuid.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/xml.so > ${DIST_PHP_MODULES_PATH}/xml.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/xmlreader.so > ${DIST_PHP_MODULES_PATH}/xmlreader.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/xmlrpc.so > ${DIST_PHP_MODULES_PATH}/xmlrpc.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/xmlwriter.so > ${DIST_PHP_MODULES_PATH}/xmlwriter.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/xsl.so > ${DIST_PHP_MODULES_PATH}/xsl.so
-	docker exec ${DOCKER_CONTAINER} /bin/cat /opt/remi/php${DIST_PHP}/root/usr/lib64/php/modules/phalcon.so > ${DIST_PHP_PATH}/modules/phalcon.so;
 
 	# Copy static libraries. Needed by the extensions above.
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libaudit.so.1 > ${DIST_LIB_PATH}/libaudit.so.1
@@ -216,18 +221,13 @@ __distribution_v2:
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libedit.so.0 > ${DIST_LIB_PATH}/libedit.so.0
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libexpat.so.1 > ${DIST_LIB_PATH}/libexpat.so.1
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libexslt.so.0 > ${DIST_LIB_PATH}/libexslt.so.0
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libfontconfig.so.1 > ${DIST_LIB_PATH}/libfontconfig.so.1
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libfreetype.so.6 > ${DIST_LIB_PATH}/libfreetype.so.6
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libgcrypt.so.11 > ${DIST_LIB_PATH}/libgcrypt.so.11
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libgd.so.3 > ${DIST_LIB_PATH}/libgd.so.3
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libgpg-error.so.0 > ${DIST_LIB_PATH}/libgpg-error.so.0
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libicudata.so.62 > ${DIST_LIB_PATH}/libicudata.so.62
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libicui18n.so.62 > ${DIST_LIB_PATH}/libicui18n.so.62
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libicuio.so.62 > ${DIST_LIB_PATH}/libicuio.so.62
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libicuuc.so.62 > ${DIST_LIB_PATH}/libicuuc.so.62
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libidn2.so.0 > ${DIST_LIB_PATH}/libidn2.so.0
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libjbig.so.2.0 > ${DIST_LIB_PATH}/libjbig.so.2.0
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libjpeg.so.62 > ${DIST_LIB_PATH}/libjpeg.so.62
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/liblber-2.4.so.2 > ${DIST_LIB_PATH}/liblber-2.4.so.2
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libldap-2.4.so.2 > ${DIST_LIB_PATH}/libldap-2.4.so.2
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libldap_r-2.4.so.2 > ${DIST_LIB_PATH}/libldap_r-2.4.so.2
@@ -237,7 +237,6 @@ __distribution_v2:
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libnss3.so > ${DIST_LIB_PATH}/libnss3.so
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libonig.so.5 > ${DIST_LIB_PATH}/libonig.so.5
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libpam.so.0 > ${DIST_LIB_PATH}/libpam.so.0
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libpng15.so.15 > ${DIST_LIB_PATH}/libpng15.so.15
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libpq.so.5 > ${DIST_LIB_PATH}/libpq.so.5
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libsasl2.so.3 > ${DIST_LIB_PATH}/libsasl2.so.3
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libsmime3.so > ${DIST_LIB_PATH}/libsmime3.so
@@ -245,17 +244,16 @@ __distribution_v2:
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libsqlite3.so.0 > ${DIST_LIB_PATH}/libsqlite3.so.0
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libssh2.so.1 > ${DIST_LIB_PATH}/libssh2.so.1
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libssl3.so > ${DIST_LIB_PATH}/libssl3.so
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libtiff.so.5 > ${DIST_LIB_PATH}/libtiff.so.5
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libtinfo.so.5 > ${DIST_LIB_PATH}/libtinfo.so.5
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libunistring.so.0 > ${DIST_LIB_PATH}/libunistring.so.0
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libwebp.so.7 > ${DIST_LIB_PATH}/libwebp.so.7
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libX11.so.6 > ${DIST_LIB_PATH}/libX11.so.6
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libXau.so.6 > ${DIST_LIB_PATH}/libXau.so.6
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libxcb.so.1 > ${DIST_LIB_PATH}/libxcb.so.1
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libxml2.so.2 > ${DIST_LIB_PATH}/libxml2.so.2
-	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libXpm.so.4 > ${DIST_LIB_PATH}/libXpm.so.4
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libxslt.so.1 > ${DIST_LIB_PATH}/libxslt.so.1
 	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libtinfo.so.6 > ${DIST_LIB_PATH}/libtinfo.so.6
+	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/libuuid.so.1 > ${DIST_LIB_PATH}/libuuid.so.1
+	docker exec ${DOCKER_CONTAINER} /bin/cat /usr/lib64/liblua-5.1.so > ${DIST_LIB_PATH}/liblua-5.1.so
 
 	# Remove temporary PHP container
 	docker rm --force ${DOCKER_CONTAINER} || true
