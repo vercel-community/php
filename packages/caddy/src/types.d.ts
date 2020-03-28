@@ -8,6 +8,10 @@ interface MetaOptions {
     meta: import('@now/build-utils').Meta;
 }
 
+interface PhpIni {
+  [k: string]: any,
+}
+
 interface AwsRequest {
     method: string,
     path: string,
