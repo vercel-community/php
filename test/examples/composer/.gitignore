@@ -1,1 +1,5 @@
-vendor
+# PHP
+/vendor
+
+# ZEIT
+.now
