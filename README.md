@@ -39,7 +39,7 @@ Enjoyable & powerful 🐘 PHP Runtime (<a href="https://php.now.sh">php.now.sh</
 
 - **Architecture**: PHP development server (🚀 fast enough)
 - **PHP version**: 7.4.4
-- **Extensions**: apcu, bcmath, brotli, bz2, calendar, Core, ctype, curl, date, dom, ds, exif, fileinfo, filter, ftp, gettext, hash, iconv, imap, intl, json, libxml, lua, mbstring, mysqli, mysqlnd, openssl, pcntl, pcre, PDO, pdo_mysql, pdo_pgsql, pdo_sqlite, pgsql, phalcon, Phar, protobuf, psr, readline, Reflection, runkit7, session, SimpleXML, soap, sockets, sodium, SPL, sqlite3, standard, swoole, timecop, tokenizer, uuid, xml, xmlreader, xmlrpc, xmlwriter, xsl, Zend OPcache, zlib
+- **Extensions**: apcu, bcmath, brotli, bz2, calendar, Core, ctype, curl, date, dom, ds, exif, fileinfo, filter, ftp, gettext, hash, iconv, igbinary, imap, intl, json, libxml, lua, mbstring, msgpack, mysqli, mysqlnd, openssl, pcntl, pcre, PDO, pdo_mysql, pdo_pgsql, pdo_sqlite, pgsql, phalcon, Phar, protobuf, psr, readline, redis, Reflection, runkit7, session, SimpleXML, soap, sockets, sodium, SPL, sqlite3, standard, swoole, timecop, tokenizer, uuid, xml, xmlreader, xmlrpc, xmlwriter, xsl, Zend OPcache, zlib
 - **Speed**: cold ~250ms / warm ~5ms
 - **Memory**: ~90mb
 - **Frameworks**: Nette, Symfony, Lumen, Slim, Phalcon
