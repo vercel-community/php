@@ -1,8 +1,7 @@
 <h1 align=center>PHP Runtime for <a href="https://vercel.com">Vercel</h1>
 
 <p align=center>
-Enjoyable & powerful 🐘 PHP Runtime (<a href="https://php.vercel.app">php.vercel.app</a>) for Vercel platform.
-<a href="https://vercel.com/new/project?template=https://github.com/juicyfx/vercel-examples/tree/master/php"><img src="https://vercel.com/button"></a>
+  Enjoyable & powerful 🐘 PHP Runtime (<a href="https://php.vercel.app">php.vercel.app</a>) for Vercel platform.
 </p>
 
 <p align=center>
@@ -24,10 +23,12 @@ Enjoyable & powerful 🐘 PHP Runtime (<a href="https://php.vercel.app">php.verc
 -----
 
 <p align=center>
-Made with ❤️ by <a href="https://github.com/f3l1x">@f3l1x</a> 🕹 <a href="https://f3l1x.io">f3l1x.io</a> 🐦 <a href="https://twitter.com/xf3l1x">@xf3l1x</a>
+Made with  ❤️  by <a href="https://github.com/f3l1x">@f3l1x</a> (<a href="https://f3l1x.io">f3l1x.io</a>) | 🐦 <a href="https://twitter.com/xf3l1x">@xf3l1x</a>
 </p>
 
 -----
+
+## 😎 Getting Started
 
 Let's picture you want to deploy your awesome microproject written in PHP and you don't know where. You have found [Vercel](https://vercel.com) it's awesome, but for static sites. Not anymore! I would like to introduce you your new best friend `vercel-php`, PHP runtime for Vercel platform.
 
@@ -72,6 +73,10 @@ now login
 now
 ```
 
+Are you ready to deploy your first PHP project to Vercel? Click & Go!
+
+<a href="https://vercel.com/new/project?template=https://github.com/juicyfx/vercel-examples/tree/master/php"><img src="https://vercel.com/button"></a>
+
 ## 🤗 Features
 
 - **Architecture**: PHP development server (🚀 fast enough)
@@ -89,14 +94,14 @@ Take a look at [Vercel's](https://vercel.com) blogpost about [`Serverless Functi
 
 You should define `functions` property in `now.json` and list PHP files directly or using wildcard (*).
 
-```json
+```
 {
   "functions": {
     "api/*.php": {
       "runtime": "vercel-php@0.1.0"
     },
 
-    // Can be list directly also
+    // Can be list also directly
 
     "api/one.php": {
       "runtime": "vercel-php@0.1.0"
