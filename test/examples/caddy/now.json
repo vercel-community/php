@@ -1,7 +1,4 @@
 {
-  "version": 2,
-  "name": "now-caddy",
-  "scope": "juicyfx",
   "functions": {
     "api/*.php": {
       "runtime": "@now-php/caddy@0.0.1-canary.5"

@@ -3,11 +3,11 @@ import { spawn, ChildProcess, SpawnOptions } from 'child_process';
 import net from 'net';
 import {
   getPhpDir,
+  getUserDir,
   normalizeEvent,
   transformFromAwsRequest,
   transformToAwsResponse,
-  isDev,
-  getUserDir
+  isDev
 } from './helpers';
 
 let server: ChildProcess;
@@ -47,7 +47,7 @@ async function startServer(entrypoint: string): Promise<ChildProcess> {
     options,
   );
 
-  server.stderr.on('data', data => {
+  server.stderr?.on('data', data => {
     console.error(`🐘STDERR: ${data.toString()}`);
   });
 
@@ -59,7 +59,7 @@ async function startServer(entrypoint: string): Promise<ChildProcess> {
     console.error(`🐘 PHP Built-In Server process errored ${err}`);
   });
 
-  await whenPortOpens(8000, 400);
+  await whenPortOpens(8000, 500);
 
   process.on('exit', () => {
     server.kill();
@@ -123,7 +123,7 @@ function whenPortOpensCallback(port: number, attempts: number, cb: (error?: stri
     if (!attempts) return cb(error);
     setTimeout(() => {
       whenPortOpensCallback(port, attempts - 1, cb);
-    }, 50);
+    }, 10);
   });
   client.on('connect', () => {
     client.destroy();
@@ -154,15 +154,15 @@ exports.launcher = launcher;
 
 // (async function () {
 //   const response = await launcher({
-//       Action: "test",
-//       httpMethod: "GET",
-//       body: "",
-//       path: "/",
-//       host: "https://zeit.co",
-//       headers: {
-//           'HOST': 'zeit.co'
-//       },
-//       encoding: null,
+//     Action: "test",
+//     httpMethod: "GET",
+//     body: "",
+//     path: "/",
+//     host: "https://vercel.com",
+//     headers: {
+//       'HOST': 'vercel.com'
+//     },
+//     encoding: null,
 //   });
 
 //   console.log(response);

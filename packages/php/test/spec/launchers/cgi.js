@@ -1,11 +1,10 @@
-
 const cgi = require('./../../../dist/launchers/cgi');
 
 test('create CGI request', () => {
   const request = {
     entrypoint: "index.php",
     path: "/index.php",
-    host: "https://zeit.co",
+    host: "https://vercel.com",
     method: "GET",
     headers: {}
   };
@@ -26,7 +25,7 @@ test('create CGI request', () => {
   expect(env).toHaveProperty("QUERY_STRING", '');
   expect(env).toHaveProperty("GATEWAY_INTERFACE", 'CGI/1.1');
   expect(env).toHaveProperty("SERVER_PROTOCOL", 'HTTP/1.1');
-  expect(env).toHaveProperty("SERVER_SOFTWARE", 'ZEIT Now PHP');
+  expect(env).toHaveProperty("SERVER_SOFTWARE", 'Vercel PHP');
   expect(env).toHaveProperty("PATH", process.env.PATH);
   expect(env).toHaveProperty("LD_LIBRARY_PATH", process.env.LD_LIBRARY_PATH);
   expect(env).toHaveProperty("CUSTOM_VALUE", process.env.CUSTOM_VALUE);

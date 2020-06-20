@@ -1,10 +1,15 @@
 {
   "functions": {
     "api/index.php": {
-      "runtime": "now-php@0.0.11-canary.1"
+      "runtime": "vercel-php@0.0.8"
     }
   },
   "routes": [
     { "src": "/(.*)",  "dest": "/api/index.php" }
-  ]
+  ],
+  "build": {
+    "env": {
+      "NOW_PHP_DEBUG": "1"
+    }
+  }
 }

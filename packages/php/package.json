@@ -1,15 +1,16 @@
 {
-  "name": "now-php",
-  "description": "PHP ZEIT Now Runtime",
-  "version": "0.0.10",
+  "name": "vercel-php",
+  "description": "Vercel PHP runtime",
+  "version": "0.1.0",
   "license": "MIT",
   "main": "./dist/index.js",
-  "homepage": "https://github.com/juicyfx/now-php",
+  "homepage": "https://github.com/juicyfx/vercel-php",
   "repository": {
     "type": "git",
-    "url": "https://github.com/juicyfx/now-php.git"
+    "url": "https://github.com/juicyfx/vercel-php.git"
   },
   "keywords": [
+    "vercel",
     "zeit",
     "now",
     "php",
@@ -24,17 +25,16 @@
     "prepublishOnly": "tsc"
   },
   "files": [
-    "dist",
-    "lib"
+    "dist"
   ],
   "dependencies": {
-    "@now-php/lib-74": "latest"
+    "@libphp/amazon-linux-2-v74": "^0.0.6"
   },
   "devDependencies": {
-    "@now/build-utils": "^0.9.4",
-    "@types/glob": "^7.1.1",
-    "@types/node": "^10.0.0",
-    "jest": "^24.8.0",
-    "typescript": "^3.5.3"
+    "@vercel/build-utils": "^2.4.0",
+    "@types/glob": "^7.1.2",
+    "@types/node": "^12.12.47",
+    "jest": "^26.0.1",
+    "typescript": "^3.9.5"
   }
 }

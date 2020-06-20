@@ -1,4 +1,4 @@
-# now-php
+# vercel-php
 
 1. Create `api/index.php`.
 
@@ -7,18 +7,18 @@
 	phpinfo();
 	```
 
-1. Create `now.json`
+2. Create `now.json`
 
 	```json
 	{
 		"functions": {
 			"api/index.php": {
-				"runtime": "now-php@0.0.9"
+				"runtime": "vercel-php@0.1.0"
 			}
 		}
 	}
 	```
 
-3. Call `now` and see magic.
+3. Call `vercel`, `vc` or `now` and see magic.
 
-4. Discover more in documentation at [Github repository](https://github.com/juicyfx/now-php).
+4. Discover more in documentation at [Github repository](https://github.com/juicyfx/vercel-php).

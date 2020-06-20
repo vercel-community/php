@@ -29,7 +29,7 @@ function createCGIReq({ entrypoint, path, host, method, headers }: CgiInput): Cg
     GATEWAY_INTERFACE: "CGI/1.1",
     SERVER_PROTOCOL: "HTTP/1.1",
     PATH: process.env.PATH,
-    SERVER_SOFTWARE: "ZEIT Now PHP",
+    SERVER_SOFTWARE: "Vercel PHP",
     LD_LIBRARY_PATH: process.env.LD_LIBRARY_PATH
   };
 
@@ -129,6 +129,24 @@ function query({ entrypoint, path, host, headers, method, body }: PhpInput): Pro
       options,
     );
 
+    // Validate pipes [stdin]
+    if (!php.stdin) {
+      console.error(`🐘 Fatal error. PHP CGI child process has no stdin.`);
+      process.exit(253);
+    }
+
+    // Validate pipes [stdout]
+    if (!php.stdout) {
+      console.error(`🐘 Fatal error. PHP CGI child process has no stdout.`);
+      process.exit(254);
+    }
+
+    // Validate pipes [stderr]
+    if (!php.stderr) {
+      console.error(`🐘 Fatal error. PHP CGI child process has no stderr.`);
+      process.exit(255);
+    }
+
     // Output
     php.stdout.on('data', data => {
       chunks.push(data);
@@ -185,9 +203,9 @@ exports.launcher = launcher;
 //       httpMethod: "GET",
 //       body: "",
 //       path: "/",
-//       host: "https://zeit.co",
+//       host: "https://vercel.com",
 //       headers: {
-//           'HOST': 'zeit.co'
+//           'HOST': 'vercel.com'
 //       },
 //       encoding: null,
 //   });

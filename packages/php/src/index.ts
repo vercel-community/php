@@ -14,7 +14,8 @@ import {
   getIncludedFiles,
   getComposerFiles,
   ensureLocalPhp,
-  modifyPhpIni
+  modifyPhpIni,
+  readRuntimeFile
 } from './utils';
 
 // ###########################
@@ -47,7 +48,7 @@ export async function build({
       console.log(`
         It looks like you don't have PHP on your machine.
         Learn more about how to run now dev on your machine.
-        https://err.sh/juicyfx/now-php/now-dev-no-local-php
+        https://err.sh/juicyfx/vercel-php/now-dev-no-local-php
       `)
     }
   }
@@ -56,33 +57,37 @@ export async function build({
   const userFiles = rename(includedFiles, name => path.join('user', name));
 
   // Bridge files contains PHP bins and libs
-  let bridgeFiles: Files = {};
+  let runtimeFiles: RuntimeFiles = {};
 
   // Append PHP files (bins + shared object)
-  bridgeFiles = { ...bridgeFiles, ...await getPhpFiles({ meta }) };
+  runtimeFiles = { ...runtimeFiles, ...await getPhpFiles() };
 
   // Append launcher files (server for lambda, cgi for now dev)
-  bridgeFiles = { ...bridgeFiles, ...getLauncherFiles({ meta }) };
+  runtimeFiles = { ...runtimeFiles, ...getLauncherFiles({ meta }) };
 
   // Append custom directives into php.ini
   if (config['php.ini']) {
-    bridgeFiles['php/php.ini'] = modifyPhpIni((bridgeFiles['php/php.ini'] as FileBlob), (config['php.ini'] as PhpIni));
+    runtimeFiles['php/php.ini'] = modifyPhpIni((runtimeFiles['php/php.ini'] as FileBlob), (config['php.ini'] as PhpIni));
   }
 
+  // Show some debug notes during build
   if (process.env.NOW_PHP_DEBUG === '1') {
     console.log('🐘 Entrypoint:', entrypoint);
     console.log('🐘 Config:', config);
     console.log('🐘 Work path:', workPath);
     console.log('🐘 Meta:', meta);
     console.log('🐘 User files:', Object.keys(userFiles));
-    console.log('🐘 Bridge files:', Object.keys(bridgeFiles));
-    console.log('🐘 PHP: php.ini', (bridgeFiles['php/php.ini'] as FileBlob).data.toString());
+    console.log('🐘 Runtime files:', Object.keys(runtimeFiles));
+    console.log('🐘 PHP: php.ini', await readRuntimeFile(runtimeFiles['php/php.ini']));
   }
 
   const lambda = await createLambda({
     files: {
+      // Located at /var/task/user
       ...userFiles,
-      ...bridgeFiles
+      // Located at /var/task/php (php bins + ini + modules)
+      // Located at /var/task/lib (shared libs)
+      ...runtimeFiles
     },
     handler: 'launcher.launcher',
     runtime: 'nodejs12.x',
@@ -95,7 +100,7 @@ export async function build({
   return { output: lambda };
 };
 
-export async function prepareCache({ workPath }: PrepareCacheOptions): Promise<Files> {
+export async function prepareCache({ workPath }: PrepareCacheOptions): Promise<RuntimeFiles> {
   return {
     // Composer
     ...(await glob('vendor/**', workPath)),
