@@ -1,0 +1,10 @@
+version = 1
+
+[merge]
+automerge_label = "automerge"
+blacklist_title_regex = "^WIP.*"
+blacklist_labels = ["WIP"]
+method = "rebase"
+delete_branch_on_merge = true
+notify_on_conflict = true
+optimistic_updates = false
