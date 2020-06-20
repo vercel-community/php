@@ -1,11 +1,11 @@
 type Headers = { [k: string]: string | string[] | undefined };
 
-interface Files {
-  [filePath: string]: import('@now/build-utils').File;
+interface RuntimeFiles {
+  [filePath: string]: import('@vercel/build-utils').File;
 }
 
 interface MetaOptions {
-  meta: import('@now/build-utils').Meta;
+  meta: import('@vercel/build-utils').Meta;
 }
 
 interface AwsRequest {

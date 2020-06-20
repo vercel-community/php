@@ -1,5 +1,5 @@
 {
-  "name": "now-php-monorepo",
+  "name": "vercel-php-monorepo",
   "scripts": {
     "test-unit": "jest --config unit.jest.config.js"
   },

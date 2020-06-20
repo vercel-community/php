@@ -3,19 +3,20 @@ import { spawn } from 'child_process';
 import {
   glob,
   download,
+  File,
   FileFsRef,
   FileBlob,
   BuildOptions
-} from '@now/build-utils';
-import { getLibFiles } from "@now-php/lib-74";
+} from '@vercel/build-utils';
+import * as libphp from "@libphp/amazon-linux-2-v74";
 
-const PHP_PKG = path.dirname(require.resolve('@now-php/lib-74/package.json'));
+const PHP_PKG = path.dirname(require.resolve('@libphp/amazon-linux-2-v74/package.json'));
 const PHP_BIN_DIR = path.join(PHP_PKG, "native/php");
 const PHP_MODULES_DIR = path.join(PHP_BIN_DIR, "modules");
 const PHP_LIB_DIR = path.join(PHP_PKG, "native/lib");
 const COMPOSER_BIN = path.join(PHP_BIN_DIR, "composer");
 
-export async function getIncludedFiles({ files, entrypoint, workPath, config, meta }: BuildOptions): Promise<Files> {
+export async function getIncludedFiles({ files, entrypoint, workPath, config, meta }: BuildOptions): Promise<RuntimeFiles> {
   // Download all files to workPath
   const downloadedFiles = await download(files, workPath, meta);
 
@@ -38,24 +39,28 @@ export async function getIncludedFiles({ files, entrypoint, workPath, config, me
   return includedFiles;
 }
 
-export async function getPhpFiles({ meta }: MetaOptions): Promise<Files> {
-  const files = await getLibFiles();
+export async function getPhpFiles(): Promise<RuntimeFiles> {
+  const files = await libphp.getFiles();
 
-  if (meta && meta.isDev) {
-    delete files['php/php'];
-    delete files['php/php-fpm'];
-    delete files['php/php-fpm.ini'];
-  } else {
-    delete files['php/php-cgi'];
-    delete files['php/php-fpm'];
-    delete files['php/php-fpm.ini'];
+  // Drop CGI + FPM from libphp, it's not needed for our case
+  delete files['php/php-cgi'];
+  delete files['php/php-fpm'];
+  delete files['php/php-fpm.ini'];
+
+  const runtimeFiles: RuntimeFiles = {};
+
+  // Map from @libphp to Vercel's File objects
+  for (const [filename, filepath] of Object.entries(files)) {
+    runtimeFiles[filename] = new FileFsRef({
+      fsPath: filepath
+    })
   }
 
-  return files;
-}
+  // Set some bins executable
+  (runtimeFiles['php/php'] as FileFsRef).mode = 33261; // 0755;
+  (runtimeFiles['php/composer'] as FileFsRef).mode = 33261; // 0755;
 
-export async function getPhpLibFiles(): Promise<Files> {
-  return await getLibFiles();
+  return runtimeFiles;
 }
 
 export function modifyPhpIni(phpini: FileBlob, directives: PhpIni): FileBlob {
@@ -71,8 +76,8 @@ export function modifyPhpIni(phpini: FileBlob, directives: PhpIni): FileBlob {
   return phpini;
 }
 
-export function getLauncherFiles({ meta }: MetaOptions): Files {
-  const files: Files = {
+export function getLauncherFiles({ meta }: MetaOptions): RuntimeFiles {
+  const files: RuntimeFiles = {
     'helpers.js': new FileFsRef({
       fsPath: path.join(__dirname, 'launchers/helpers.js'),
     })
@@ -91,7 +96,7 @@ export function getLauncherFiles({ meta }: MetaOptions): Files {
   return files;
 }
 
-export async function getComposerFiles(workPath: string): Promise<Files> {
+export async function getComposerFiles(workPath: string): Promise<RuntimeFiles> {
   console.log('🐘 Installing Composer deps.');
 
   // Install composer dependencies
@@ -152,6 +157,14 @@ export async function ensureLocalPhp(): Promise<boolean> {
   } catch (e) {
     return false;
   }
+}
+
+export async function readRuntimeFile(file: File): Promise<string> {
+  const blob = await FileBlob.fromStream({
+    stream: file.toStream(),
+  });
+
+  return blob.data.toString();
 }
 
 function spawnAsync(command: string, args: any[], cwd?: string, opts = {}) {

@@ -2,20 +2,28 @@
   "compilerOptions": {
     "strict": true,
     "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "lib": [
-      "esnext"
+      "ES2019"
     ],
-    "target": "esnext",
-    "module": "commonjs",
+    "target": "ES2019",
+    "module": "CommonJS",
     "outDir": "dist",
     "sourceMap": false,
     "declaration": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
     "typeRoots": [
       "./node_modules/@types"
     ]
   },
   "include": [
-    "src/**/*"
+    "src/**/*.ts"
   ],
   "exclude": [
     "dist",

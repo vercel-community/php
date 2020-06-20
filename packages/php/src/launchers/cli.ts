@@ -34,6 +34,24 @@ function query({ entrypoint, body }: PhpInput): Promise<PhpOutput> {
       options,
     );
 
+    // Validate pipes [stdin]
+    if (!php.stdin) {
+      console.error(`🐘 Fatal error. PHP CLI child process has no stdin.`);
+      process.exit(253);
+    }
+
+    // Validate pipes [stdout]
+    if (!php.stdout) {
+      console.error(`🐘 Fatal error. PHP CLI child process has no stdout.`);
+      process.exit(254);
+    }
+
+    // Validate pipes [stderr]
+    if (!php.stderr) {
+      console.error(`🐘 Fatal error. PHP CLI child process has no stderr.`);
+      process.exit(255);
+    }
+
     // Output
     php.stdout.on('data', data => {
       chunks.push(data);
@@ -87,9 +105,9 @@ exports.launcher = launcher;
 //       httpMethod: "GET",
 //       body: "",
 //       path: "/",
-//       host: "https://zeit.co",
+//       host: "https://vercel.com",
 //       headers: {
-//           'HOST': 'zeit.co'
+//           'HOST': 'vercel.com'
 //       },
 //       encoding: null,
 //   });
