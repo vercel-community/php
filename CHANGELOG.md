@@ -1,5 +1,15 @@
 ## [Unreleased]
 
+### [0.1.0] - 2020-06-20
+
+- Rename repository from now-php to **vercel-php**
+- Rename NPM package from now-php to **vercel-php**
+- Upgrade PHP to 7.4.7 and recompile PHP extensions
+- Improve readme
+- Separate PHP libs to solo repository [juicyfx/libphp](https://github.com/juicyfx/libphp) (bigger plans)
+- Use [php.vercel.app](https://php.vercel.app) domain for official showtime
+- Use [phpshow.vercel.app](https://phpshow.vercel.app) domain for runtime showcase
+
 ### [0.0.9] - 2020-03-28
 
 - Use PHP 7.4 for installing Composer dependencies
@@ -8,7 +18,7 @@
 ### [0.0.9] - 2020-01-16
 
 - Use PHP 7.3 for installing Composer dependencies
-- Separate [examples](https://github.com/juicyfx/now-examples) to solo repository
+- Separate [examples](https://github.com/juicyfx/vercel-examples) to solo repository
 - Extensions
   - Disabled ssh2
   - Added psr
