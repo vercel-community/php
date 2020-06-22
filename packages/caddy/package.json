@@ -25,7 +25,7 @@
     "@now/build-utils": "^0.9.4",
     "@types/glob": "^7.1.1",
     "@types/node": "^10.0.0",
-    "jest": "^24.8.0",
+    "jest": "^26.0.1",
     "typescript": "^3.5.3"
   }
 }
