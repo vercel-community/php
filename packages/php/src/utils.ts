@@ -21,6 +21,7 @@ export async function getIncludedFiles({ files, entrypoint, workPath, config, me
   const downloadedFiles = await download(files, workPath, meta);
 
   let includedFiles = {};
+
   if (config && config.includeFiles) {
     // Find files for each glob
     for (const pattern of config.includeFiles) {
@@ -63,17 +64,20 @@ export async function getPhpFiles(): Promise<RuntimeFiles> {
   return runtimeFiles;
 }
 
-export function modifyPhpIni(phpini: FileBlob, directives: PhpIni): FileBlob {
-  const output: any[] = [];
-  for (const property in directives) {
-    output.push(`${property} = ${directives[property]}`);
+export async function modifyPhpIni({ config, runtimeFiles, userFiles }: PhpIniOptions): Promise<void> {
+  // 1. From now.json config[php.ini]
+  if (config['php.ini']) {
+    runtimeFiles['php/php.ini'] = await modifyPhpIniFromArray(runtimeFiles['php/php.ini'], (config['php.ini'] as PhpIni));
   }
 
-  phpini.data = phpini.data
-    .toString()
-    .concat(output.join("\n"));
-
-  return phpini;
+  // 2. From user/api/php.ini
+  if (userFiles['user/api/php.ini']) {
+    runtimeFiles['php/php.ini'] = await modifyPhpIniFromFile(runtimeFiles['php/php.ini'], userFiles['user/api/php.ini']);
+    // Don't include user provided php.ini
+    console.log(userFiles);
+    delete userFiles['user/api/php.ini'];
+    console.log(userFiles);
+  }
 }
 
 export function getLauncherFiles({ meta }: MetaOptions): RuntimeFiles {
@@ -107,6 +111,23 @@ export async function getComposerFiles(workPath: string): Promise<RuntimeFiles> 
   return await glob('vendor/**', workPath);
 }
 
+export async function ensureLocalPhp(): Promise<boolean> {
+  try {
+    await spawnAsync('which', ['php', 'php-cgi'], undefined, { stdio: 'pipe' });
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
+export async function readRuntimeFile(file: File): Promise<string> {
+  const blob = await FileBlob.fromStream({
+    stream: file.toStream(),
+  });
+
+  return blob.data.toString();
+}
+
 async function runComposerInstall(cwd: string) {
   // @todo think about allow to pass custom commands here
   await runPhp(cwd,
@@ -123,6 +144,7 @@ async function runComposerInstall(cwd: string) {
     { stdio: 'inherit' }
   );
 }
+
 
 async function runPhp(cwd: string, args: any[], opts = {}) {
   try {
@@ -150,22 +172,6 @@ async function runPhp(cwd: string, args: any[], opts = {}) {
   }
 }
 
-export async function ensureLocalPhp(): Promise<boolean> {
-  try {
-    await spawnAsync('which', ['php', 'php-cgi'], undefined, { stdio: 'pipe' });
-    return true;
-  } catch (e) {
-    return false;
-  }
-}
-
-export async function readRuntimeFile(file: File): Promise<string> {
-  const blob = await FileBlob.fromStream({
-    stream: file.toStream(),
-  });
-
-  return blob.data.toString();
-}
 
 function spawnAsync(command: string, args: any[], cwd?: string, opts = {}) {
   return new Promise((resolve, reject) => {
@@ -184,4 +190,36 @@ function spawnAsync(command: string, args: any[], cwd?: string, opts = {}) {
       }
     });
   })
+}
+
+export async function modifyPhpIniFromArray(phpini: File, directives: PhpIni): Promise<FileBlob> {
+  const output: any[] = [];
+
+  for (const property in directives) {
+    output.push(`${property} = ${directives[property]}`);
+  }
+
+  const phpiniBlob = await FileBlob.fromStream({
+    stream: phpini.toStream(),
+  });
+
+  phpiniBlob.data = phpiniBlob.data
+    .toString()
+    .concat(output.join("\n"));
+
+  return phpiniBlob;
+}
+
+export async function modifyPhpIniFromFile(phpini: File, userPhpini: File): Promise<FileBlob> {
+  const phpiniBlob = await FileBlob.fromStream({
+    stream: phpini.toStream(),
+  });
+
+  const userPhpiniBlob = await FileBlob.fromStream({
+    stream: userPhpini.toStream(),
+  });
+
+  return new FileBlob({
+    data: phpiniBlob.data.toString().concat(userPhpiniBlob.data.toString())
+  });
 }

@@ -1,10 +1,12 @@
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.0.3"
+      "runtime": "vercel-php@0.0.15"
     }
   },
   "routes": [
+    { "src": "/txt", "dest": "/api/php.txt" },
+    { "src": "/ini", "dest": "/api/php.ini" },
     { "src": "/(.*)", "dest": "/api/$1" }
   ],
   "build": {
