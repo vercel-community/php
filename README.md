@@ -18,12 +18,10 @@
   <a href="https://github.com/phalcon"><img src="https://github.com/phalcon.png" width="128"></a>
 </p>
 
-<p align=center><strong>🏋️‍♀️ It works with these frameworks and tools. Discover more at <a href="https://github.com/juicyfx/vercel-examples">examples</strong>.</p>
-
------
+<p align=center><strong>🏋️‍♀️ It works with these frameworks and tools. Discover more at <a href="https://github.com/juicyfx/vercel-examples">examples</a>.</strong></p>
 
 <p align=center>
-Made with  ❤️  by <a href="https://github.com/f3l1x">@f3l1x</a> (<a href="https://f3l1x.io">f3l1x.io</a>) | 🐦 <a href="https://twitter.com/xf3l1x">@xf3l1x</a>
+Made with  ❤️  by <a href="https://github.com/f3l1x">@f3l1x</a> (<a href="https://f3l1x.io">f3l1x.io</a>) • 🐦 <a href="https://twitter.com/xf3l1x">@xf3l1x</a>
 </p>
 
 -----
