@@ -19,7 +19,7 @@
     "native"
   ],
   "dependencies": {
-    "now-php": "0.0.9"
+    "now-php": "0.0.10"
   },
   "devDependencies": {
     "@now/build-utils": "^0.9.4",
