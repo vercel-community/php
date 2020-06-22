@@ -4,9 +4,8 @@ import {
   rename,
   shouldServe,
   BuildOptions,
-  FileBlob,
   PrepareCacheOptions,
-  glob
+  glob,
 } from '@now/build-utils';
 import {
   getPhpFiles,
@@ -14,8 +13,8 @@ import {
   getIncludedFiles,
   getComposerFiles,
   ensureLocalPhp,
+  readRuntimeFile,
   modifyPhpIni,
-  readRuntimeFile
 } from './utils';
 
 // ###########################
@@ -57,18 +56,20 @@ export async function build({
   const userFiles = rename(includedFiles, name => path.join('user', name));
 
   // Bridge files contains PHP bins and libs
-  let runtimeFiles: RuntimeFiles = {};
+  const runtimeFiles: RuntimeFiles = {
+    // Append PHP files (bins + shared object)
+    ...await getPhpFiles(),
 
-  // Append PHP files (bins + shared object)
-  runtimeFiles = { ...runtimeFiles, ...await getPhpFiles() };
+    // Append launcher files (server for lambda, cgi for now dev, common helpers)
+    ...getLauncherFiles({ meta }),
+  };
 
-  // Append launcher files (server for lambda, cgi for now dev)
-  runtimeFiles = { ...runtimeFiles, ...getLauncherFiles({ meta }) };
-
-  // Append custom directives into php.ini
-  if (config['php.ini']) {
-    runtimeFiles['php/php.ini'] = modifyPhpIni((runtimeFiles['php/php.ini'] as FileBlob), (config['php.ini'] as PhpIni));
+  // Append PHP directives into php.ini
+  if (config['php.ini'] || userFiles['user/api/php.ini']) {
+    await modifyPhpIni({ config, runtimeFiles, userFiles });
   }
+
+  console.log('!', userFiles);
 
   // Show some debug notes during build
   if (process.env.NOW_PHP_DEBUG === '1') {
