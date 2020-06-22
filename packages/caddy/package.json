@@ -22,7 +22,7 @@
     "now-php": "0.0.10"
   },
   "devDependencies": {
-    "@now/build-utils": "^0.9.4",
+    "@now/build-utils": "^2.4.0",
     "@types/glob": "^7.1.1",
     "@types/node": "^10.0.0",
     "jest": "^26.0.1",
