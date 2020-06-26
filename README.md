@@ -134,11 +134,13 @@ Additional function properties are `memory`, `maxDuration`. Learn more about [fu
     "api/*.php": {
       "runtime": "vercel-php@0.1.0",
       "memory": 3008,
-      "maxDuration": 500
+      "maxDuration": 60
     }
   }
 }
 ```
+
+Available memory and maxDuration are limited by [your plan](https://vercel.com/pricing).
 
 ## 👨‍💻`now dev`
 
