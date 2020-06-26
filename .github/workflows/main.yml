@@ -15,12 +15,10 @@ jobs:
           node-version: '12.x'
 
       - name: Dependencies
-        run: |
-          npm install
-          make install
+        run: make install
 
       - name: Build
         run: make build
 
       - name: Tests
-        run: make test-unit
+        run: make test
