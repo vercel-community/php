@@ -253,6 +253,19 @@ Available memory and maxDuration are limited by [your plan](https://vercel.com/p
 
 Show me [CHANGELOG](./CHANGELOG.md)
 
+## 🧙Contribution
+
+1. Clone this repository.
+   - `git clone git@github.com:juicyfx/vercel-php.git`
+2. Install NPM dependencies
+   - `make install`
+3. Make your changes
+4. Run TypeScript compiler
+   - `make build`
+5. Run tests
+   - `make test`
+6. Create a PR
+
 ## 📝 License
 
 Copyright © 2019 [f3l1x](https://github.com/f3l1x).
