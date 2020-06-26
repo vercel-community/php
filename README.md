@@ -245,7 +245,77 @@ Additional function properties are `memory`, `maxDuration`. Learn more about [fu
 }
 ```
 
-Available memory and maxDuration are limited by [your plan](https://vercel.com/pricing).
+</details>
+
+<details>
+  <summary>4. How to use it with [Composer](https://getcomposer.org/)?</summary>
+
+Yes, [Composer](https://getcomposer.org/) is fully supported.
+
+```sh
+project
+├── api
+│   └── index.php
+├── composer.json
+└── now.json
+```
+
+```json
+{
+  "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php@0.1.0"
+    }
+  }
+}
+```
+
+```json
+{
+  "require": {
+    "php": "^7.4",
+    "tracy/tracy": "^2.0"
+  }
+}
+```
+
+It's also good thing to create `.nowignore` file and put `/vendor` folder to this file. It will not upload
+`/vendor` folder to Vercel platform.
+
+</details>
+
+<details>
+  <summary>5. How to override [php.ini](https://www.php.net/manual/en/ini.list.php) / [php configuration](https://www.php.net/manual/en/configuration.file.php) ?</summary>
+
+Yes, you can override php configuration. Take a look at [default configuration](https://phpshow.vercel.app/) at first.
+Create a new file `api/php.ini` and place there your configuration. Don't worry, this particulary file will be
+removed during building phase on Vercel.
+
+```sh
+project
+├── api
+│   ├── index.php
+│   └── php.ini
+└── now.json
+```
+
+```json
+{
+  "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php@0.1.0"
+    }
+  }
+}
+```
+
+```json
+# Disable some functions
+disable_functions = "exec, system"
+
+# Update memory limit
+memory_limit=1024M
+```
 
 </details>
 
