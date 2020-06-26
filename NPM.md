@@ -13,7 +13,7 @@
 	{
 		"functions": {
 			"api/index.php": {
-				"runtime": "vercel-php@0.1.0"
+				"runtime": "vercel-php@0.2.0"
 			}
 		}
 	}

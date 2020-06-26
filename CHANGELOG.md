@@ -1,5 +1,22 @@
 ## [Unreleased]
 
+### [0.2.0] - 2020-06-26
+
+- Allow to override `php.ini`
+
+  ```sh
+  project
+  ├── api
+  │   ├── index.php
+  │   └── php.ini
+  └── now.json
+  ```
+
+- Extensive update of docs
+- Introduce FAQ questions
+- Move caddy package to [juicyfx/juicy](https://github.com/juicyfx/juicy)
+- Simplify repository structure
+
 ### [0.1.0] - 2020-06-20
 
 - Rename repository from now-php to **vercel-php**

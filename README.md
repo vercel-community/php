@@ -52,7 +52,7 @@ Second file `now.json` is pure gold here. Setup your project with configuration 
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.1.0"
+      "runtime": "vercel-php@0.2.0"
     }
   }
 }
@@ -97,7 +97,7 @@ If you need to route everything to index, use `routes` property.
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.1.0"
+      "runtime": "vercel-php@0.2.0"
     }
   },
   "routes": [
@@ -153,7 +153,6 @@ Browse [more examples](https://github.com/juicyfx/vercel-examples). 👀
 
 **WIP**
 
-- customize php.ini
 - composer.json scripts
 
 **Done**
@@ -163,6 +162,7 @@ Browse [more examples](https://github.com/juicyfx/vercel-examples). 👀
   - config.composer: true
   - composer.json detection
 - zero config
+- customize php.ini
 - `now dev`
 - typescript codebase
 - github workflows (CI)
@@ -190,19 +190,19 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.1.0"
+      "runtime": "vercel-php@0.2.0"
     },
 
     // Can be list also directly
 
     "api/index.php": {
-      "runtime": "vercel-php@0.1.0"
+      "runtime": "vercel-php@0.2.0"
     },
     "api/users.php": {
-      "runtime": "vercel-php@0.1.0"
+      "runtime": "vercel-php@0.2.0"
     },
     "api/books.php": {
-      "runtime": "vercel-php@0.1.0"
+      "runtime": "vercel-php@0.2.0"
     }
   }
 }
@@ -217,7 +217,7 @@ project
 {
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.1.0"
+      "runtime": "vercel-php@0.2.0"
     }
   },
   "routes": [
@@ -237,7 +237,7 @@ Additional function properties are `memory`, `maxDuration`. Learn more about [fu
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.1.0",
+      "runtime": "vercel-php@0.2.0",
       "memory": 3008,
       "maxDuration": 60
     }
@@ -248,7 +248,7 @@ Additional function properties are `memory`, `maxDuration`. Learn more about [fu
 </details>
 
 <details>
-  <summary>4. How to use it with [Composer](https://getcomposer.org/)?</summary>
+  <summary>4. How to use it with <a href="https://getcomposer.org/">Composer</a>?</summary>
 
 Yes, [Composer](https://getcomposer.org/) is fully supported.
 
@@ -264,7 +264,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.1.0"
+      "runtime": "vercel-php@0.2.0"
     }
   }
 }
@@ -285,7 +285,7 @@ It's also good thing to create `.nowignore` file and put `/vendor` folder to thi
 </details>
 
 <details>
-  <summary>5. How to override [php.ini](https://www.php.net/manual/en/ini.list.php) / [php configuration](https://www.php.net/manual/en/configuration.file.php) ?</summary>
+  <summary>5. How to override <a href="https://www.php.net/manual/en/ini.list.php">php.ini</a> / <a href="https://www.php.net/manual/en/configuration.file.php">php configuration</a> ?</summary>
 
 Yes, you can override php configuration. Take a look at [default configuration](https://phpshow.vercel.app/) at first.
 Create a new file `api/php.ini` and place there your configuration. Don't worry, this particulary file will be
@@ -303,7 +303,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.1.0"
+      "runtime": "vercel-php@0.2.0"
     }
   }
 }
