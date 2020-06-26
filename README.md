@@ -86,37 +86,17 @@ Are you ready to deploy your first PHP project to Vercel? Click & Go!
 
 > List of all installable extensions is on this page https://blog.remirepo.net/pages/PECL-extensions-RPM-status.
 
-## ⚙️ Usage
+## ⚙️  Usage
 
-Take a look at [Vercel's](https://vercel.com) blogpost about [`Serverless Functions`](https://vercel.com/blog/customizing-serverless-functions).
+Before you can start using this runtime, you should learn about Vercel and [how runtimes](https://vercel.com/docs/runtimes?query=runtime#official-runtimes) works. Take a look at blogpost about [`Serverless Functions`](https://vercel.com/blog/customizing-serverless-functions).
 
 You should define `functions` property in `now.json` and list PHP files directly or using wildcard (*).
-
-```
-{
-  "functions": {
-    "api/*.php": {
-      "runtime": "vercel-php@0.1.0"
-    },
-
-    // Can be list also directly
-
-    "api/one.php": {
-      "runtime": "vercel-php@0.1.0"
-    },
-    "api/two.php": {
-      "runtime": "vercel-php@0.1.0"
-    }
-  }
-}
-```
-
-If you need to show index page define `routes` properly.
+If you need to route everything to index, use `routes` property.
 
 ```json
 {
   "functions": {
-    "api/index.php": {
+    "api/*.php": {
       "runtime": "vercel-php@0.1.0"
     }
   },
@@ -126,23 +106,9 @@ If you need to show index page define `routes` properly.
 }
 ```
 
-Additional function properties are `memory`, `maxDuration`. Learn more about [functions](https://vercel.com/docs/configuration#project/functions).
+Do you have more questions (❓)? Let's move to [FAQ](#%EF%B8%8F-faq).
 
-```json
-{
-  "functions": {
-    "api/*.php": {
-      "runtime": "vercel-php@0.1.0",
-      "memory": 3008,
-      "maxDuration": 60
-    }
-  }
-}
-```
-
-Available memory and maxDuration are limited by [your plan](https://vercel.com/pricing).
-
-## 👨‍💻`now dev`
+## 👨‍💻 `now dev`
 
 For running `now dev` properly, you need to have PHP installed on your computer, [learn more](errors/now-dev-no-local-php.md).
 But it's PHP and as you know PHP has built-in development server. It works out of box.
@@ -205,6 +171,83 @@ Browse [more examples](https://github.com/juicyfx/vercel-examples). 👀
 **Help wanted**
 
 - create examples using vercel-php
+
+## ⁉️ FAQ
+
+<details>
+  <summary>1. How to use more then one endpoint (index.php)?</summary>
+
+```sh
+project
+├── api
+│   ├── index.php
+│   ├── users.php
+│   └── books.php
+└── now.json
+```
+
+```
+{
+  "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php@0.1.0"
+    },
+
+    // Can be list also directly
+
+    "api/index.php": {
+      "runtime": "vercel-php@0.1.0"
+    },
+    "api/users.php": {
+      "runtime": "vercel-php@0.1.0"
+    },
+    "api/books.php": {
+      "runtime": "vercel-php@0.1.0"
+    }
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary>2. How to route everything to index?</summary>
+
+```json
+{
+  "functions": {
+    "api/index.php": {
+      "runtime": "vercel-php@0.1.0"
+    }
+  },
+  "routes": [
+    { "src": "/(.*)",  "dest": "/api/index.php" }
+  ]
+}
+```
+
+</details>
+
+<details>
+  <summary>3. How to update memory limit?</summary>
+
+Additional function properties are `memory`, `maxDuration`. Learn more about [functions](https://vercel.com/docs/configuration#project/functions).
+
+```json
+{
+  "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php@0.1.0",
+      "memory": 3008,
+      "maxDuration": 60
+    }
+  }
+}
+```
+
+Available memory and maxDuration are limited by [your plan](https://vercel.com/pricing).
+
+</details>
 
 ## 👨🏻‍💻CHANGELOG
 
