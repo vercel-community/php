@@ -158,7 +158,7 @@ php -S localhost:8000 api/index.php
 - JSON API - https://phpshow.vercel.app/api/users.php
 - test - https://phpshow.vercel.app/test.php
 
-![](docs/phpinfo.png)
+![PHP](https://api.microlink.io?url=https://phpshow.vercel.app&screenshot&embed=screenshot.url)
 
 ## 🎯Examples
 
