@@ -1,18 +1,42 @@
 {
-  "name": "vercel-php-monorepo",
+  "name": "vercel-php",
+  "description": "Vercel PHP runtime",
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "homepage": "https://github.com/juicyfx/vercel-php",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/juicyfx/vercel-php.git"
+  },
+  "keywords": [
+    "vercel",
+    "zeit",
+    "now",
+    "php",
+    "builder",
+    "runtime",
+    "serverless",
+    "deployment"
+  ],
   "scripts": {
-    "test-unit": "jest --config unit.jest.config.js"
+    "watch": "tsc --watch",
+    "build": "tsc",
+    "test": "jest",
+    "test-watch": "jest --watch",
+    "prepublishOnly": "tsc"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@libphp/amazon-linux-2-v74": "^0.0.6"
   },
   "devDependencies": {
-    "@now/build-utils": "^2.2.0",
-    "@types/glob": "^7.1.1",
-    "@types/node": "^13.9.5",
-    "async-retry": "^1.3.1",
-    "buffer-replace": "^1.0.0",
-    "fs-extra": "^9.0.0",
+    "@vercel/build-utils": "^2.4.0",
+    "@types/glob": "^7.1.2",
+    "@types/node": "^12.12.47",
     "jest": "^26.0.1",
-    "lerna": "^3.20.2",
-    "node-fetch": "^2.6.0",
-    "typescript": "^3.8.3"
+    "typescript": "^3.9.5"
   }
 }
