@@ -1,11 +1,11 @@
 {
   "functions": {
-    "api/*.php": {
-      "runtime": "@now-php/caddy@0.0.1-canary.5"
+    "api/index.php": {
+      "runtime": "vercel-php@0.0.18"
     }
   },
   "routes": [
-    { "src": "/(.*)", "dest": "/api/$1" }
+    { "src": "/(.*)",  "dest": "/api/index.php" }
   ],
   "build": {
     "env": {
