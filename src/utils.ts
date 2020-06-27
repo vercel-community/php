@@ -1,11 +1,6 @@
 import path from 'path';
-import { spawn } from 'child_process';
-import {
-  glob,
-  File,
-  FileFsRef,
-  FileBlob
-} from '@vercel/build-utils';
+import { spawn, SpawnOptions } from 'child_process';
+import { File, FileFsRef, FileBlob } from '@vercel/build-utils';
 import * as libphp from "@libphp/amazon-linux-2-v74";
 
 const PHP_PKG = path.dirname(require.resolve('@libphp/amazon-linux-2-v74/package.json'));
@@ -38,54 +33,87 @@ export async function getPhpFiles(): Promise<RuntimeFiles> {
   return runtimeFiles;
 }
 
-export async function modifyPhpIni({ config, runtimeFiles, userFiles }: PhpIniOptions): Promise<void> {
-  // 1. From now.json config[php.ini]
-  if (config['php.ini']) {
-    runtimeFiles['php/php.ini'] = await modifyPhpIniFromArray(runtimeFiles['php/php.ini'], (config['php.ini'] as PhpIni));
-  }
-
-  // 2. From user/api/php.ini
-  if (userFiles['user/api/php.ini']) {
-    runtimeFiles['php/php.ini'] = await modifyPhpIniFromFile(runtimeFiles['php/php.ini'], userFiles['user/api/php.ini']);
-    // Don't include user provided php.ini
-    delete userFiles['user/api/php.ini'];
-  }
-}
-
-export function getLauncherFiles({ meta }: MetaOptions): RuntimeFiles {
+export function getLauncherFiles(): RuntimeFiles {
   const files: RuntimeFiles = {
     'helpers.js': new FileFsRef({
       fsPath: path.join(__dirname, 'launchers/helpers.js'),
     })
   }
 
-  if (meta && meta.isDev) {
-    files['launcher.js'] = new FileFsRef({
-      fsPath: path.join(__dirname, 'launchers/cgi.js'),
-    });
-  } else {
-    files['launcher.js'] = new FileFsRef({
-      fsPath: path.join(__dirname, 'launchers/builtin.js'),
-    });
-  }
+  files['launcher.js'] = new FileFsRef({
+    fsPath: path.join(__dirname, 'launchers/builtin.js'),
+  });
 
   return files;
 }
 
-export async function getComposerFiles(workPath: string): Promise<RuntimeFiles> {
-  console.log('🐘 Installing Composer deps.');
+export async function modifyPhpIni(userFiles: UserFiles, runtimeFiles: RuntimeFiles): Promise<FileBlob | undefined> {
+  // Validate user files contains php.ini
+  if (!userFiles['api/php.ini']) return;
 
-  // Install composer dependencies
-  await runComposerInstall(workPath);
+  // Validate runtime contains php.ini
+  if (!runtimeFiles['php/php.ini']) return;
 
-  console.log('🐘 Installing Composer deps OK.');
+  const phpiniBlob = await FileBlob.fromStream({
+    stream: runtimeFiles['php/php.ini'].toStream(),
+  });
 
-  return await glob('vendor/**', workPath);
+  const userPhpiniBlob = await FileBlob.fromStream({
+    stream: userFiles['api/php.ini'].toStream(),
+  });
+
+  return new FileBlob({
+    data: phpiniBlob.data.toString()
+      .concat("; [User]\n")
+      .concat(userPhpiniBlob.data.toString())
+  });
+}
+
+export async function runComposerInstall(workPath: string): Promise<void> {
+  console.log('🐘 Installing Composer dependencies [START]');
+
+  // @todo PHP_COMPOSER_INSTALL env
+  await runPhp(
+    [
+      COMPOSER_BIN,
+      'install',
+      '--profile',
+      '--no-dev',
+      '--no-interaction',
+      '--no-scripts',
+      '--ignore-platform-reqs',
+      '--no-progress'
+    ],
+    {
+      stdio: 'inherit',
+      cwd: workPath
+    }
+  );
+
+  console.log('🐘 Installing Composer dependencies [DONE]');
+}
+
+export async function runComposerScripts(composerFile: File, workPath: string): Promise<void> {
+  const composer = JSON.parse(await readRuntimeFile(composerFile));
+
+  if (composer?.scripts?.vercel) {
+    console.log('🐘 Running composer scripts [START]');
+
+    await runPhp(
+      [COMPOSER_BIN, 'run', 'vercel'],
+      {
+        stdio: 'inherit',
+        cwd: workPath
+      }
+    );
+
+    console.log('🐘 Running composer scripts [DONE]');
+  }
 }
 
 export async function ensureLocalPhp(): Promise<boolean> {
   try {
-    await spawnAsync('which', ['php', 'php-cgi'], undefined, { stdio: 'pipe' });
+    await spawnAsync('which', ['php', 'php-cgi'], { stdio: 'pipe' });
     return true;
   } catch (e) {
     return false;
@@ -100,41 +128,23 @@ export async function readRuntimeFile(file: File): Promise<string> {
   return blob.data.toString();
 }
 
-async function runComposerInstall(cwd: string) {
-  // @todo think about allow to pass custom commands here
-  await runPhp(cwd,
-    [
-      COMPOSER_BIN,
-      'install',
-      '--profile',
-      '--no-dev',
-      '--no-interaction',
-      '--no-scripts',
-      '--ignore-platform-reqs',
-      '--no-progress'
-    ],
-    { stdio: 'inherit' }
-  );
-}
+// *****************************************************************************
+// PRIVATE API *****************************************************************
+// *****************************************************************************
 
-
-async function runPhp(cwd: string, args: any[], opts = {}) {
+async function runPhp(args: ReadonlyArray<string>, opts: SpawnOptions = {}) {
   try {
-    await spawnAsync(
-      'php',
-      [`-dextension_dir=${PHP_MODULES_DIR}`, ...args],
-      cwd,
+    await spawnAsync('php', args,
       {
         ...opts,
-        ...{
-          env: {
-            ...process.env,
-            ...{
-              COMPOSER_HOME: '/tmp',
-              PATH: `${PHP_BIN_DIR}:${process.env.PATH}`,
-              LD_LIBRARY_PATH: `${PHP_LIB_DIR}:/usr/lib64:/lib64:${process.env.LD_LIBRARY_PATH}`
-            }
-          }
+        env: {
+          ...process.env,
+          ...(opts.env || {}),
+          COMPOSER_HOME: '/tmp',
+          PATH: `${PHP_BIN_DIR}:${process.env.PATH}`,
+          PHP_INI_EXTENSION_DIR: PHP_MODULES_DIR,
+          PHP_INI_SCAN_DIR: `:${path.resolve(__dirname, '../conf')}`,
+          LD_LIBRARY_PATH: `${PHP_LIB_DIR}:/usr/lib64:/lib64:${process.env.LD_LIBRARY_PATH}`
         }
       }
     );
@@ -144,12 +154,10 @@ async function runPhp(cwd: string, args: any[], opts = {}) {
   }
 }
 
-
-function spawnAsync(command: string, args: any[], cwd?: string, opts = {}) {
+function spawnAsync(command: string, args: ReadonlyArray<string>, opts: SpawnOptions = {}) {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, {
       stdio: "ignore",
-      cwd,
       ...opts
     });
 
@@ -162,36 +170,4 @@ function spawnAsync(command: string, args: any[], cwd?: string, opts = {}) {
       }
     });
   })
-}
-
-export async function modifyPhpIniFromArray(phpini: File, directives: PhpIni): Promise<FileBlob> {
-  const output: any[] = [];
-
-  for (const property in directives) {
-    output.push(`${property} = ${directives[property]}`);
-  }
-
-  const phpiniBlob = await FileBlob.fromStream({
-    stream: phpini.toStream(),
-  });
-
-  phpiniBlob.data = phpiniBlob.data
-    .toString()
-    .concat(output.join("\n"));
-
-  return phpiniBlob;
-}
-
-export async function modifyPhpIniFromFile(phpini: File, userPhpini: File): Promise<FileBlob> {
-  const phpiniBlob = await FileBlob.fromStream({
-    stream: phpini.toStream(),
-  });
-
-  const userPhpiniBlob = await FileBlob.fromStream({
-    stream: userPhpini.toStream(),
-  });
-
-  return new FileBlob({
-    data: phpiniBlob.data.toString().concat(userPhpiniBlob.data.toString())
-  });
 }

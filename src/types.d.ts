@@ -8,6 +8,10 @@ interface RuntimeFiles {
   [filePath: string]: import('@vercel/build-utils').File;
 }
 
+interface IncludedFiles {
+  [filePath: string]: import('@vercel/build-utils').File;
+}
+
 interface MetaOptions {
   meta: import('@vercel/build-utils').Meta;
 }
@@ -79,12 +83,6 @@ interface CgiRequest {
 
 interface Env {
   [k: string]: any,
-}
-
-interface PhpIniOptions {
-  config: import('@now/build-utils/dist').Config,
-  runtimeFiles: RuntimeFiles,
-  userFiles: UserFiles,
 }
 
 interface PhpIni {

@@ -11,8 +11,8 @@ import {
 import {
   getPhpFiles,
   getLauncherFiles,
-  getComposerFiles,
-  ensureLocalPhp,
+  runComposerInstall,
+  runComposerScripts,
   readRuntimeFile,
   modifyPhpIni,
 } from './utils';
@@ -30,45 +30,64 @@ export async function build({
   config = {},
   meta = {},
 }: BuildOptions) {
-  console.log('🐘 Downloading user files...');
+  // Check if now dev mode is used
+  if (meta.isDev) {
+    console.log(`
+      🐘 now dev is not supported right now.
+      Please use PHP built-in development server.
 
-  // Collect included files
-  let includedFiles: RuntimeFiles = await download(files, workPath, meta);
-
-  // Try to install composer deps only on lambda,
-  // not in the local now dev mode.
-  if (!meta.isDev) {
-    // Composer is called only if composer.json is provided,
-    // or config.composer is TRUE
-    if (includedFiles['composer.json'] || config.composer === true) {
-      includedFiles = { ...includedFiles, ...await getComposerFiles(workPath) };
-    }
-  } else {
-    if (!(await ensureLocalPhp())) {
-      console.log(`
-        It looks like you don't have PHP on your machine.
-        Learn more about how to run now dev on your machine.
-        https://err.sh/juicyfx/vercel-php/now-dev-no-local-php
-      `)
-    }
+      php -S localhost:8000 api/index.php
+    `);
+    process.exit(255);
   }
 
-  // Move all user files to LAMBDA_ROOT/user folder.
-  const userFiles = rename(includedFiles, name => path.join('user', name));
+  console.log('🐘 Downloading user files');
 
-  // Bridge files contains PHP bins and libs
+  // Collect user provided files
+  const userFiles: RuntimeFiles = await download(files, workPath, meta);
+
+  console.log('🐘 Downloading PHP runtime files');
+
+  // Collect runtime files containing PHP bins and libs
   const runtimeFiles: RuntimeFiles = {
     // Append PHP files (bins + shared object)
     ...await getPhpFiles(),
 
-    // Append launcher files (server for lambda, cgi for now dev, common helpers)
-    ...getLauncherFiles({ meta }),
+    // Append launcher files (builtin server, common helpers)
+    ...getLauncherFiles(),
   };
 
-  // Append PHP directives into php.ini
-  if (config['php.ini'] || userFiles['user/api/php.ini']) {
-    await modifyPhpIni({ config, runtimeFiles, userFiles });
+  // If composer.json is provided try to
+  // - install deps
+  // - run composer scripts
+  if (userFiles['composer.json']) {
+    // Install dependencing (vendor is collected bellow, see harvestedFiles)
+    await runComposerInstall(workPath);
+
+    // Run composer scripts (created files are collected bellow, , see harvestedFiles)
+    await runComposerScripts(userFiles['composer.json'], workPath);
   }
+
+  // Append PHP directives into php.ini
+  if (userFiles['api/php.ini']) {
+    const phpini = await modifyPhpIni(userFiles, runtimeFiles);
+    if (phpini) {
+      runtimeFiles['php/php.ini'] = phpini;
+    }
+  }
+
+  // Collect user files, files creating during build (composer vendor)
+  // and other files and prefix them with "user" (/var/task/user folder).
+  const harverstedFiles = rename(
+    await glob('**', {
+      cwd: workPath,
+      ignore:
+        config && config.excludeFiles
+          ? config.excludeFiles
+          : ['node_modules/**', 'now.json', '.nowignore'],
+    }),
+    name => path.join('user', name)
+  );
 
   // Show some debug notes during build
   if (process.env.NOW_PHP_DEBUG === '1') {
@@ -76,15 +95,17 @@ export async function build({
     console.log('🐘 Config:', config);
     console.log('🐘 Work path:', workPath);
     console.log('🐘 Meta:', meta);
-    console.log('🐘 User files:', Object.keys(userFiles));
+    console.log('🐘 User files:', Object.keys(harverstedFiles));
     console.log('🐘 Runtime files:', Object.keys(runtimeFiles));
     console.log('🐘 PHP: php.ini', await readRuntimeFile(runtimeFiles['php/php.ini']));
   }
 
+  console.log('🐘 Creating lambda');
+
   const lambda = await createLambda({
     files: {
       // Located at /var/task/user
-      ...userFiles,
+      ...harverstedFiles,
       // Located at /var/task/php (php bins + ini + modules)
       // Located at /var/task/lib (shared libs)
       ...runtimeFiles
