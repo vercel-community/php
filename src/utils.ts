@@ -2,11 +2,9 @@ import path from 'path';
 import { spawn } from 'child_process';
 import {
   glob,
-  download,
   File,
   FileFsRef,
-  FileBlob,
-  BuildOptions
+  FileBlob
 } from '@vercel/build-utils';
 import * as libphp from "@libphp/amazon-linux-2-v74";
 
@@ -15,30 +13,6 @@ const PHP_BIN_DIR = path.join(PHP_PKG, "native/php");
 const PHP_MODULES_DIR = path.join(PHP_BIN_DIR, "modules");
 const PHP_LIB_DIR = path.join(PHP_PKG, "native/lib");
 const COMPOSER_BIN = path.join(PHP_BIN_DIR, "composer");
-
-export async function getIncludedFiles({ files, entrypoint, workPath, config, meta }: BuildOptions): Promise<RuntimeFiles> {
-  // Download all files to workPath
-  const downloadedFiles = await download(files, workPath, meta);
-
-  let includedFiles = {};
-
-  if (config && config.includeFiles) {
-    // Find files for each glob
-    for (const pattern of config.includeFiles) {
-      const matchedFiles = await glob(pattern, workPath);
-      Object.assign(includedFiles, matchedFiles);
-    }
-    // explicit and always include the entrypoint
-    Object.assign(includedFiles, {
-      [entrypoint]: files[entrypoint],
-    });
-  } else {
-    // Backwards compatibility
-    includedFiles = downloadedFiles;
-  }
-
-  return includedFiles;
-}
 
 export async function getPhpFiles(): Promise<RuntimeFiles> {
   const files = await libphp.getFiles();
@@ -74,9 +48,7 @@ export async function modifyPhpIni({ config, runtimeFiles, userFiles }: PhpIniOp
   if (userFiles['user/api/php.ini']) {
     runtimeFiles['php/php.ini'] = await modifyPhpIniFromFile(runtimeFiles['php/php.ini'], userFiles['user/api/php.ini']);
     // Don't include user provided php.ini
-    console.log(userFiles);
     delete userFiles['user/api/php.ini'];
-    console.log(userFiles);
   }
 }
 
