@@ -6,11 +6,11 @@ import {
   BuildOptions,
   PrepareCacheOptions,
   glob,
+  download
 } from '@vercel/build-utils';
 import {
   getPhpFiles,
   getLauncherFiles,
-  getIncludedFiles,
   getComposerFiles,
   ensureLocalPhp,
   readRuntimeFile,
@@ -30,9 +30,10 @@ export async function build({
   config = {},
   meta = {},
 }: BuildOptions) {
+  console.log('🐘 Downloading user files...');
 
   // Collect included files
-  let includedFiles = await getIncludedFiles({ files, entrypoint, workPath, config, meta });
+  let includedFiles: RuntimeFiles = await download(files, workPath, meta);
 
   // Try to install composer deps only on lambda,
   // not in the local now dev mode.
