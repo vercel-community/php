@@ -1,0 +1,12 @@
+{
+  "require": {
+    "php": "^7.4",
+    "tracy/tracy": "^2.6.0"
+  },
+  "scripts": {
+    "vercel": [
+      "@php --ini",
+      "@php -m"
+    ]
+  }
+}

@@ -5,14 +5,8 @@
     }
   },
   "routes": [
-    { "src": "/api/(.*)", "dest": "/api/api/$1" },
-    { "src": "/ini/(.*)", "dest": "/api/ini/$1" },
-    { "src": "/ext/(.*)", "dest": "/api/ext/$1" },
     { "src": "/(.*)", "dest": "/api/$1" }
   ],
-  "env": {
-    "NOW_PHP_FOO": "bar3"
-  },
   "build": {
     "env": {
       "NOW_PHP_DEBUG": "1"
