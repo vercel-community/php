@@ -17,6 +17,8 @@ import {
   modifyPhpIni,
 } from './utils';
 
+const COMPOSER_FILE = process.env.COMPOSER || 'composer.json';
+
 // ###########################
 // EXPORTS
 // ###########################
@@ -60,12 +62,12 @@ export async function build({
   // If composer.json is provided try to
   // - install deps
   // - run composer scripts
-  if (userFiles['composer.json']) {
+  if (userFiles[COMPOSER_FILE]) {
     // Install dependencing (vendor is collected bellow, see harvestedFiles)
     await runComposerInstall(workPath);
 
     // Run composer scripts (created files are collected bellow, , see harvestedFiles)
-    await runComposerScripts(userFiles['composer.json'], workPath);
+    await runComposerScripts(userFiles[COMPOSER_FILE], workPath);
   }
 
   // Append PHP directives into php.ini
