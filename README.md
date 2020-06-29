@@ -52,7 +52,7 @@ Second file `now.json` is pure gold here. Setup your project with configuration 
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.2.0"
+      "runtime": "vercel-php@0.3.0"
     }
   }
 }
@@ -97,7 +97,7 @@ If you need to route everything to index, use `routes` property.
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.2.0"
+      "runtime": "vercel-php@0.3.0"
     }
   },
   "routes": [
@@ -190,19 +190,19 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.2.0"
+      "runtime": "vercel-php@0.3.0"
     },
 
     // Can be list also directly
 
     "api/index.php": {
-      "runtime": "vercel-php@0.2.0"
+      "runtime": "vercel-php@0.3.0"
     },
     "api/users.php": {
-      "runtime": "vercel-php@0.2.0"
+      "runtime": "vercel-php@0.3.0"
     },
     "api/books.php": {
-      "runtime": "vercel-php@0.2.0"
+      "runtime": "vercel-php@0.3.0"
     }
   }
 }
@@ -217,7 +217,7 @@ project
 {
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.2.0"
+      "runtime": "vercel-php@0.3.0"
     }
   },
   "routes": [
@@ -237,7 +237,7 @@ Additional function properties are `memory`, `maxDuration`. Learn more about [fu
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.2.0",
+      "runtime": "vercel-php@0.3.0",
       "memory": 3008,
       "maxDuration": 60
     }
@@ -264,7 +264,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.2.0"
+      "runtime": "vercel-php@0.3.0"
     }
   }
 }
@@ -303,7 +303,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.2.0"
+      "runtime": "vercel-php@0.3.0"
     }
   }
 }
@@ -317,6 +317,41 @@ disable_functions = "exec, system"
 memory_limit=1024M
 ```
 
+</details>
+
+<details>
+  <summary>6. How to exclude some files or folders ?</summary>
+
+Runtimes support excluding some files or folders, [take a look at doc](https://vercel.com/docs/configuration?query=excludeFiles#project/functions).
+
+```json
+{
+  "functions": {
+  "api/**/*.php": {
+    "runtime": "vercel-php@0.3.0",
+    "excludeFiles": ["node_modules", "somedir", "foo/bar"],
+  }
+}
+```
+</details>
+
+<details>
+  <summary>7. How to call composer script(s) ?</summary>
+
+Calling composer scripts during build phase on Vercel is supported via script named `vercel`. You can easilly call php, npm or node.
+
+```json
+{
+  "require": { ... },
+  "require-dev": { ... },
+  "scripts": {
+    "vercel": [
+      "@php -v",
+      "npm -v"
+    ]
+  }
+}
+```
 </details>
 
 ## 👨🏻‍💻CHANGELOG
