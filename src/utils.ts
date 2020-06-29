@@ -94,7 +94,15 @@ export async function runComposerInstall(workPath: string): Promise<void> {
 }
 
 export async function runComposerScripts(composerFile: File, workPath: string): Promise<void> {
-  const composer = JSON.parse(await readRuntimeFile(composerFile));
+  let composer;
+
+  try {
+    composer = JSON.parse(await readRuntimeFile(composerFile));
+  } catch (e) {
+    console.error('🐘 Composer file is not valid JSON');
+    console.error(e);
+    return;
+  }
 
   if (composer?.scripts?.vercel) {
     console.log('🐘 Running composer scripts [START]');
