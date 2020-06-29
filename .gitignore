@@ -1,6 +1,6 @@
 # Node
 /node_modules
-/packages/**/package-lock.json
+/package-lock.json
 
 # App
 /dist
