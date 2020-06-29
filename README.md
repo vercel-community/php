@@ -151,9 +151,9 @@ Browse [more examples](https://github.com/juicyfx/vercel-examples). 👀
 
 ## 🚧 Roadmap
 
-**WIP**
+**Next**
 
-- composer.json scripts
+- PHP 8.0
 
 **Done**
 
@@ -167,6 +167,7 @@ Browse [more examples](https://github.com/juicyfx/vercel-examples). 👀
 - typescript codebase
 - github workflows (CI)
 - PHP 7.4
+- composer.json scripts
 
 **Help wanted**
 
