@@ -1,6 +1,6 @@
 const builder = require('./../../dist/index');
 
-test('creates simple lambda', async done => {
+test('creates simple lambda', async (done) => {
   await builder.build({
     files: [],
     entrypoint: 'test.php',
@@ -8,5 +8,6 @@ test('creates simple lambda', async done => {
     config: {},
     meta: {},
   });
+
   done();
 });
