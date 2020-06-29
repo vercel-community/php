@@ -34,10 +34,10 @@
     "@libphp/amazon-linux-2-v74": "^0.0.6"
   },
   "devDependencies": {
-    "@vercel/build-utils": "^2.4.0",
     "@types/glob": "^7.1.2",
     "@types/node": "^12.12.47",
-    "jest": "^26.0.1",
+    "@vercel/build-utils": "^2.4.0",
+    "jest": "^26.1.0",
     "typescript": "^3.9.5"
   }
 }
