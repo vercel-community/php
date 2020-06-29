@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "builds": [{ "src": "index.php", "use": "now-php@canary" }],
+  "builds": [{ "src": "index.php", "use": "vercel-php@latest" }],
   "routes": [{ "src": "/(.*)", "dest": "index.php" }],
   "probes": [
     { "path": "/any", "mustContain": "cow:RANDOMNESS_PLACEHOLDER:/any" },

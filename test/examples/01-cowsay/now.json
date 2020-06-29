@@ -1,8 +1,8 @@
 {
   "version": 2,
   "builds": [
-    { "src": "index.php", "use": "now-php@canary" },
-    { "src": "subdirectory/index.php", "use": "now-php@canary" }
+    { "src": "index.php", "use": "vercel-php@latest" },
+    { "src": "subdirectory/index.php", "use": "vercel-php@latest" }
   ],
   "probes": [
     { "path": "/", "mustContain": "cow:RANDOMNESS_PLACEHOLDER" },
