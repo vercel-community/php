@@ -6,8 +6,5 @@
       "use": "vercel-php@latest",
       "config": { "includeFiles": ["included*.php"] }
     }
-  ],
-  "probes": [
-    { "path": "/", "mustContain": "mainfile:included:RANDOMNESS_PLACEHOLDER" }
   ]
 }
