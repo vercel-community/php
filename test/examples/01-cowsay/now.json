@@ -3,9 +3,5 @@
   "builds": [
     { "src": "index.php", "use": "vercel-php@latest" },
     { "src": "subdirectory/index.php", "use": "vercel-php@latest" }
-  ],
-  "probes": [
-    { "path": "/", "mustContain": "cow:RANDOMNESS_PLACEHOLDER" },
-    { "path": "/subdirectory/", "mustContain": "yoda:RANDOMNESS_PLACEHOLDER" }
   ]
 }
