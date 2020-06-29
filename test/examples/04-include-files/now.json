@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "index.php",
-      "use": "now-php@canary",
+      "use": "vercel-php@latest",
       "config": { "includeFiles": ["included*.php"] }
     }
   ],

@@ -1,5 +1,5 @@
 {
   "version": 2,
-  "builds": [{ "src": "env/index.php", "use": "now-php@canary" }],
+  "builds": [{ "src": "env/index.php", "use": "vercel-php@latest" }],
   "probes": [{ "path": "/env", "mustContain": "RANDOMNESS_PLACEHOLDER:env" }]
 }
