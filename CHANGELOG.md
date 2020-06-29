@@ -1,4 +1,34 @@
-## [Unreleased]
+# Changelog
+
+### [0.3.0] - 2020-06-29
+
+- Allow to execute composer script called `vercel`
+
+  ```json
+  {
+    "scripts": {
+      "vercel": [
+        "@php -v",
+        "npm -v"
+      ]
+    }
+  }
+  ```
+
+- Drop support of `config['php.ini']` use `api/php.ini` file instead
+- Support excludeFiles (default `['node_modules/**', 'now.json', '.nowignore']`)
+
+  ```json
+  {
+    "functions": {
+    "api/**/*.php": {
+      "runtime": "vercel-php@0.3.0",
+      "excludeFiles": ["node_modules", "somedir", "foo/bar"],
+    }
+  }
+  ```
+
+- Restructure test folder (merge fixtures + my examples)
 
 ### [0.2.0] - 2020-06-26
 
