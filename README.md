@@ -52,7 +52,7 @@ Second file `now.json` is pure gold here. Setup your project with configuration 
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.3.0"
+      "runtime": "vercel-php@0.3.1"
     }
   }
 }
@@ -97,7 +97,7 @@ If you need to route everything to index, use `routes` property.
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.3.0"
+      "runtime": "vercel-php@0.3.1"
     }
   },
   "routes": [
@@ -191,19 +191,19 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.3.0"
+      "runtime": "vercel-php@0.3.1"
     },
 
     // Can be list also directly
 
     "api/index.php": {
-      "runtime": "vercel-php@0.3.0"
+      "runtime": "vercel-php@0.3.1"
     },
     "api/users.php": {
-      "runtime": "vercel-php@0.3.0"
+      "runtime": "vercel-php@0.3.1"
     },
     "api/books.php": {
-      "runtime": "vercel-php@0.3.0"
+      "runtime": "vercel-php@0.3.1"
     }
   }
 }
@@ -218,7 +218,7 @@ project
 {
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.3.0"
+      "runtime": "vercel-php@0.3.1"
     }
   },
   "routes": [
@@ -238,7 +238,7 @@ Additional function properties are `memory`, `maxDuration`. Learn more about [fu
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.3.0",
+      "runtime": "vercel-php@0.3.1",
       "memory": 3008,
       "maxDuration": 60
     }
@@ -265,7 +265,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.3.0"
+      "runtime": "vercel-php@0.3.1"
     }
   }
 }
@@ -304,7 +304,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.3.0"
+      "runtime": "vercel-php@0.3.1"
     }
   }
 }
@@ -329,7 +329,7 @@ Runtimes support excluding some files or folders, [take a look at doc](https://v
 {
   "functions": {
   "api/**/*.php": {
-    "runtime": "vercel-php@0.3.0",
+    "runtime": "vercel-php@0.3.1",
     "excludeFiles": ["node_modules", "somedir", "foo/bar"],
   }
 }

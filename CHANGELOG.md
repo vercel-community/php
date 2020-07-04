@@ -1,5 +1,10 @@
 # Changelog
 
+### [0.3.1] - 2020-07-04
+
+- Install PHP extensions redis, msgpack, igbinary
+- Use `@libphp/amazon-linux-2-v74: latest`
+
 ### [0.3.0] - 2020-06-29
 
 - Allow to execute composer script called `vercel`
