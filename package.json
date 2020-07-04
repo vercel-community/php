@@ -1,7 +1,7 @@
 {
   "name": "vercel-php",
   "description": "Vercel PHP runtime",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "license": "MIT",
   "main": "./dist/index.js",
   "homepage": "https://github.com/juicyfx/vercel-php",
@@ -31,7 +31,7 @@
     "conf"
   ],
   "dependencies": {
-    "@libphp/amazon-linux-2-v74": "^0.0.6"
+    "@libphp/amazon-linux-2-v74": "latest"
   },
   "devDependencies": {
     "@types/glob": "^7.1.2",
