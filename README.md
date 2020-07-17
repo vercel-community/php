@@ -132,11 +132,12 @@ php -S localhost:8000 api/index.php
 
 - [PHP - fast & simple](https://github.com/juicyfx/vercel-examples/tree/master/php/)
 - [Composer - install dependencies](https://github.com/juicyfx/vercel-examples/tree/master/php-composer/)
-- [Framework - Lumen](https://github.com/juicyfx/vercel-examples/tree/master/php-framework-lumen/)
-- [Framework - Nette](https://github.com/juicyfx/vercel-examples/tree/master/php-framework-nette/)
-- [Framework - Slim](https://github.com/juicyfx/vercel-examples/tree/master/php-framework-slim/)
-- [Framework - Symfony - Microservice](https://github.com/juicyfx/vercel-examples/tree/master/php-framework-symfony-microservice/)
-- [Framework - Phalcon](https://github.com/juicyfx/vercel-examples/tree/master/php-framework-phalcon/)
+- [Framework - Laravel](https://github.com/juicyfx/vercel-examples/blob/master/php-laravel)
+- [Framework - Lumen](https://github.com/juicyfx/vercel-examples/blob/master/php-lumen)
+- [Framework - Nette](https://github.com/juicyfx/vercel-examples/blob/master/php-nette-tracy)
+- [Framework - Phalcon](https://github.com/juicyfx/vercel-examples/blob/master/php-phalcon)
+- [Framework - Slim](https://github.com/juicyfx/vercel-examples/blob/master/php-slim)
+- [Framework - Symfony - Microservice](https://github.com/juicyfx/vercel-examples/blob/master/php-symfony-microservice)
 
 Browse [more examples](https://github.com/juicyfx/vercel-examples). 👀
 
