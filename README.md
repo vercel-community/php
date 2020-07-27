@@ -7,7 +7,7 @@
 <p align=center>
   <a href="https://www.npmjs.com/package/vercel-php"><img src="https://badgen.net/npm/v/vercel-php"></a>
   <a href="https://www.npmjs.com/package/vercel-php"><img src="https://badgen.net/npm/dt/vercel-php"></a>
-  <a href="https://www.npmjs.com/package/vercel-php"><img src="https://badgen.net/github/status/juicyfx/vercel-php/master"></a>
+  <a href="https://github.com/juicyfx/vercel-php/actions"><img src="https://badgen.net/github/status/juicyfx/vercel-php/master"></a>
 </p>
 
 <p align=center>
