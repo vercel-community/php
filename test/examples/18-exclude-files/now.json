@@ -1,0 +1,13 @@
+{
+  "functions": {
+    "api/**/*.php": {
+      "runtime": "vercel-php@0.3.1",
+      "excludeFiles": "foo/**"
+    }
+  },
+  "build": {
+    "env": {
+      "NOW_PHP_DEBUG": "1"
+    }
+  }
+}

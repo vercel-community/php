@@ -85,8 +85,8 @@ export async function build({
       cwd: workPath,
       ignore:
         config && config.excludeFiles
-          ? config.excludeFiles
-          : ['node_modules/**', 'now.json', '.nowignore'],
+          ? Array.isArray(config.excludeFiles) ? config.excludeFiles : [config.excludeFiles]
+          : ['node_modules/**', 'now.json', '.nowignore', 'vercel.json', '.vercelignore'],
     }),
     name => path.join('user', name)
   );
