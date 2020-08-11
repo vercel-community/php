@@ -335,6 +335,9 @@ Runtimes support excluding some files or folders, [take a look at doc](https://v
   }
 }
 ```
+
+If you want to exclude files before uploading them to Vercel, use `.vercelignore` file.
+
 </details>
 
 <details>
@@ -354,6 +357,18 @@ Calling composer scripts during build phase on Vercel is supported via script na
   }
 }
 ```
+
+Files created during `composer run vercel` script can be used (require/include) in your PHP lambdas, but can't be accessed from browser (like assets). If you still want to access them, create fake `assets.php` lambda and require them. [Example of PHP satis](https://github.com/juicyfx/vercel-examples/tree/master/php-satis).
+
+</details>
+
+<details>
+  <summary>8. How to include some files of folders?</summary>
+
+If you are looking for [`config.includeFiles`](https://vercel.com/docs/configuration?query=includeFiles#project/functions).
+) in runtime, unfortunately you can't include extra files.
+All files in root folder are uploaded to Vercel, use `.vercelignore` to exclude them before upload.
+
 </details>
 
 ## 👨🏻‍💻CHANGELOG
