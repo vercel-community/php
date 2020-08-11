@@ -9,5 +9,6 @@ module.exports = {
     "/errors/",
     "/dist/",
     "/node_modules/",
-  ]
+  ],
+  testTimeout: 10000
 }
