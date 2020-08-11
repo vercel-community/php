@@ -331,7 +331,7 @@ Runtimes support excluding some files or folders, [take a look at doc](https://v
   "functions": {
   "api/**/*.php": {
     "runtime": "vercel-php@0.3.1",
-    "excludeFiles": ["node_modules", "somedir", "foo/bar"],
+    "excludeFiles": "{foo/**,bar/config/*.yaml}",
   }
 }
 ```
