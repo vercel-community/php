@@ -36,7 +36,7 @@ Most simple example project is this one, using following project structure.
 project
 ├── api
 │   └── index.php
-└── now.json
+└── vercel.json
 ```
 
 First file `api/index.php` is entrypoint of our application. It should be placed in **api** folder, it's very standard location for Vercel.
@@ -46,7 +46,7 @@ First file `api/index.php` is entrypoint of our application. It should be placed
 phpinfo();
 ```
 
-Second file `now.json` is pure gold here. Setup your project with configuration like this and voila. That's all.
+Second file `vercel.json` is pure gold here. Setup your project with configuration like this and voila. That's all.
 
 ```json
 {
@@ -58,17 +58,17 @@ Second file `now.json` is pure gold here. Setup your project with configuration 
 }
 ```
 
-Last thing you have to do is call `now`. If you are more interested take a look at features and usage.
+Last thing you have to do is call `vercel`. If you are more interested take a look at features and usage.
 
 ```
 # Install it globally
-npm i -g now
+npm i -g vercel
 
 # Log in
-now login
+vercel login
 
 # Let's fly
-now
+vercel
 ```
 
 Are you ready to deploy your first PHP project to Vercel? Click & Go!
@@ -90,7 +90,7 @@ Are you ready to deploy your first PHP project to Vercel? Click & Go!
 
 Before you can start using this runtime, you should learn about Vercel and [how runtimes](https://vercel.com/docs/runtimes?query=runtime#official-runtimes) works. Take a look at blogpost about [`Serverless Functions`](https://vercel.com/blog/customizing-serverless-functions).
 
-You should define `functions` property in `now.json` and list PHP files directly or using wildcard (*).
+You should define `functions` property in `vercel.json` and list PHP files directly or using wildcard (*).
 If you need to route everything to index, use `routes` property.
 
 ```json
@@ -108,9 +108,9 @@ If you need to route everything to index, use `routes` property.
 
 Do you have more questions (❓)? Let's move to [FAQ](#%EF%B8%8F-faq).
 
-## 👨‍💻 `now dev`
+## 👨‍💻 `vercel dev`
 
-For running `now dev` properly, you need to have PHP installed on your computer, [learn more](errors/now-dev-no-local-php.md).
+For running `vercel dev` properly, you need to have PHP installed on your computer, [learn more](errors/now-dev-no-local-php.md).
 But it's PHP and as you know PHP has built-in development server. It works out of box.
 
 ```
@@ -164,7 +164,7 @@ Browse [more examples](https://github.com/juicyfx/vercel-examples). 👀
   - composer.json detection
 - zero config
 - customize php.ini
-- `now dev`
+- `vercel dev`
 - typescript codebase
 - github workflows (CI)
 - PHP 7.4
@@ -185,7 +185,7 @@ project
 │   ├── index.php
 │   ├── users.php
 │   └── books.php
-└── now.json
+└── vercel.json
 ```
 
 ```
@@ -259,7 +259,7 @@ project
 ├── api
 │   └── index.php
 ├── composer.json
-└── now.json
+└── vercel.json
 ```
 
 ```json
@@ -281,7 +281,7 @@ project
 }
 ```
 
-It's also good thing to create `.nowignore` file and put `/vendor` folder to this file. It will not upload
+It's also good thing to create `.vercelignore` file and put `/vendor` folder to this file. It will not upload
 `/vendor` folder to Vercel platform.
 
 </details>
@@ -298,7 +298,7 @@ project
 ├── api
 │   ├── index.php
 │   └── php.ini
-└── now.json
+└── vercel.json
 ```
 
 ```json
