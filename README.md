@@ -365,8 +365,7 @@ Files created during `composer run vercel` script can be used (require/include) 
 <details>
   <summary>8. How to include some files of folders?</summary>
 
-If you are looking for [`config.includeFiles`](https://vercel.com/docs/configuration?query=includeFiles#project/functions).
-) in runtime, unfortunately you can't include extra files.
+If you are looking for [`config.includeFiles`](https://vercel.com/docs/configuration?query=includeFiles#project/functions) in runtime, unfortunately you can't include extra files.
 All files in root folder are uploaded to Vercel, use `.vercelignore` to exclude them before upload.
 
 </details>
