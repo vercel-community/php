@@ -162,7 +162,7 @@ async function runPhp(args: ReadonlyArray<string>, opts: SpawnOptions = {}) {
   }
 }
 
-function spawnAsync(command: string, args: ReadonlyArray<string>, opts: SpawnOptions = {}) {
+function spawnAsync(command: string, args: ReadonlyArray<string>, opts: SpawnOptions = {}): Promise<void> {
   return new Promise((resolve, reject) => {
     const child = spawn(command, args, {
       stdio: "ignore",
