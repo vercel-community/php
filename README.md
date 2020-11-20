@@ -370,6 +370,17 @@ All files in root folder are uploaded to Vercel, use `.vercelignore` to exclude 
 
 </details>
 
+<details>
+  <summary>9. How to develop locally?</summary>
+
+I think the best way at this moment is use [PHP Development Server](https://www.php.net/manual/en/features.commandline.webserver.php).
+
+```
+php -S localhost:8000 api/index.php
+```
+
+</details>
+
 ## 👨🏻‍💻CHANGELOG
 
 Show me [CHANGELOG](./CHANGELOG.md)
