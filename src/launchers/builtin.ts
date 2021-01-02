@@ -47,6 +47,10 @@ async function startServer(entrypoint: string): Promise<ChildProcess> {
     options,
   );
 
+  server.stdout?.on('data', data => {
+    console.log(`🐘STDOUT: ${data.toString()}`);
+  });
+
   server.stderr?.on('data', data => {
     console.error(`🐘STDERR: ${data.toString()}`);
   });
