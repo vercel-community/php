@@ -1,5 +1,10 @@
 # Changelog
 
+### [0.4.0] - 2021-01-02
+
+- PHP 8.0
+- Use `@libphp/amazon-linux-2-v80: latest`
+
 ### [0.3.2] - 2021-01-02
 
 - Typos
