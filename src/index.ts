@@ -6,7 +6,8 @@ import {
   BuildOptions,
   PrepareCacheOptions,
   glob,
-  download
+  download,
+  Lambda
 } from '@vercel/build-utils';
 import {
   getPhpFiles,
@@ -31,11 +32,11 @@ export async function build({
   workPath,
   config = {},
   meta = {},
-}: BuildOptions) {
+}: BuildOptions): Promise<{ output: Lambda }> {
   // Check if now dev mode is used
   if (meta.isDev) {
     console.log(`
-      🐘 now dev is not supported right now.
+      🐘 vercel dev is not supported right now.
       Please use PHP built-in development server.
 
       php -S localhost:8000 api/index.php
@@ -63,7 +64,7 @@ export async function build({
   // - install deps
   // - run composer scripts
   if (userFiles[COMPOSER_FILE]) {
-    // Install dependencing (vendor is collected bellow, see harvestedFiles)
+    // Install dependencies (vendor is collected bellow, see harvestedFiles)
     await runComposerInstall(workPath);
 
     // Run composer scripts (created files are collected bellow, , see harvestedFiles)
