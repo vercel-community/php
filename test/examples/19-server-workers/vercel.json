@@ -1,0 +1,15 @@
+{
+  "functions": {
+    "api/*.php": {
+      "runtime": "vercel-php@0.3.2-canary.0"
+    }
+  },
+  "env": {
+    "PHP_CLI_SERVER_WORKERS": "4"
+  },
+  "build": {
+    "env": {
+      "NOW_PHP_DEBUG": "1"
+    }
+  }
+}
