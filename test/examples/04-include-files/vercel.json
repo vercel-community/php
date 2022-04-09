@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "index.php",
-      "use": "vercel-php@latest",
+      "use": "vercel-php@0.5.0",
       "config": { "includeFiles": ["included*.php"] }
     }
   ]
