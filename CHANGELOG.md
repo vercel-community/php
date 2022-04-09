@@ -1,5 +1,12 @@
 # Changelog
 
+### [0.5.0] - 2022-04-09
+
+- PHP 8.1
+  - Added extensions: geoip, zlib, zip
+  - Removed extensions: psr
+- Use `@libphp/amazon-linux-2-v81: latest`
+
 ### [0.4.0] - 2021-01-02
 
 - PHP 8.0
