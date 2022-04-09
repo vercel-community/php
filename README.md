@@ -88,6 +88,12 @@ Are you ready to deploy your first PHP project to Vercel? Click & Go!
 
 > List of all installable extensions is on this page https://blog.remirepo.net/pages/PECL-extensions-RPM-status.
 
+## 💯 Versions
+
+- `vercel-php@0.5.0` - PHP 8.1.x
+- `vercel-php@0.4.0` - PHP 8.0.x
+- `vercel-php@0.3.2` - PHP 7.4.x
+
 ## ⚙️  Usage
 
 Before you can start using this runtime, you should learn about Vercel and [how runtimes](https://vercel.com/docs/runtimes?query=runtime#official-runtimes) works. Take a look at blogpost about [`Serverless Functions`](https://vercel.com/blog/customizing-serverless-functions).
@@ -154,29 +160,7 @@ Browse [more examples](https://github.com/juicyfx/vercel-examples). 👀
 
 ## 🚧 Roadmap
 
-**Next**
-
-- `vercel dev` (vol2)
-
-**Done**
-
-- next-gen PHP runtime
-- Composer
-  - config.composer: true
-  - composer.json detection
-- zero config
-- customize php.ini
-- `vercel dev` (vol1)
-- typescript codebase
-- github workflows (CI)
-- PHP 7.4
-- composer.json scripts
-- PHP 8.0
-- PHP 8.1
-
-**Help wanted**
-
-- create examples using vercel-php
+See [roadmap issue](https://github.com/juicyfx/vercel-php/issues/3). Help wanted.
 
 ## ⁉️ FAQ
 
