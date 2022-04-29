@@ -136,12 +136,12 @@ export const build: BuildV3 = async ({
 export const prepareCache: PrepareCache = async ({ workPath }) => {
   return {
     // Composer
-    ...(await glob("vendor/**", workPath)),
-    ...(await glob("composer.lock", workPath)),
+    ...(await glob('vendor/**', workPath)),
+    ...(await glob('composer.lock', workPath)),
     // NPM
-    ...(await glob("node_modules/**", workPath)),
-    ...(await glob("package-lock.json", workPath)),
-    ...(await glob("yarn.lock", workPath)),
+    ...(await glob('node_modules/**', workPath)),
+    ...(await glob('package-lock.json', workPath)),
+    ...(await glob('yarn.lock', workPath)),
   };
 };
 
