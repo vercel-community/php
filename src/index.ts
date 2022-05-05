@@ -1,13 +1,12 @@
 import path from 'path';
 import {
-  createLambda,
   rename,
   shouldServe,
-  BuildOptions,
-  PrepareCacheOptions,
   glob,
   download,
-  Lambda
+  Lambda,
+  BuildV3,
+  PrepareCache
 } from '@vercel/build-utils';
 import {
   getPhpFiles,
@@ -26,13 +25,13 @@ const COMPOSER_FILE = process.env.COMPOSER || 'composer.json';
 
 export const version = 3;
 
-export async function build({
+export const build: BuildV3 = async ({
   files,
   entrypoint,
   workPath,
   config = {},
   meta = {},
-}: BuildOptions): Promise<{ output: Lambda }> {
+}) => {
   // Check if now dev mode is used
   if (meta.isDev) {
     console.log(`
@@ -84,10 +83,20 @@ export async function build({
   const harverstedFiles = rename(
     await glob('**', {
       cwd: workPath,
-      ignore:
-        config && config.excludeFiles
-          ? Array.isArray(config.excludeFiles) ? config.excludeFiles : [config.excludeFiles]
-          : ['node_modules/**', 'now.json', '.nowignore', 'vercel.json', '.vercelignore'],
+      ignore: [
+        '.vercel/**',
+        ...(config?.excludeFiles
+          ? Array.isArray(config.excludeFiles)
+            ? config.excludeFiles
+            : [config.excludeFiles]
+          : [
+              'node_modules/**',
+              'now.json',
+              '.nowignore',
+              'vercel.json',
+              '.vercelignore',
+            ]),
+      ],
     }),
     name => path.join('user', name)
   );
@@ -105,7 +114,7 @@ export async function build({
 
   console.log('🐘 Creating lambda');
 
-  const lambda = await createLambda({
+  const lambda = new Lambda({
     files: {
       // Located at /var/task/user
       ...harverstedFiles,
@@ -124,7 +133,7 @@ export async function build({
   return { output: lambda };
 };
 
-export async function prepareCache({ workPath }: PrepareCacheOptions): Promise<RuntimeFiles> {
+export const prepareCache: PrepareCache = async ({ workPath }) => {
   return {
     // Composer
     ...(await glob('vendor/**', workPath)),
@@ -134,6 +143,6 @@ export async function prepareCache({ workPath }: PrepareCacheOptions): Promise<R
     ...(await glob('package-lock.json', workPath)),
     ...(await glob('yarn.lock', workPath)),
   };
-}
+};
 
 export { shouldServe };
