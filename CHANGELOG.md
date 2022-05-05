@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.5.1] - 2022-05-05
+
+- Ignore .vercel folder during deployment
+
 ### [0.5.0] - 2022-04-09
 
 - PHP 8.1
