@@ -123,7 +123,7 @@ export const build: BuildV3 = async ({
       ...runtimeFiles
     },
     handler: 'launcher.launcher',
-    runtime: 'nodejs12.x',
+    runtime: 'nodejs14.x',
     environment: {
       NOW_ENTRYPOINT: entrypoint,
       NOW_PHP_DEV: meta.isDev ? '1' : '0'
