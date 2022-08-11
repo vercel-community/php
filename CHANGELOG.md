@@ -1,6 +1,7 @@
 # Changelog
 
-[0.5.2] - 2022-08-09
+### [0.5.2] - 2022-08-10
+
 - Bump minimum node version from 12.x to 14.x
 
 ### [0.5.1] - 2022-05-05
