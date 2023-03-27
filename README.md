@@ -91,8 +91,8 @@ Are you ready to deploy your first PHP project to Vercel? Click & Go!
 ## 💯 Versions
 
 - `vercel-php@0.5.3` - PHP 8.1.x
-- `vercel-php@0.4.0` - PHP 8.0.x
-- `vercel-php@0.3.2` - PHP 7.4.x
+- `vercel-php@0.4.1` - PHP 8.0.x
+- `vercel-php@0.3.3` - PHP 7.4.x
 
 ## ⚙️  Usage
 
