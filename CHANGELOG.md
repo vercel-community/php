@@ -1,5 +1,10 @@
 # Changelog
 
+### [0.5.3] - 2023-03-27
+
+- Bump minimum node version from 14.x to 18.x
+- Upgrade dependencies
+
 ### [0.5.2] - 2022-08-10
 
 - Bump minimum node version from 12.x to 14.x
