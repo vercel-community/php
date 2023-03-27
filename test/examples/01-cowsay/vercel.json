@@ -1,7 +1,7 @@
 {
   "version": 2,
   "builds": [
-    { "src": "index.php", "use": "vercel-php@0.5.0" },
-    { "src": "subdirectory/index.php", "use": "vercel-php@0.5.0" }
+    { "src": "index.php", "use": "vercel-php@0.6.0" },
+    { "src": "subdirectory/index.php", "use": "vercel-php@0.6.0" }
   ]
 }
