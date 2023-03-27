@@ -54,7 +54,7 @@ Second file `vercel.json` is pure gold here. Setup your project with configurati
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.5.3"
     }
   }
 }
@@ -90,7 +90,7 @@ Are you ready to deploy your first PHP project to Vercel? Click & Go!
 
 ## 💯 Versions
 
-- `vercel-php@0.5.2` - PHP 8.1.x
+- `vercel-php@0.5.3` - PHP 8.1.x
 - `vercel-php@0.4.0` - PHP 8.0.x
 - `vercel-php@0.3.2` - PHP 7.4.x
 
@@ -105,7 +105,7 @@ If you need to route everything to index, use `routes` property.
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.5.3"
     }
   },
   "routes": [
@@ -180,19 +180,19 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.5.3"
     },
 
     // Can be list also directly
 
     "api/index.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.5.3"
     },
     "api/users.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.5.3"
     },
     "api/books.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.5.3"
     }
   }
 }
@@ -207,7 +207,7 @@ project
 {
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.5.3"
     }
   },
   "routes": [
@@ -227,7 +227,7 @@ Additional function properties are `memory`, `maxDuration`. Learn more about [fu
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.5.2",
+      "runtime": "vercel-php@0.5.3",
       "memory": 3008,
       "maxDuration": 60
     }
@@ -254,7 +254,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.5.3"
     }
   }
 }
@@ -293,7 +293,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.5.3"
     }
   }
 }
@@ -318,7 +318,7 @@ Runtimes support excluding some files or folders, [take a look at doc](https://v
 {
   "functions": {
   "api/**/*.php": {
-    "runtime": "vercel-php@0.5.2",
+    "runtime": "vercel-php@0.5.3",
     "excludeFiles": "{foo/**,bar/config/*.yaml}",
   }
 }
