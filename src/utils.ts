@@ -1,9 +1,9 @@
 import path from 'path';
 import { spawn, SpawnOptions } from 'child_process';
 import { File, FileFsRef, FileBlob } from '@vercel/build-utils';
-import * as libphp from "@libphp/amazon-linux-2-v81";
+import * as libphp from "@libphp/amazon-linux-2-v80";
 
-const PHP_PKG = path.dirname(require.resolve('@libphp/amazon-linux-2-v81/package.json'));
+const PHP_PKG = path.dirname(require.resolve('@libphp/amazon-linux-2-v80/package.json'));
 const PHP_BIN_DIR = path.join(PHP_PKG, "native/php");
 const PHP_MODULES_DIR = path.join(PHP_BIN_DIR, "modules");
 const PHP_LIB_DIR = path.join(PHP_PKG, "native/lib");
