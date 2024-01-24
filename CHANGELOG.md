@@ -1,5 +1,21 @@
 # Changelog
 
+### [0.6.1] - 2024-01-24
+
+- Update LD_LIBRARY_PATH
+
+### [0.5.4] - 2024-01-24
+
+- Update LD_LIBRARY_PATH
+
+### [0.4.3] - 2024-01-24
+
+- Update LD_LIBRARY_PATH
+
+### [0.3.5] - 2024-01-24
+
+- Update LD_LIBRARY_PATH
+
 ### [0.6.0] - 2023-03-27
 
 - PHP 8.2
