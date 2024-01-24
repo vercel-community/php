@@ -22,7 +22,10 @@ async function startServer(entrypoint: string): Promise<ChildProcess> {
   // php spawn options
   const options: SpawnOptions = {
     stdio: ['pipe', 'pipe', 'pipe'],
-    env: process.env
+    env: {
+      ...process.env,
+      LD_LIBRARY_PATH: `/var/task/lib:${process.env.LD_LIBRARY_PATH}`
+    }
   };
 
   // now vs now-dev
