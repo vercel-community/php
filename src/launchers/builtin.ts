@@ -16,7 +16,7 @@ let server: ChildProcess;
 async function startServer(entrypoint: string): Promise<ChildProcess> {
   // Resolve document root and router
   const router = entrypoint;
-  const docroot = pathJoin(getUserDir(), process.env.VERCEL_LARAVEL_DOCROOT ?? '');
+  const docroot = pathJoin(getUserDir(), process.env.VERCEL_PHP_DOCROOT ?? '');
 
   console.log(`🐘 Spawning: PHP Built-In Server at ${docroot} (document root) and ${router} (router)`);
 
