@@ -9,13 +9,14 @@ import {
   transformToAwsResponse,
   isDev
 } from './helpers';
+import { join as pathJoin } from 'path';
 
 let server: ChildProcess;
 
 async function startServer(entrypoint: string): Promise<ChildProcess> {
   // Resolve document root and router
   const router = entrypoint;
-  const docroot = getUserDir();
+  const docroot = pathJoin(getUserDir(), process.env.VERCEL_LARAVEL_DOCROOT ?? '');
 
   console.log(`🐘 Spawning: PHP Built-In Server at ${docroot} (document root) and ${router} (router)`);
 
