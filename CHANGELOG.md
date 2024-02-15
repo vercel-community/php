@@ -1,5 +1,31 @@
 # Changelog
 
+### [0.6.1] - 2024-01-24
+
+- Update LD_LIBRARY_PATH
+
+### [0.5.4] - 2024-01-24
+
+- Update LD_LIBRARY_PATH
+
+### [0.4.3] - 2024-01-24
+
+- Update LD_LIBRARY_PATH
+
+### [0.3.5] - 2024-01-24
+
+- Update LD_LIBRARY_PATH
+
+### [0.6.0] - 2023-03-27
+
+- PHP 8.2
+- Use `@libphp/amazon-linux-2-v82: latest`
+
+### [0.5.3] - 2023-03-27
+
+- Bump minimum node version from 14.x to 18.x
+- Upgrade dependencies
+
 ### [0.5.2] - 2022-08-10
 
 - Bump minimum node version from 12.x to 14.x
