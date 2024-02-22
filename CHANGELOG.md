@@ -1,5 +1,10 @@
 # Changelog
 
+### [0.7.0] - 2024-02-22
+
+- PHP 8.3
+- Use `@libphp/amazon-linux-2-v83: latest`
+
 ### [0.6.1] - 2024-01-24
 
 - Update LD_LIBRARY_PATH
