@@ -54,7 +54,7 @@ Second file `vercel.json` is pure gold here. Setup your project with configurati
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.3.6"
     }
   }
 }
@@ -80,7 +80,7 @@ Are you ready to deploy your first PHP project to Vercel? Click & Go!
 ## 🤗 Features
 
 - **Architecture**: PHP development server (🚀 fast enough)
-- **PHP version**: 8.1.4
+- **PHP version**: 7.0.x
 - **Extensions**: apcu, bcmath, brotli, bz2, calendar, Core, ctype, curl, date, dom, ds, exif, fileinfo, filter, ftp, geoip, gettext, hash, iconv, igbinary, imap, intl, json, libxml, lua, mbstring, mongodb, msgpack, mysqli, mysqlnd, openssl, pcntl, pcre, PDO, pdo_mysql, pdo_pgsql, pdo_sqlite, pgsql, phalcon, Phar, protobuf, readline, redis, Reflection, runkit7, session, SimpleXML, soap, sockets, sodium, SPL, sqlite3, standard, swoole, timecop, tokenizer, uuid, xml, xmlreader, xmlrpc, xmlwriter, xsl, Zend OPcache, zlib, zip
 - **Speed**: cold ~250ms / warm ~5ms
 - **Memory**: ~90mb
@@ -90,9 +90,7 @@ Are you ready to deploy your first PHP project to Vercel? Click & Go!
 
 ## 💯 Versions
 
-- `vercel-php@0.5.2` - PHP 8.1.x
-- `vercel-php@0.4.0` - PHP 8.0.x
-- `vercel-php@0.3.2` - PHP 7.4.x
+- `vercel-php@0.3.6` - PHP 7.4.x
 
 ## ⚙️  Usage
 
@@ -105,7 +103,7 @@ If you need to route everything to index, use `routes` property.
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.3.6"
     }
   },
   "routes": [
@@ -180,19 +178,19 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.3.6"
     },
 
     // Can be list also directly
 
     "api/index.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.3.6"
     },
     "api/users.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.3.6"
     },
     "api/books.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.3.6"
     }
   }
 }
@@ -207,7 +205,7 @@ project
 {
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.3.6"
     }
   },
   "routes": [
@@ -227,7 +225,7 @@ Additional function properties are `memory`, `maxDuration`. Learn more about [fu
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.5.2",
+      "runtime": "vercel-php@0.3.6",
       "memory": 3008,
       "maxDuration": 60
     }
@@ -254,7 +252,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.3.6"
     }
   }
 }
@@ -293,7 +291,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.5.2"
+      "runtime": "vercel-php@0.3.6"
     }
   }
 }
@@ -318,7 +316,7 @@ Runtimes support excluding some files or folders, [take a look at doc](https://v
 {
   "functions": {
   "api/**/*.php": {
-    "runtime": "vercel-php@0.5.2",
+    "runtime": "vercel-php@0.3.6",
     "excludeFiles": "{foo/**,bar/config/*.yaml}",
   }
 }
