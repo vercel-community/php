@@ -4,6 +4,22 @@
 
 - Fix autodetect runtime
 
+### [0.6.2] - 2024-04-16
+
+- Fix autodetect runtime
+
+### [0.5.5] - 2024-04-16
+
+- Fix autodetect runtime
+
+### [0.4.4] - 2024-04-16
+
+- Fix autodetect runtime
+
+### [0.3.6] - 2024-04-16
+
+- Fix autodetect runtime
+
 ### [0.7.0] - 2024-02-22
 
 - PHP 8.3
