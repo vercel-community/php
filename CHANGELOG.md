@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.7.1] - 2024-04-16
+
+- Fix autodetect runtime
+
 ### [0.7.0] - 2024-02-22
 
 - PHP 8.3

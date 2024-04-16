@@ -54,7 +54,7 @@ Second file `vercel.json` is pure gold here. Setup your project with configurati
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.7.0"
+      "runtime": "vercel-php@0.7.1"
     }
   }
 }
@@ -90,7 +90,7 @@ Are you ready to deploy your first PHP project to Vercel? Click & Go!
 
 ## 💯 Versions
 
-- `vercel-php@0.7.0` - Node 18.x / PHP 8.3.x (https://example-php-8-3.vercel.app)
+- `vercel-php@0.7.1` - Node 18.x / PHP 8.3.x (https://example-php-8-3.vercel.app)
 - `vercel-php@0.6.1` - Node 18.x / PHP 8.2.x (https://example-php-8-2.vercel.app)
 - `vercel-php@0.5.4` - Node 18.x / PHP 8.1.x (https://example-php-8-1.vercel.app)
 - `vercel-php@0.4.3` - Node 18.x / PHP 8.0.x (https://example-php-8-0.vercel.app)
@@ -107,7 +107,7 @@ If you need to route everything to index, use `routes` property.
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.7.0"
+      "runtime": "vercel-php@0.7.1"
     }
   },
   "routes": [
@@ -182,19 +182,19 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.7.0"
+      "runtime": "vercel-php@0.7.1"
     },
 
     // Can be list also directly
 
     "api/index.php": {
-      "runtime": "vercel-php@0.7.0"
+      "runtime": "vercel-php@0.7.1"
     },
     "api/users.php": {
-      "runtime": "vercel-php@0.7.0"
+      "runtime": "vercel-php@0.7.1"
     },
     "api/books.php": {
-      "runtime": "vercel-php@0.7.0"
+      "runtime": "vercel-php@0.7.1"
     }
   }
 }
@@ -209,7 +209,7 @@ project
 {
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.7.0"
+      "runtime": "vercel-php@0.7.1"
     }
   },
   "routes": [
@@ -229,7 +229,7 @@ Additional function properties are `memory`, `maxDuration`. Learn more about [fu
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.7.0",
+      "runtime": "vercel-php@0.7.1",
       "memory": 3008,
       "maxDuration": 60
     }
@@ -256,7 +256,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.7.0"
+      "runtime": "vercel-php@0.7.1"
     }
   }
 }
@@ -295,7 +295,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.7.0"
+      "runtime": "vercel-php@0.7.1"
     }
   }
 }
@@ -320,7 +320,7 @@ Runtimes support excluding some files or folders, [take a look at doc](https://v
 {
   "functions": {
   "api/**/*.php": {
-    "runtime": "vercel-php@0.7.0",
+    "runtime": "vercel-php@0.7.1",
     "excludeFiles": "{foo/**,bar/config/*.yaml}",
   }
 }
