@@ -75,7 +75,7 @@ vercel
 
 Are you ready to deploy your first PHP project to Vercel? Click & Go!
 
-<a href="https://vercel.com/new/project?template=https://github.com/juicyfx/vercel-examples/tree/master/php"><img src="https://vercel.com/button"></a>
+<a href="https://vercel.com/new/clone?repository-url=https://github.com/juicyfx/vercel-examples/tree/master/php"><img src="https://vercel.com/button"></a>
 
 ## 🤗 Features
 
