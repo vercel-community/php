@@ -39,6 +39,7 @@ project
 ├── api
 │   └── index.php
 └── vercel.json
+└── package.json
 ```
 
 First file `api/index.php` is entrypoint of our application. It should be placed in **api** folder, it's very standard location for Vercel.
@@ -56,6 +57,15 @@ Second file `vercel.json` is pure gold here. Setup your project with configurati
     "api/*.php": {
       "runtime": "vercel-php@0.7.1"
     }
+  }
+}
+```
+Third file `package.json` define Node.js mayor version required for vercel-php.
+
+```json
+{
+  "engines": {
+    "node": "18.x"
   }
 }
 ```
