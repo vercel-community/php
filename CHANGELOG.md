@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.7.2] - 2024-09-30
+
+- Upgrade PHP 8.3 runtime
+
 ### [0.7.1] - 2024-04-16
 
 - Fix autodetect runtime
