@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.7.3] - 2024-10-19
+
+- Upgrade PHP 8.3 runtime (fixes for curl, opcache)
+
 ### [0.7.2] - 2024-09-30
 
 - Upgrade PHP 8.3 runtime
