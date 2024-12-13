@@ -277,7 +277,7 @@ It's also good thing to create `.vercelignore` file and put `/vendor` folder to 
 </details>
 
 <details>
-  <summary>5. How to override <a href="https://www.php.net/manual/en/ini.list.php">php.ini</a> / <a href="https://www.php.net/manual/en/configuration.file.php">php configuration</a> ?</summary>
+  <summary>5. How to override <a href="https://www.php.net/manual/en/ini.list.php">php.ini</a> / <a href="https://www.php.net/manual/en/configuration.file.php">php configuration</a>?</summary>
 
 Yes, you can override php configuration. Take a look at [default configuration](https://phpshow.vercel.app/) at first.
 Create a new file `api/php.ini` and place there your configuration. Don't worry, this particulary file will be
@@ -312,7 +312,7 @@ memory_limit=1024M
 </details>
 
 <details>
-  <summary>6. How to exclude some files or folders ?</summary>
+  <summary>6. How to exclude some files or folders?</summary>
 
 Runtimes support excluding some files or folders, [take a look at doc](https://vercel.com/docs/configuration?query=excludeFiles#project/functions).
 
@@ -331,7 +331,7 @@ If you want to exclude files before uploading them to Vercel, use `.vercelignore
 </details>
 
 <details>
-  <summary>7. How to call composer script(s) ?</summary>
+  <summary>7. How to call composer script(s)?</summary>
 
 Calling composer scripts during build phase on Vercel is supported via script named `vercel`. You can easilly call php, npm or node.
 
