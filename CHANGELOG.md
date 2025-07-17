@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.7.4] - 2025-07-17
+
+- Upgrade PHP 7.4-8-3 runtimes for Node 22
+
 ### [0.7.3] - 2024-10-19
 
 - Upgrade PHP 8.3 runtime (fixes for curl, opcache)
