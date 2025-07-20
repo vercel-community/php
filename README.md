@@ -85,6 +85,7 @@ Are you ready to deploy your first PHP project to Vercel? Click & Go!
 - **Speed**: cold ~250ms / warm ~5ms
 - **Memory**: ~90mb
 - **Frameworks**: Nette, Symfony, Lumen, Slim, Phalcon
+- **Node.js**: 22.x
 
 > List of all installable extensions is on this page https://blog.remirepo.net/pages/PECL-extensions-RPM-status.
 
@@ -368,6 +369,13 @@ I think the best way at this moment is use [PHP Development Server](https://www.
 ```
 php -S localhost:8000 api/index.php
 ```
+
+</details>
+
+<details>
+  <summary>10. What Node.js runtime is supported?</summary>
+
+Use 22.x.
 
 </details>
 
