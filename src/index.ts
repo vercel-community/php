@@ -7,7 +7,7 @@ import {
   Lambda,
   BuildV3,
   PrepareCache,
-  getNodeVersion
+  getRuntimeNodeVersion
 } from '@vercel/build-utils';
 import {
   getPhpFiles,
@@ -114,7 +114,7 @@ export const build: BuildV3 = async ({
   }
 
   console.log('🐘 Creating lambda');
-  const nodeVersion = await getNodeVersion(workPath);
+  const nodeVersion = await getRuntimeNodeVersion(workPath);
 
   const lambda = new Lambda({
     files: {
