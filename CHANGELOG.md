@@ -1,5 +1,9 @@
 # Changelog
 
+### [0.8.0] - 2025-01-XX
+
+- PHP 8.4
+
 ### [0.7.4] - 2025-07-17
 
 - Upgrade PHP 7.4-8-3 runtimes for Node 22
