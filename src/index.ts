@@ -91,9 +91,20 @@ export const build: BuildV3 = async ({
             ? config.excludeFiles
             : [config.excludeFiles]
           : [
+              // Dependencies
               'node_modules/**',
+              // Build outputs and caches
+              '.next/**',
+              '.turbo/**',
+              'dist/**',
+              '.cache/**',
+              '.nuxt/**',
+              '.svelte-kit/**',
+              '.output/**',
+              // Legacy Vercel files
               'now.json',
               '.nowignore',
+              // Vercel configuration
               'vercel.json',
               '.vercelignore',
             ]),
