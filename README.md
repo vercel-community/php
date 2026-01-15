@@ -54,7 +54,7 @@ Second file `vercel.json` is pure gold here. Setup your project with configurati
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.8.0"
+      "runtime": "vercel-php@0.9.0"
     }
   }
 }
@@ -80,7 +80,7 @@ Are you ready to deploy your first PHP project to Vercel? Click & Go!
 ## 🤗 Features
 
 - **Architecture**: PHP development server (🚀 fast enough)
-- **PHP version**: 8.4 (https://example-php-8-4.vercel.app)
+- **PHP version**: 8.5 (https://example-php-8-5.vercel.app)
 - **Extensions**: apcu, bcmath, brotli, bz2, calendar, Core, ctype, curl, date, dom, ds, exif, fileinfo, filter, ftp, geoip, gettext, hash, iconv, igbinary, imap, intl, json, libxml, lua, mbstring, mongodb, msgpack, mysqli, mysqlnd, openssl, pcntl, pcre, PDO, pdo_mysql, pdo_pgsql, pdo_sqlite, pgsql, phalcon, Phar, protobuf, readline, redis, Reflection, runkit7, session, SimpleXML, soap, sockets, sodium, SPL, sqlite3, standard, swoole, timecop, tokenizer, uuid, xml, xmlreader, xmlrpc, xmlwriter, xsl, Zend OPcache, zlib, zip
 - **Speed**: cold ~250ms / warm ~5ms
 - **Memory**: ~90mb
@@ -91,8 +91,9 @@ Are you ready to deploy your first PHP project to Vercel? Click & Go!
 
 ## 💯 Versions
 
-- `vercel-php@0.8.0` - Node autodetect / PHP 8.4.x (https://example-php-8-4.vercel.app)
-- `vercel-php@0.8.0` - Node autodetect / PHP 8.3.x (https://example-php-8-3.vercel.app)
+- `vercel-php@0.9.0` - Node autodetect / PHP 8.5.x (https://example-php-8-5.vercel.app)
+- `vercel-php@0.9.0` - Node autodetect / PHP 8.4.x (https://example-php-8-4.vercel.app)
+- `vercel-php@0.7.4` - Node autodetect / PHP 8.3.x (https://example-php-8-3.vercel.app)
 - `vercel-php@0.6.2` - Node autodetect / PHP 8.2.x (https://example-php-8-2.vercel.app)
 - `vercel-php@0.5.5` - Node autodetect / PHP 8.1.x (https://example-php-8-1.vercel.app)
 - `vercel-php@0.4.5` - Node autodetect / PHP 8.0.x (https://example-php-8-0.vercel.app)
@@ -109,7 +110,7 @@ If you need to route everything to index, use `routes` property.
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.8.0"
+      "runtime": "vercel-php@0.9.0"
     }
   },
   "routes": [
@@ -184,19 +185,19 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.8.0"
+      "runtime": "vercel-php@0.9.0"
     },
 
     // Can be list also directly
 
     "api/index.php": {
-      "runtime": "vercel-php@0.8.0"
+      "runtime": "vercel-php@0.9.0"
     },
     "api/users.php": {
-      "runtime": "vercel-php@0.8.0"
+      "runtime": "vercel-php@0.9.0"
     },
     "api/books.php": {
-      "runtime": "vercel-php@0.8.0"
+      "runtime": "vercel-php@0.9.0"
     }
   }
 }
@@ -211,7 +212,7 @@ project
 {
   "functions": {
     "api/index.php": {
-      "runtime": "vercel-php@0.8.0"
+      "runtime": "vercel-php@0.9.0"
     }
   },
   "routes": [
@@ -231,7 +232,7 @@ Additional function properties are `memory`, `maxDuration`. Learn more about [fu
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.8.0",
+      "runtime": "vercel-php@0.9.0",
       "memory": 3008,
       "maxDuration": 60
     }
@@ -258,7 +259,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.8.0"
+      "runtime": "vercel-php@0.9.0"
     }
   }
 }
@@ -297,7 +298,7 @@ project
 {
   "functions": {
     "api/*.php": {
-      "runtime": "vercel-php@0.8.0"
+      "runtime": "vercel-php@0.9.0"
     }
   }
 }
@@ -322,7 +323,7 @@ Runtimes support excluding some files or folders, [take a look at doc](https://v
 {
   "functions": {
   "api/**/*.php": {
-    "runtime": "vercel-php@0.8.0",
+    "runtime": "vercel-php@0.9.0",
     "excludeFiles": "{foo/**,bar/config/*.yaml}",
   }
 }
