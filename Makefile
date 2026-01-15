@@ -17,7 +17,7 @@ test-watch:
 
 publish:
 	rm -rf ./dist
-	npm publish --access public
+	npm publish --access public --tag 0.3-latest
 
 canary:
 	rm -rf ./dist

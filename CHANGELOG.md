@@ -1,5 +1,10 @@
 # Changelog
 
+### [0.3.8] - 2026-01-15
+
+- Add php-zip extension
+- Use `@libphp/amazon-linux-2-v74@0.0.21`
+
 ### [0.5.2] - 2022-08-10
 
 - Bump minimum node version from 12.x to 14.x
