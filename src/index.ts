@@ -144,6 +144,11 @@ export const prepareCache: PrepareCache = async ({ workPath }) => {
     ...(await glob('node_modules/**', workPath)),
     ...(await glob('package-lock.json', workPath)),
     ...(await glob('yarn.lock', workPath)),
+    ...(await glob('pnpm-lock.yaml', workPath)),
+    // Bun
+    ...(await glob('bun.lock', workPath)),
+    /* in case still used */
+    ...(await glob('bun.lockb', workPath)),
   };
 };
 
