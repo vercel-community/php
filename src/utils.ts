@@ -9,6 +9,11 @@ const PHP_MODULES_DIR = path.join(PHP_BIN_DIR, "modules");
 const PHP_LIB_DIR = path.join(PHP_PKG, "native/lib");
 const COMPOSER_BIN = path.join(PHP_BIN_DIR, "composer");
 
+type PhpSpawnConfig = {
+  command: string;
+  env: NodeJS.ProcessEnv;
+};
+
 export async function getPhpFiles(): Promise<RuntimeFiles> {
   const files = await libphp.getFiles();
 
@@ -121,11 +126,43 @@ export async function runComposerScripts(composerFile: File, workPath: string): 
 
 export async function ensureLocalPhp(): Promise<boolean> {
   try {
-    await spawnAsync('which', ['php', 'php-cgi'], { stdio: 'pipe' });
+    await spawnAsync('php', ['-v'], { stdio: 'pipe' });
     return true;
   } catch (e) {
     return false;
   }
+}
+
+export async function getPhpSpawnConfig(optsEnv: NodeJS.ProcessEnv = {}): Promise<PhpSpawnConfig> {
+  const env: NodeJS.ProcessEnv = {
+    ...process.env,
+    ...optsEnv,
+    COMPOSER_HOME: '/tmp',
+  };
+
+  if (process.platform === 'linux') {
+    return {
+      command: 'php',
+      env: {
+        ...env,
+        PATH: `${PHP_BIN_DIR}${path.delimiter}${process.env.PATH || ''}`,
+        PHP_INI_EXTENSION_DIR: PHP_MODULES_DIR,
+        PHP_INI_SCAN_DIR: `:${path.resolve(__dirname, '../conf')}`,
+        LD_LIBRARY_PATH: `${PHP_LIB_DIR}:/usr/lib64:/lib64${process.env.LD_LIBRARY_PATH ? `:${process.env.LD_LIBRARY_PATH}` : ''}`
+      }
+    };
+  }
+
+  if (await ensureLocalPhp()) {
+    return {
+      command: 'php',
+      env,
+    };
+  }
+
+  throw new Error(
+    `Local builds on ${process.platform} require PHP to be installed and available on PATH.`
+  );
 }
 
 export async function readRuntimeFile(file: File): Promise<string> {
@@ -142,20 +179,12 @@ export async function readRuntimeFile(file: File): Promise<string> {
 
 async function runPhp(args: ReadonlyArray<string>, opts: SpawnOptions = {}) {
   try {
-    await spawnAsync('php', args,
-      {
-        ...opts,
-        env: {
-          ...process.env,
-          ...(opts.env || {}),
-          COMPOSER_HOME: '/tmp',
-          PATH: `${PHP_BIN_DIR}:${process.env.PATH}`,
-          PHP_INI_EXTENSION_DIR: PHP_MODULES_DIR,
-          PHP_INI_SCAN_DIR: `:${path.resolve(__dirname, '../conf')}`,
-          LD_LIBRARY_PATH: `${PHP_LIB_DIR}:/usr/lib64:/lib64:${process.env.LD_LIBRARY_PATH}`
-        }
-      }
-    );
+    const { command, env } = await getPhpSpawnConfig(opts.env);
+
+    await spawnAsync(command, args, {
+      ...opts,
+      env,
+    });
   } catch (e) {
     console.error(e);
     process.exit(1);
