@@ -146,7 +146,13 @@ phpTest('reports startup failure without leaking a PHP child', async () => {
 
 phpTest('normalizes Windows PATH casing overrides without changing global environment', async () => {
   if (process.platform !== 'win32') return;
-  const env = { VERCEL_PHP_EXECUTABLE: 'php', pAtH: path.dirname(executable) };
+  const original = { ...process.env };
+  const binary = spawnSync(executable, ['-n', '-r', 'echo PHP_BINARY;'], { encoding: 'utf8' });
+  expect(binary.status).toBe(0);
+  const resolvedExecutable = binary.stdout.trim();
+  expect(path.isAbsolute(resolvedExecutable)).toBe(true);
+  const env = { VERCEL_PHP_EXECUTABLE: 'php', PATH: workPath, pAtH: path.dirname(resolvedExecutable) };
   const server = await start({ meta: { env } });
   expect((await request(server.port, '/')).status).toBe(200);
+  expect(process.env).toEqual(original);
 });
