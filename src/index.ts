@@ -99,7 +99,7 @@ export const build: BuildV3 = async ({
             ]),
       ],
     }),
-    name => path.join('user', name)
+    name => path.posix.join('user', name.replace(/\\/g, '/'))
   );
 
   // Show some debug notes during build

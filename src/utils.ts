@@ -10,7 +10,13 @@ const PHP_LIB_DIR = path.join(PHP_PKG, "native/lib");
 const COMPOSER_BIN = path.join(PHP_BIN_DIR, "composer");
 
 export async function getPhpFiles(): Promise<RuntimeFiles> {
-  const files = await libphp.getFiles();
+  // Bundle keys are POSIX paths; physical file paths retain host separators.
+  const files = Object.fromEntries(
+    Object.entries(await libphp.getFiles()).map(([filename, filepath]) => [
+      filename.replace(/\\/g, '/'),
+      filepath,
+    ])
+  );
 
   // Drop CGI + FPM from libphp, it's not needed for our case
   delete files['php/php-cgi'];

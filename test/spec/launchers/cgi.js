@@ -1,6 +1,14 @@
+const path = require('path');
 const cgi = require('./../../../dist/launchers/cgi');
 
-test('create CGI request', () => {
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
+test.each([
+  ['default root', undefined],
+  ['configured root', path.resolve('/var/task')],
+])('create CGI request with %s', (_name, taskRoot) => {
   const request = {
     entrypoint: "index.php",
     path: "/index.php",
@@ -8,11 +16,17 @@ test('create CGI request', () => {
     method: "GET",
     headers: {}
   };
-  process.env.CUSTOM_VALUE = "custom-value";
+  jest.replaceProperty(process, 'env', { ...process.env, CUSTOM_VALUE: 'custom-value' });
+  if (taskRoot === undefined) {
+    delete process.env.LAMBDA_TASK_ROOT;
+  } else {
+    process.env.LAMBDA_TASK_ROOT = taskRoot;
+  }
   const { env } = cgi.createCGIReq(request);
+  const userDir = path.join(taskRoot || '/', 'user');
 
-  expect(env).toHaveProperty("SERVER_ROOT", "/user");
-  expect(env).toHaveProperty("DOCUMENT_ROOT", "/user");
+  expect(env).toHaveProperty("SERVER_ROOT", userDir);
+  expect(env).toHaveProperty("DOCUMENT_ROOT", userDir);
   expect(env).toHaveProperty("SERVER_NAME", request.host);
   expect(env).toHaveProperty("SERVER_PORT", 443);
   expect(env).toHaveProperty("HTTPS", 'On');
