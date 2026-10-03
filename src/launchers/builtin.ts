@@ -151,7 +151,7 @@ function whenPortOpens(port: number, attempts: number): Promise<void> {
   });
 }
 
-async function launcher(event: Event): Promise<AwsResponse> {
+async function launcher(event: unknown): Promise<AwsResponse> {
   const awsRequest = normalizeEvent(event);
   const input = await transformFromAwsRequest(awsRequest);
   const output = await query(input);

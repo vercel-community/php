@@ -1,4 +1,5 @@
 const cgi = require('./../../../dist/launchers/cgi');
+const { getUserDir } = require('./../../../dist/launchers/helpers');
 
 test('create CGI request', () => {
   const request = {
@@ -11,8 +12,8 @@ test('create CGI request', () => {
   process.env.CUSTOM_VALUE = "custom-value";
   const { env } = cgi.createCGIReq(request);
 
-  expect(env).toHaveProperty("SERVER_ROOT", "/user");
-  expect(env).toHaveProperty("DOCUMENT_ROOT", "/user");
+  expect(env).toHaveProperty("SERVER_ROOT", getUserDir());
+  expect(env).toHaveProperty("DOCUMENT_ROOT", getUserDir());
   expect(env).toHaveProperty("SERVER_NAME", request.host);
   expect(env).toHaveProperty("SERVER_PORT", 443);
   expect(env).toHaveProperty("HTTPS", 'On');
