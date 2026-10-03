@@ -21,7 +21,7 @@ interface AwsRequest {
   path: string,
   host: string,
   headers: Headers,
-  body: string,
+  body: Buffer | undefined,
 }
 
 interface AwsResponse {
@@ -29,24 +29,6 @@ interface AwsResponse {
   headers: Headers,
   body: string,
   encoding?: string
-}
-
-interface Event {
-  Action: string,
-  body: string,
-  httpMethod: string,
-  path: string,
-  host: string,
-  headers: Headers,
-  encoding: string | undefined | null,
-}
-
-interface InvokedEvent {
-  method: string,
-  path: string,
-  host: string,
-  headers: Headers,
-  encoding: string | undefined | null,
 }
 
 interface CgiInput {
@@ -64,7 +46,7 @@ interface PhpInput {
   host: string,
   method: string,
   headers: Headers,
-  body: string,
+  body: Buffer | undefined,
 }
 
 interface PhpOutput {

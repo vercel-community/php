@@ -90,7 +90,7 @@ function query({ entrypoint, body }: PhpInput): Promise<PhpOutput> {
   })
 }
 
-async function launcher(event: Event): Promise<AwsResponse> {
+async function launcher(event: unknown): Promise<AwsResponse> {
   const awsRequest = normalizeEvent(event);
   const input = await transformFromAwsRequest(awsRequest);
   const output = await query(input);

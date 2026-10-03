@@ -4,7 +4,7 @@ import {
   shouldServe,
   glob,
   download,
-  Lambda,
+  NodejsLambda,
   BuildV3,
   PrepareCache,
   getNodeVersion
@@ -116,7 +116,7 @@ export const build: BuildV3 = async ({
   console.log('🐘 Creating lambda');
   const nodeVersion = await getNodeVersion(workPath);
 
-  const lambda = new Lambda({
+  const lambda = new NodejsLambda({
     files: {
       // Located at /var/task/user
       ...harverstedFiles,
@@ -124,7 +124,10 @@ export const build: BuildV3 = async ({
       // Located at /var/task/lib (shared libs)
       ...runtimeFiles
     },
-    handler: 'launcher.launcher',
+    handler: 'launcher.js',
+    awsLambdaHandler: 'launcher.launcher',
+    shouldAddHelpers: false,
+    shouldAddSourcemapSupport: false,
     runtime: nodeVersion.runtime,
     environment: {
       NOW_ENTRYPOINT: entrypoint,
