@@ -33,15 +33,9 @@ export const build: BuildV3 = async ({
   config = {},
   meta = {},
 }) => {
-  // Check if now dev mode is used
+  // Local HTTP invocations use startDevServer, never the Linux Lambda bundle.
   if (meta.isDev) {
-    console.log(`
-      🐘 vercel dev is not supported right now.
-      Please use PHP built-in development server.
-
-      php -S localhost:8000 api/index.php
-    `);
-    process.exit(255);
+    throw new Error('Local PHP requests must use the startDevServer hook. Update your Vercel CLI.');
   }
 
   console.log('🐘 Downloading user files');
@@ -153,3 +147,4 @@ export const prepareCache: PrepareCache = async ({ workPath }) => {
 };
 
 export { shouldServe };
+export { startDevServer } from './dev-server';
