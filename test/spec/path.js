@@ -5,5 +5,5 @@ test('relative path', () => {
   const request = '/var/task/user/api/users.php';
   const file = path.relative(rootdir, request);
 
-  expect(file).toBe('api/users.php');
+  expect(file).toBe(path.join('api', 'users.php'));
 });
