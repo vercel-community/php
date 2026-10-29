@@ -12,21 +12,18 @@
 	<a href="http://bit.ly/f3l1xsponsor"><img src="https://badgen.net/badge/sponsor/donations/F96854"></a>
 </p>
 
-<p align=center>
-  <a href="https://github.com/nette"><img src="https://github.com/nette.png" width="128"></a>
-  <a href="https://github.com/symfony"><img src="https://github.com/symfony.png" width="128"></a>
-  <a href="https://github.com/illuminate"><img src="https://github.com/illuminate.png" width="128"></a>
-  <a href="https://github.com/slimphp"><img src="https://github.com/slimphp.png" width="128"></a>
-  <a href="https://github.com/phalcon"><img src="https://github.com/phalcon.png" width="128"></a>
-</p>
-
-<p align=center><strong>🏋️‍♀️ It works with these frameworks and tools. Discover more at <a href="https://github.com/juicyfx/vercel-examples">examples</a>.</strong></p>
+<p align=center><strong>🏋️‍♀️ It works with frameworks and tools like Nette, Symfony, Laravel, Slim, and Phalcon. Discover more at <a href="https://github.com/juicyfx/vercel-examples">examples</a>.</strong></p>
 
 <p align=center>
 Made with  ❤️  by <a href="https://github.com/f3l1x">@f3l1x</a> (<a href="https://f3l1x.io">f3l1x.io</a>) • 🐦 <a href="https://twitter.com/xf3l1x">@xf3l1x</a>
 </p>
 
 -----
+
+> [!IMPORTANT]
+> `vercel-php` is a **community-maintained custom runtime**. It is not an official Vercel runtime and is not supported by Vercel.
+>
+> For new projects, we recommend deploying PHP on Vercel using a container runtime instead. See [Deploy PHP on Vercel with Docker](https://vercel.com/kb/guide/deploy-php-on-vercel-with-docker).
 
 ## 😎 Getting Started
 
