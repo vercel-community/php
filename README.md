@@ -120,12 +120,29 @@ Do you have more questions (❓)? Let's move to [FAQ](#%EF%B8%8F-faq).
 
 ## 👨‍💻 `vercel dev`
 
-For running `vercel dev` properly, you need to have PHP installed on your computer, [learn more](errors/now-dev-no-local-php.md).
-But it's PHP and as you know PHP has built-in development server. It works out of box.
+`vercel dev` runs your PHP functions using a local PHP CLI installation. Install PHP and the extensions your application needs, then run from your project root:
 
+```sh
+# For Composer projects, install dependencies locally first:
+composer install
+vercel dev
 ```
+
+PHP must be available on `PATH`. Alternatively, set `VERCEL_PHP_EXECUTABLE` to the full path of your PHP executable. See [local PHP setup](errors/now-dev-no-local-php.md).
+
+Vercel handles `vercel.json` routing and supplies its development environment variables. Each matched PHP request starts a loopback-only PHP built-in server on an available port, with that function's entrypoint as its router. Vercel shuts down the server after the response. The working directory and default document root are the project root; `VERCEL_PHP_DOCROOT` can select a different document root.
+
+Local development uses your installed PHP version, extensions and configuration, not the bundled Linux deployment runtime. If `api/php.ini` exists, the runtime appends the `api` directory to PHP's configuration scan path, so `api/*.ini` overrides load after your host's primary configuration. Existing `PHPRC` and `PHP_INI_SCAN_DIR` settings are preserved. Use portable directives and configure local extension paths separately. Composer installation and the `composer run vercel` build script are not run automatically by the dev hook. Run any setup or generation your application needs before starting development.
+
+This supports local HTTP development, not Lambda resource limits or production isolation. Servers are request-scoped, so do not rely on PHP process state between requests. The runtime disables PHP's extra CLI server workers to keep process cleanup bounded.
+
+You can still bypass Vercel and use [PHP's built-in server](https://www.php.net/manual/en/features.commandline.webserver.php):
+
+```sh
 php -S localhost:8000 api/index.php
 ```
+
+That command does not apply Vercel routes or load Vercel environment variables. `api/index.php` runs as a router on every request; return `false` from the router to serve a requested static file directly. Use your framework's development server when appropriate. PHP's built-in server is for development, not public production hosting.
 
 ## 👀 Demo
 
@@ -363,11 +380,7 @@ All files in root folder are uploaded to Vercel, use `.vercelignore` to exclude 
 <details>
   <summary>9. How to develop locally?</summary>
 
-I think the best way at this moment is use [PHP Development Server](https://www.php.net/manual/en/features.commandline.webserver.php).
-
-```
-php -S localhost:8000 api/index.php
-```
+Install local PHP and any Composer dependencies, then use `vercel dev`. See the [`vercel dev` section](#-vercel-dev) for configuration and the standalone PHP-server alternative.
 
 </details>
 
